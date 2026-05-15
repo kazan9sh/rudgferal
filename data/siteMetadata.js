@@ -1,18 +1,22 @@
+const repositoryUrl = process.env.NEXT_PUBLIC_SITE_REPO || 'https://github.com/kazan9sh/rudgferal'
+const repositoryBranch = process.env.NEXT_PUBLIC_SITE_BRANCH || 'master'
+
 /** @type {Record<string, any>} */
 const siteMetadata = {
-  title: 'Dreamgrove',
-  author: 'thevinter',
-  headerTitle: 'Dreamgrove',
+  title: 'СИЛА ЗВЕРЯ',
+  author: 'Казаняш',
+  headerTitle: 'СИЛА ЗВЕРЯ',
   description:
-    'A website for resources, guides, theorycrafting, and discussion about all things Druid.',
-  language: 'en-us',
+    'Русский компедиум по друиду специализации Сила Зверя: ротация, таланты, экипировка и полезные ресурсы.',
+  language: 'ru',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://dreamgrove.gg',
-  siteRepo: 'https://github.com/dreamgrove/dreamgrove',
-  siteLogo: '/static/images/logo.png',
+  siteUrl: 'https://rotation.local',
+  siteRepo: repositoryUrl,
+  repositoryBranch,
+  siteLogo: '/static/images/rotation-logo.png',
   socialBanner: '/static/images/twitter-card.png',
-  github: 'https://github.com/dreamgrove/dreamgrove',
-  locale: 'en-US',
+  github: repositoryUrl,
+  locale: 'ru-RU',
   analytics: {
     umamiAnalytics: {
       umamiWebsiteId: process.env.NEXT_UMAMI_ID,

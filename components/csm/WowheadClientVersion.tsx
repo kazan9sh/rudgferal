@@ -36,7 +36,7 @@ function WowheadClientVersion({
   // Use a cache key that's stable across component rerenders
   const cacheKey = useMemo(() => {
     const whUrl =
-      url !== '' ? url : `https://www.wowhead.com/${beta ? 'beta/' : ''}${type}=${id || ''}`
+      url !== '' ? url : `https://www.wowhead.com/ru/${beta ? 'beta/' : ''}${type}=${id || ''}`
     return wowheadCache.generateKey(whUrl)
   }, [id, type, beta, url])
 
@@ -57,7 +57,7 @@ function WowheadClientVersion({
   }
 
   const whUrl =
-    url !== '' ? url : `https://www.wowhead.com/${beta ? 'beta/' : ''}${type}=${displayId}`
+    url !== '' ? url : `https://www.wowhead.com/ru/${beta ? 'beta/' : ''}${type}=${displayId}`
 
   const fetchWowhead = useCallback(async () => {
     if (typeof window === 'undefined') return
@@ -181,6 +181,8 @@ function WowheadClientVersion({
   ) : (
     <a
       href={whUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`inline-flex items-baseline gap-1 decoration-2 q${quality}`}
       style={{ color: linkColor, textWrap: 'nowrap' }}
     >

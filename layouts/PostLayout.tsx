@@ -6,8 +6,7 @@ import SectionContainer from '@/components/SectionContainer'
 import Tag from '@/components/Tag'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import TableOfContents from '@/components/custom/TableOfContents/TableOfContents'
-import { FaHistory, FaEdit } from 'react-icons/fa'
-import Link from 'next/link'
+import { FaHistory } from 'react-icons/fa'
 import CheckboxProvider from '@/components/custom/CheckboxProvider'
 import AprilFoolsAds, { AprilFoolsBanner } from '@/components/AprilFools/AprilFoolsAds'
 
@@ -17,17 +16,15 @@ interface LayoutProps {
   next?: { path: string; title: string }
   prev?: { path: string; title: string }
   children: ReactNode
-  translator?: string
   toc: any
 }
 
-export default function PostLayout({ content, authorDetails, children, toc }: LayoutProps) {
-  const { patch, slug, title, tags, lastModified, changelogUrl, translator } = content
+export default function PostLayout({ content, children, toc }: LayoutProps) {
+  const { patch, slug, title, tags, lastModified, changelogUrl, authors } = content
+  const displayAuthors = authors?.join(', ') || 'Казаняш'
 
   // Check if this is a compendium page
   const isCompendium = slug?.endsWith('/compendium')
-  // Extract the spec from the slug for the edit link
-  const specSlug = isCompendium ? slug.split('/')[0] : ''
 
   return (
     <SectionContainer>
@@ -42,26 +39,14 @@ export default function PostLayout({ content, authorDetails, children, toc }: La
               </div>
 
               <div className="flex h-full flex-col lg:flex-row lg:items-center lg:justify-between">
-                <div className="pt-4 lg:h-full lg:content-around lg:self-end lg:pt-0">
-                  <div className="flex flex-col space-y-0">
-                    <p
-                      className={`${translator ? '' : 'lg:flex lg:flex-col lg:items-start'} text-lg font-medium text-gray-900 lg:justify-self-start dark:text-gray-100`}
-                    >
-                      Written by: <span className="text-[#1a9c82]">{authorDetails.join(', ')}</span>
-                    </p>
-                    {translator && translator !== '' && (
-                      <p className="text-lg font-medium text-gray-900 lg:text-left dark:text-gray-100">
-                        Translated by: <span className="text-[#1a9c82]">{translator}</span>
-                      </p>
-                    )}
-                  </div>
-                </div>
+                <div className="pt-4 lg:h-full lg:content-around lg:self-end lg:pt-0" />
                 <div className="pt-4 text-base leading-6 font-medium text-gray-500 lg:pt-0 lg:text-right dark:text-gray-400">
                   <div>
-                    Patch: <span className="text-[#1a9c82]">{patch}</span>
+                    Патч: <span className="text-main">{patch}</span>
                   </div>
                   <div>
-                    Updated: <span className="text-[#1a9c82]">{lastModified}</span>
+                    Обновлено: <span className="text-main">{lastModified}</span>{' '}
+                    <span className="text-main">{displayAuthors}</span>
                   </div>
                   <div className="hidden lg:inline">
                     <a
@@ -69,7 +54,7 @@ export default function PostLayout({ content, authorDetails, children, toc }: La
                       className="text-main mt-[-2px] text-base underline decoration-2 underline-offset-4"
                     >
                       <FaHistory className="mr-2 inline" />
-                      <span className="inline">Changelog</span>
+                      <span className="inline">История</span>
                     </a>
                   </div>
                 </div>
@@ -89,7 +74,7 @@ export default function PostLayout({ content, authorDetails, children, toc }: La
                   className="text-main ml-0 text-sm font-medium underline decoration-2 underline-offset-4 sm:-ml-6 sm:text-base"
                 >
                   <FaHistory className="mr-2 inline" />
-                  <span className="inline align-top">Changelog</span>
+                  <span className="inline align-top">История</span>
                 </a>
               </div>
               <div
@@ -105,7 +90,7 @@ export default function PostLayout({ content, authorDetails, children, toc }: La
                 {tags && tags.length > 0 && (
                   <div className="py-4 xl:py-8">
                     <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                      Tags
+                      Теги
                     </h2>
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (

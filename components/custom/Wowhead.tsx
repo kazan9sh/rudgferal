@@ -103,7 +103,7 @@ export default async function Wowhead({
   }
 
   const whUrl =
-    url != '' ? url : `https://www.wowhead.com/${beta ? 'beta/' : ''}${type}=${displayId}`
+    url != '' ? url : `https://www.wowhead.com/ru/${beta ? 'beta/' : ''}${type}=${displayId}`
 
   icon = <span className="wowhead-icon-wrap">{icon}</span>
   return disabled ? (
@@ -119,6 +119,8 @@ export default async function Wowhead({
   ) : (
     <a
       href={whUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`${context} wowhead-link decoration-2 q${quality} inline-flex items-${align} gap-0.5`}
       style={{ color: textColor != '' ? textColor : linkColor }}
     >

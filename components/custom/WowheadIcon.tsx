@@ -38,7 +38,7 @@ export default async function WowheadIcon({
   iconId,
   fill = false,
 }: WowheadIconProps) {
-  const whUrl = url !== '' ? url : `https://www.wowhead.com/${beta ? 'beta/' : ''}${type}=${id}`
+  const whUrl = url !== '' ? url : `https://www.wowhead.com/ru/${beta ? 'beta/' : ''}${type}=${id}`
 
   let imageUrl = ''
   let hasImage = false
@@ -87,7 +87,12 @@ export default async function WowheadIcon({
   return noLink ? (
     <span className="relative inline-block aspect-square h-full w-auto shrink-0">{image}</span>
   ) : (
-    <a href={whUrl} className="relative inline-block aspect-square h-full w-auto shrink-0">
+    <a
+      href={whUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative inline-block aspect-square h-full w-auto shrink-0"
+    >
       {image}
     </a>
   )

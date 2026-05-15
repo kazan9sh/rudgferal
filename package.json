@@ -1,5 +1,5 @@
 {
-  "name": "dreamgrove",
+  "name": "rudgferal",
   "version": "2.2.0",
   "private": true,
   "scripts": {
@@ -101,6 +101,7 @@
     "@next/eslint-plugin-next": "^16.0.0",
     "@types/jest": "^29.5.0",
     "@types/mdx": "^2.0.13",
+    "@types/node": "25.8.0",
     "@types/node-telegram-bot-api": "^0.64.8",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

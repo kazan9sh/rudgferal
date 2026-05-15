@@ -19,6 +19,23 @@ function getIdFromUrl(url: string): string {
   return url.replace(/-\d+$/, '') // Remove '#' and the trailing '-{number}'
 }
 
+function scrollToTarget(targetUrl: string, onBeforeScroll?: () => void, delay = 0) {
+  const element = document.querySelector(targetUrl)
+  if (!element) return
+
+  onBeforeScroll?.()
+
+  window.setTimeout(() => {
+    const headerOffset = window.innerWidth >= 1024 ? 164 : 112
+    const elementTop = element.getBoundingClientRect().top + window.scrollY
+
+    window.scrollTo({
+      top: Math.max(elementTop - headerOffset, 0),
+      behavior: 'smooth',
+    })
+  }, delay)
+}
+
 export default function ClientTocItem({
   item,
   inSidebar = false,
@@ -69,15 +86,7 @@ export default function ClientTocItem({
         <a
           onClick={(e) => {
             e.preventDefault()
-            const element = document.querySelector(targetUrl)
-            if (element) {
-              // First close the sidebar
-              toggleNav()
-              // Then scroll to the element after a small delay
-              setTimeout(() => {
-                element.scrollIntoView({ behavior: 'smooth' })
-              }, 300)
-            }
+            scrollToTarget(targetUrl, toggleNav, 300)
           }}
           href={targetUrl}
         >
@@ -89,7 +98,7 @@ export default function ClientTocItem({
 
   return (
     <li
-      className={`my-2 text-sm ${isActive ? 'text-xl font-bold text-main' : 'text-gray-800 dark:text-gray-400'}`}
+      className={`toc-item ${isActive ? 'toc-item--active' : ''}`}
       style={{
         marginLeft: `${(item.depth - 1) * 25}px`,
         marginTop: item.depth === 1 ? '0' : '5px',
@@ -98,10 +107,7 @@ export default function ClientTocItem({
       <a
         onClick={(e) => {
           e.preventDefault()
-          const element = document.querySelector(targetUrl)
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-          }
+          scrollToTarget(targetUrl)
         }}
         href={targetUrl}
       >

@@ -17,7 +17,7 @@ const CustomLink = ({ href, ...rest }: LinkProps & AnchorHTMLAttributes<HTMLAnch
 
   if (href.startsWith('https://www.wowhead.com')) {
     const parts = href.split('/')
-    const validTypes = ['item', 'spell', 'npc']
+    const validTypes = ['item', 'spell', 'npc', 'currency']
     const possibleType = parts.at(-2)?.split('=')
     const possibleName = parts.at(-1)?.split('?')[0]
     if (

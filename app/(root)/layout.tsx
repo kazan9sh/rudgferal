@@ -19,13 +19,13 @@ const space_grotesk = Space_Grotesk({
 })
 
 const source_sans = Source_Sans_3({
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   display: 'swap',
   variable: '--font-source-sans',
 })
 
 const ibm_plex = IBM_Plex_Sans({
-  subsets: ['latin'],
+  subsets: ['latin', 'cyrillic'],
   weight: ['400', '500', '600'],
   display: 'swap',
   variable: '--font-ibm-plex',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     url: './',
     siteName: siteMetadata.title,
     images: [siteMetadata.socialBanner],
-    locale: 'en_US',
+    locale: 'ru_RU',
     type: 'website',
   },
   alternates: {
@@ -100,7 +100,7 @@ export default function RootLayout({ children }: LayoutProps) {
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <body
-        className="flex h-full bg-[#F2F3F4] text-black antialiased dark:bg-[#282828] dark:text-white"
+        className="flex h-full bg-[#100f0f] text-[#f2ece9] antialiased dark:bg-[#100f0f] dark:text-[#f2ece9]"
         suppressHydrationWarning
       >
         <div className="flex h-full w-full flex-col" style={{ paddingLeft: 0 }}>

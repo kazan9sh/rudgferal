@@ -30,7 +30,7 @@ function WowheadClientIcon({
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  const whUrl = url !== '' ? url : `https://www.wowhead.com/${beta ? 'beta/' : ''}${type}=${id}`
+  const whUrl = url !== '' ? url : `https://www.wowhead.com/ru/${beta ? 'beta/' : ''}${type}=${id}`
   const cacheKey = `${type}-${id + name}${beta ? '-beta' : ''}`
 
   // Create a fallback element
@@ -125,7 +125,7 @@ function WowheadClientIcon({
   return noLink ? (
     image
   ) : (
-    <a href={whUrl} className="inline">
+    <a href={whUrl} target="_blank" rel="noopener noreferrer" className="inline">
       {image}
     </a>
   )

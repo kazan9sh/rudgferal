@@ -75,7 +75,7 @@ export async function fetchWowheadData({
       displayId = extractIdFromUrl(url)
     }
   } else {
-    wowheadUrl = `https://www.wowhead.com/${beta ? 'beta/' : ''}${type}=${displayId}`
+    wowheadUrl = `https://www.wowhead.com/ru/${beta ? 'beta/' : ''}${type}=${displayId}`
   }
 
   // Generate cache key
@@ -100,7 +100,7 @@ export async function fetchWowheadData({
 
   const promise = (async (): Promise<CacheEntry> => {
     try {
-      const tooltipUrl = `https://nether.wowhead.com/tooltip/${type}/${displayId}`
+      const tooltipUrl = `https://nether.wowhead.com/tooltip/${type}/${displayId}?locale=ru`
       const response = await fetch(tooltipUrl, {
         headers: {
           'User-Agent':

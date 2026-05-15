@@ -50,19 +50,20 @@ module.exports = {
         lg: '1.1rem',
       },
       fontFamily: {
-        sans: ['thiccboi', 'magnificent'],
+        sans: ['var(--font-source-sans)', '"Segoe UI"', 'Arial', 'sans-serif'],
         thiccboi: ['thiccboi', 'sans-serif'],
         magnificent: ['magnificent', 'sans-serif'],
-        'familiar-pro': ['familiar-pro', 'sans-serif'],
+        'familiar-pro': ['var(--font-source-sans)', '"Segoe UI"', 'Arial', 'sans-serif'],
       },
       colors: {
         primary: {
-          500: '#d57f43', // Replace with your custom color
-          600: '#d57f43', // Optional: dark variant
-          light: '#d57f43', // Optional: light variant
+          400: '#ff5a45',
+          500: '#e63324',
+          600: '#b91f18',
+          light: '#ff5a45',
         },
-        main: '#d57f43',
-        secondary: '#1a9c82',
+        main: '#e63324',
+        secondary: '#7f1d1d',
       },
       typography: ({ theme }) => ({
         DEFAULT: {

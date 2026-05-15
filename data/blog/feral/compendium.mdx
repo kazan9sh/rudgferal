@@ -1,741 +1,656 @@
 ---
-title: 'Feral Druid Compendium'
-patch: '12.0'
+title: 'СИЛА ЗВЕРЯ'
+patch: '12.0.5'
 draft: false
-authors: ["Crazymeow"]
-summary: 'Everything you need to know about Feral Druid'
+authors: ['Казаняш']
+summary: 'Русский компедиум по друиду специализации Сила Зверя'
+tags: ['feral', 'druid', 'ru']
 ---
 
-# News
+# Новости
 
-With the 12.0.5 patch, blizzard is changing Unseen Attacks to scale based on energy and combo points spent. With these changes you should be biting on 5cp and at least 50 energy in all content. This leads to a ~0.7% increase in damage.
+![Новости](/static/images/guide-sections/news.png)
 
-## Nebulous Voidcores
+В патче 12.0.5 Blizzard меняет [Незримые атаки](https://www.wowhead.com/ru/spell=1263657/unseen-predator): урон теперь зависит от потраченной энергии и комбо-поинтов. После этого !22568|Свирепый укус! в любом контенте прожимается при 5 КП и минимум 50 энергии. По текущим симам это около 0,7% урона.
 
-Upon completing any content that gives vault rewards, you can spend Nebulous Voidcores to generate an item from that instance. It takes 2 of these voidcores to generate an item from Raid. Once you generate an item, it is removed from the loot table for your character from successive voidcores. You should use these to target farm trinkets and weapons primarily, but you can make a case for just sending it wherever generates the highest average value for the short term.
+## Туманные сердечники Бездны
 
-With that in mind, a notable instance is Algethar Academy, as it has 2 weapons and [Algether's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103). Chimaerus has a weapon and [Gaze of the Alnseer](https://www.wowhead.com/item=249343?ilvl=289&spec=103&hero=22&pcs=250024:250247:251092:260312:250027:244576:250025:249374:250023:249382:249920:251513:193701:249343:251077), Midnight Falls has bis necklace [Amulet of the Abyssal Hymn](https://www.wowhead.com/item=250247/amulet-of-the-abyssal-hymn?bonus=12806:13577:13668&hero=22&ilvl=289&spec=103) and ring [Eye of Midnight](https://www.wowhead.com/item=249920/eye-of-midnight?bonus=40:13534:13335:12806&hero=22&ilvl=289&spec=103). Both are which are good even on heroic; Bel'oren has [Plume](https://www.wowhead.com/item=249806/radiant-plume?bonus=4795&class=11&hero=22&ilvl=289&spec=103).
+За активности, которые дают слоты в Великом хранилище, можно получать валюту [Туманный сердечник Бездны](https://www.wowhead.com/ru/currency=3418/туманный-сердечник-бездны). Сердечник тратится на предмет из выбранного типа контента; для рейдового предмета нужно 2 сердечника. После покупки этот предмет убирается из пула наград для следующих сердечников на этом персонаже.
 
-If you're not going to be killing raid bosses, Nexus-Point is another important dungeon, as it drops a 2p ring bonus, [Ommission of Light](https://www.wowhead.com/item=251093/omission-of-light?bonus=12806:13577:13668&hero=22&ilvl=289&spec=103) / [Occlusion of Void](https://www.wowhead.com/item=251217/occlusion-of-void?bonus=12806:13577:13668&hero=22&ilvl=289&spec=103)
+Основная цель таких сердечников — точечно добрать оружие и тринкеты. Иногда выгоднее закрыть самый сильный слот прямо сейчас, но для ферала бис — это оружие и тринкеты.
 
-# Rotation
+Полезные точки фарма:
 
-## Single Target
+- Академия Алгет'ар: дабл хенд и [Алгет'арская шкатулка с секретом](https://www.wowhead.com/ru/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103).
+- Химерий: оружие и [Взор ясновидца Альн](https://www.wowhead.com/ru/item=249343/gaze-of-the-alnseer?ilvl=289&spec=103&hero=22&pcs=250024:250247:251092:260312:250027:244576:250025:249374:250023:249382:249920:251513:193701:249343:251077).
+- Торжество Полуночи: лучшая нека [Амулет гимна пустоты](https://www.wowhead.com/ru/item=250247/amulet-of-the-abyssal-hymn?bonus=12806:13577:13668&hero=22&ilvl=289&spec=103) и кольцо [Око полуночи](https://www.wowhead.com/ru/item=249920/eye-of-midnight?bonus=40:13534:13335:12806&hero=22&ilvl=289&spec=103).
+- Бело'рен: [Сияющее перо](https://www.wowhead.com/ru/item=249806/radiant-plume?bonus=4795&class=11&hero=22&ilvl=289&spec=103), можно свитчнуть в [Темное перо](https://www.wowhead.com/ru/spell=1265805/темное-перо).
 
-**What is a priority list?**
+Если не ходим в рейд, можно пофармить Нексус: там падает сет бисовых колец, [Отсутствие Света](https://www.wowhead.com/ru/item=251093/omission-of-light?bonus=12806:13577:13668&hero=22&ilvl=289&spec=103) и [Затенение Бездной](https://www.wowhead.com/ru/item=251217/occlusion-of-void?bonus=12806:13577:13668&hero=22&ilvl=289&spec=103).
 
-When reading the priority lists below, you should not think about these as steps to follow in a specific order. At any given point in combat, you should cast the first thing in the list that you are able to cast.
+# Ротация
 
-The way this section is written is very formulaic and has the same structure as the Action Priority List (APL) used in sims.
+![Ротация](/static/images/guide-sections/rotation.png)
 
-**Pre-Combat:**
+## Соло таргет
 
-1. [*Chomp] Precast !Swipe! until you're tapped on energy
-2. If you have it, precast [Algethar Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103)
-3. !Prowl!
-4. !Tiger's Fury! immediately before !Rake!
-5. !Rake! from stealth.
+**Список приоритетов — не макрос, но и не фикс того, как надо жать.** Кликнув на строчки талантов, можно получить примеры приоритетов. APL (Action Priority List) составлен из симов по данным RaidBots, поэтому часть пунктов не всегда отражает действительность.
 
-**Select which talents you have to filter the priority list:**
+**Пре-опенер:**
 
-<Checkbox isIcon id="Druid of the Claw" spellId={441583} name="Druid of the Claw" radio="hero talents" />
-<Checkbox isIcon id="Wildstalker" spellId={439528} name="Wildstalker" radio="hero talents" defaultCheck />
-<Checkbox isIcon id="Feral Frenzy" spellId={274838} name="Feral Frenzy" defaultCheck />
-<Checkbox isIcon id="Convoke the Spirits" spellId={391528} name="Convoke the Spirits" radio="Convoke" defaultCheck />
-<Checkbox isIcon id="Incarnation" spellId={102543} name="Incarnation" radio="Convoke" />
-<Checkbox isIcon id="Lunar Inspiration" spellId={155580} name="Lunar Inspiration" radio="Chomp" defaultCheck />
-<Checkbox isIcon id="Chomp" spellId={1244258} name="Chomp" radio="Chomp" />
-<Checkbox isIcon id="Apex Predator's Craving" spellId={391881} name="Apex Predator's Craving" defaultCheck />
-<Checkbox isIcon id="Saber Jaws" spellId={421432} name="Saber Jaws" />
-<Checkbox isIcon id="Panthers Guile" spellId={1280316} name="Panther's Guile" />
-<Checkbox isIcon id="Shadowmeld" spellId={58984} name="Shadowmeld" />
+1. [Алгет'арская шкатулка с секретом](https://www.wowhead.com/ru/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103).
+2. !5215|Крадущийся зверь!.
+3. !5217|Тигриное неистовство! перед !1822|Глубокой раной!.
+4. !1822|Глубокая рана! из стелса.
 
-<div className="pb-2">
-</div>
+**Выберите таланты, чтобы отфильтровать список:**
 
-<Timeline spellIds={[ 383781, 5215, 5217, 1822, 106951, 1236616, 274838, 1079, 391528, 22568 ]}> Sample Single-Target Opener </Timeline>
+<Checkbox isIcon id="Druid of the Claw" spellId={441583} name="Друид-хищник" radio="hero talents" />
+<Checkbox isIcon id="Wildstalker" spellId={439528} name="Следопыт" radio="hero talents" defaultCheck />
+<Checkbox isIcon id="Feral Frenzy" spellId={274838} name="Дикое бешенство" defaultCheck />
+<Checkbox isIcon id="Convoke the Spirits" spellId={391528} name="Созыв духов" radio="Convoke" defaultCheck />
+<Checkbox isIcon id="Incarnation" spellId={102543} name="Воплощение" radio="Convoke" />
+<Checkbox isIcon id="Lunar Inspiration" spellId={155580} name="Лунное вдохновение" radio="Chomp" defaultCheck />
+<Checkbox isIcon id="Chomp" spellId={1244258} name="Быстрый укус" radio="Chomp" />
+<Checkbox isIcon id="Apex Predator's Craving" spellId={391881} name="Жажда сверххищника" defaultCheck />
+<Checkbox isIcon id="Saber Jaws" spellId={421432} name="Челюсти саблезуба" />
+<Checkbox isIcon id="Panthers Guile" spellId={1280316} name="Хитрость пантеры" />
+<Checkbox isIcon id="Shadowmeld" spellId={58984} name="Слиться с тенью" />
 
-[*Chomp] Pre-cast swipe as often as you need to start the fight at low energy. !5217|Tiger's Fury! generates enough energy to last you until !Convoke!.
+<div className="pb-2"></div>
 
-Puzzlebox use is prepull. Main idea of the opener is to get into your cooldowns as quickly as possible. If you know you will hold later, or that you wont lose any cooldown uptime, you can opt to delay by getting a 4+ combo point Rip up and then using Berserk/Feral Frenzy. Probably want to delay [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) until after you !Rip! if so. You must do delayed opener without !Feral Frenzy! talented. Skip !Convoke the Spirits! and the ensuing !Ferocious Bite! in the listed order if you do not have it talented.
+<Timeline spellIds={[383781, 5215, 5217, 1822, 106951, 1236616, 274838, 1079, 391528, 22568]}>
+  Пример опенера в соло таргет
+</Timeline>
 
-**Single Target Priority List:**
+Если холдим какой-то важный бурст, можно сначала развесить !1079|Разорвать! на 4+ КП перед Берсом / !274838|Дикое бешенство!. В таком варианте [Алгет'арскую шкатулку с секретом](https://www.wowhead.com/ru/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) обычно лучше задержать до !1079|Разорвать!. Отложенный опенер играется без выбранного !274838|Дикого бешенства!.
+
+**Приоритет в одну цель:**
 
 <details open>
-<summary>Highest Priority: Cooldowns</summary>
+<summary>Высший приоритет: кулдауны</summary>
 
-1. !5217|Tiger's Fury! on cooldown
-2. [*Chomp] Use !1244258|Chomp! as soon as it is castable.
-3. [*Incarnation] !102543|Incarnation! with !5217|Tiger's Fury!.
-4. [*~Incarnation] !Berserk! with !5217|Tiger's Fury!. You can hold this for !391528|Convoke! if for whatever reason they are misaligned, and you won't lose a cast doing so.
-5. [*Feral Frenzy&&Incarnation] !Feral Frenzy! with 2 or fewer combo points. 4 or fewer combo points is also acceptable during !102543|Incarn!.
-6. [*Feral Frenzy&&~Incarnation] !Feral Frenzy! with 2 or fewer combo points. 4 or fewer combo points is also acceptable during !Berserk!.
-7. [*Convoke the Spirits] !391528|Convoke! if all of these are true:
-    - !Rip! is up.
-    - !5217|Tiger's Fury! is up.
-    - You have 2 or fewer combo points outside !Berserk! or 4 or fewer inside !Berserk!. (or if you must cast it now to have the entirety of !391528|Convoke! within !Berserk!)
-8. [*Convoke the Spirits] You may also !391528|Convoke! if the fight is about to end. Usually you want to !391528|Convoke! with !Berserk! if you can do so without losing a cast.
+1. !5217|Тигриное неистовство! по КД.
+2. [*Chomp] !1244258|Быстрый укус! сразу, как только доступен.
+3. [*Incarnation] !102543|Воплощение! вместе с !5217|Тигриным неистовством!.
+4. [*~Incarnation] !106951|Берсерк! вместе с !5217|Тигриным неистовством!. Можно придержать под !391528|Созыв духов!, если тайминги разъехались и вы не потеряете лишнее применение.
+5. [*Feral Frenzy&&Incarnation] !274838|Дикое бешенство! при 2 или менее КП. Во время !102543|Воплощения! допустимо до 4 КП.
+6. [*Feral Frenzy&&~Incarnation] !274838|Дикое бешенство! при 2 или менее КП. Во время !106951|Берсерка! допустимо до 4 КП.
+7. [*Convoke the Spirits] !391528|Созыв духов!, если выполнено всё:
+    - !1079|Разорвать! уже висит на цели.
+    - !5217|Тигриное неистовство! активно.
+    - У вас 2 или менее КП вне !106951|Берсерка! или 4 или менее КП внутри !106951|Берсерка!. Исключение: нужно нажать сейчас, чтобы весь канал !391528|Созыва духов! попал в !106951|Берсерк!.
+8. [*Convoke the Spirits] Также можно нажать !391528|Созыв духов!, если бой вот-вот закончится. В обычной ситуации лучше совмещать его с !106951|Берсерком!, если из-за этого не теряется отдельное применение.
 
 </details>
 
 <details open>
-<summary>Second Priority: Finishers</summary>
+<summary>Второй приоритет: финишеры</summary>
 
-1. [*Apex Predator's Craving] !Ferocious Bite! with !Apex Predator's Craving! procs.
-2. !Rip! if all of these are true:
-    - You have 5 combo points.
-    - !Rip! is missing or in pandemic range.
-    - !5217|Tiger's Fury! is up, or won't be up before !Rip! expires.
-3. !Ferocious Bite! with 5 combo points and at least 50 energy.
+1. [*Apex Predator's Craving] !22568|Свирепый укус! по проку !391881|Жажды сверххищника!.
+2. !1079|Разорвать!, если выполнено всё:
+    - У вас 5 КП.
+    - !1079|Разорвать! отсутствует или находится в пандемик-окне.
+    - !5217|Тигриное неистовство! активно или не успеет откатиться до окончания !1079|Разорвать!.
+3. !22568|Свирепый укус! при 5 КП и минимум 50 энергии.
 
 </details>
 
 <details open>
-<summary>Last Priority: Generators</summary>
+<summary>Третий приоритет: генераторы</summary>
 
-1. [*Incarnation] !Prowl! if all of these are true:
-    - [*Shadowmeld] You are not in !58984|Shadowmeld!
-    - !Rake! is in pandemic, or you can upgrade its snapshot by entering !Prowl!.
-2. [*Shadowmeld] !58984|Shadowmeld! if all of these are true:
-    - [*Incarnation] You are not in !Prowl!
-    - !Rake! is in pandemic, or you can upgrade its snapshot by entering !58984|Shadowmeld!
-4. !Rake! if any of these are true:
-    - You would be increasing the strength of !Rake!.
-    - !Rake! is in pandemic during !5217|Tiger's Fury!.
-    - !Rake! has 2 or fewer seconds remaining, and will expire before !5217|Tiger's Fury! is ready.
-5. [*Lunar Inspiration] Use Lunar Inspiration !155580|Moonfire! if any of these are true:
-    - You would be increasing the strength of !155580|Moonfire!
-    - !155580|Moonfire! is in pandemic during !5217|Tiger's Fury!.
-    - !155580|Moonfire! has 2 or fewer seconds remaining, and will expire before !5217|Tiger's Fury! is ready.
-6. !Shred! to continue generating combo points.
+1. [*Incarnation] !5215|Крадущийся зверь!, если !1822|Глубокая рана! в пандемике или вы можете усилить её снапшот входом в стелс.
+2. [*Shadowmeld] !58984|Слиться с тенью!, если !1822|Глубокая рана! в пандемике или можно усилить её снапшот.
+3. !1822|Глубокая рана!, если выполняется любое условие:
+    - Вы усиливаете её снапшот.
+    - Она в пандемике во время !5217|Тигриного неистовства!.
+    - До конца осталось 2 секунды или меньше, а !5217|Тигриное неистовство! не успеет откатиться.
+4. [*Lunar Inspiration] !155580|Лунный огонь! от Лунного вдохновения по тем же правилам: апгрейд снапшота, пандемик во время !5217|Тигриного неистовства! или 2 секунды до падения без скорого !5217|Тигриного неистовства!.
+5. !5221|Полоснуть! для набора КП.
 
 > [!TIP]
-> You can instead only use Lunar Inspiration !155580|Moonfire! in pandemic for a small loss in dps (~0.1-0.2%) if tracking it is too much for now. 
+> Если следить за !155580|Лунный огонь! неудобно, можно обновлять в пандемик. Потеря дпс небольшая: 0.1 - 0,2.
 
 </details>
 
-## Multi Target
+## Несколько целей
 
-**Select which talents you have to filter the priority list:**
+**Выберите AoE-таланты, чтобы отфильтровать список:**
 
-<Checkbox isIcon id="Druid of the Claw AOE" spellId={441583} name="Druid of the Claw" radio="hero talents AOE" defaultCheck />
-<Checkbox isIcon id="Wildstalker AOE" spellId={439528} name="Wildstalker" radio="hero talents AOE"/>
-<Checkbox isIcon id="Double Clawed Rake AOE" spellId={391700} name="Double Clawed Rake" />
-<Checkbox isIcon id="Wild Slashes AOE" spellId={390864} name="Wild Slashes" defaultCheck />
-<Checkbox isIcon id="Infected Wounds AOE" spellId={48484} name="Infected Wounds" defaultCheck />
-<Checkbox isIcon id="Feral Frenzy AOE" spellId={274838} name="Feral Frenzy" radio="ff aoe" />
-<Checkbox isIcon id="Frantic Frenzy AOE" spellId={1243807} name="Frantic Frenzy" radio="ff aoe" defaultCheck />
-<Checkbox isIcon id="Convoke the Spirits AOE" spellId={391528} name="Convoke the Spirits" radio="Convoke AOE" defaultCheck />
-<Checkbox isIcon id="Incarnation AOE" spellId={102543} name="Incarnation" radio="Convoke AOE"/>
-<Checkbox isIcon id="Lunar Inspiration AOE" spellId={155580} name="Lunar Inspiration" />
-<Checkbox isIcon id="Apex Predator's Craving AOE" spellId={391881} name="Apex Predator's Craving" defaultCheck />
-<Checkbox isIcon id="Rampant Ferocity AOE" spellId={391710} name="Rampant Ferocity" defaultCheck />
-<Checkbox isIcon id="Shadowmeld AOE" spellId={58984} name="Shadowmeld" />
-<Checkbox isIcon id="Primal Wrath AOE" spellId={285381} name="Primal Wrath" defaultCheck />
-<Checkbox isIcon id="Panthers Guile AOE" spellId={1280316} name="Panther's Guile" />
-<Checkbox isIcon id="Sudden Ambush AOE" spellId={384667} name="Sudden Ambush" />
+<Checkbox isIcon id="Druid of the Claw AOE" spellId={441583} name="Друид-хищник" radio="hero talents AOE" defaultCheck />
+<Checkbox isIcon id="Wildstalker AOE" spellId={439528} name="Следопыт" radio="hero talents AOE" />
+<Checkbox isIcon id="Double Clawed Rake AOE" spellId={391700} name="Раздвоенные когти" />
+<Checkbox isIcon id="Wild Slashes AOE" spellId={390864} name="Дикие замахи" defaultCheck />
+<Checkbox isIcon id="Infected Wounds AOE" spellId={48484} name="Зараженные раны" defaultCheck />
+<Checkbox isIcon id="Feral Frenzy AOE" spellId={274838} name="Дикое бешенство" radio="ff aoe" />
+<Checkbox isIcon id="Frantic Frenzy AOE" spellId={1243807} name="Бурное бешенство" radio="ff aoe" defaultCheck />
+<Checkbox isIcon id="Convoke the Spirits AOE" spellId={391528} name="Созыв духов" radio="Convoke AOE" defaultCheck />
+<Checkbox isIcon id="Incarnation AOE" spellId={102543} name="Воплощение" radio="Convoke AOE" />
+<Checkbox isIcon id="Lunar Inspiration AOE" spellId={155580} name="Лунное вдохновение" />
+<Checkbox isIcon id="Apex Predator's Craving AOE" spellId={391881} name="Жажда сверххищника" defaultCheck />
+<Checkbox isIcon id="Rampant Ferocity AOE" spellId={391710} name="Свирепое буйство" defaultCheck />
+<Checkbox isIcon id="Shadowmeld AOE" spellId={58984} name="Слиться с тенью" />
+<Checkbox isIcon id="Primal Wrath AOE" spellId={285381} name="Первобытный гнев" defaultCheck />
+<Checkbox isIcon id="Panthers Guile AOE" spellId={1280316} name="Хитрость пантеры" />
+<Checkbox isIcon id="Sudden Ambush AOE" spellId={384667} name="Внезапное нападение" />
 
-<div className="pb-2">
-</div>
+<div className="pb-2"></div>
 
-<Timeline spellIds={[ 1822, 1822, 1822, 383781, 5217, 285381, 106951, 1236616, 1243807, 22568, 391528 ]}> Sample m+ Opener </Timeline>
+<Timeline spellIds={[1822, 1822, 1822, 383781, 5217, 285381, 106951, 1236616, 1243807, 22568, 391528]}>
+  Пример опенера в M+
+</Timeline>
 
-The exact opener you should choose will have a ton of variables. The !Rake! casts are dual-purpose: They generate combo points, and they delay you going into cooldowns instantly (which risks you dying from threat). You can prepull !Prowl! if the !Rake! stun won't be problematic. You may need to cast more !Rake!s in order to reach 5 combo point in opener. Replace !Rake! with !Swipe! if target count is high enough to justify. If you already have combo points from a previous pull, You may even open with !Primal Wrath! directly. Always cast [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) before using cooldowns. Do not use !Frantic Frenzy! until the group is stacked. You may want to wait anyways so the tank can get aggro.
+Опенер в ключах сильно зависит от пула. Несколько !1822|Глубоких ран! в начале дают КП и чуть отсрачивают бурст, чтобы не сорвать агро. Если стан не мешает, можно нажать !1822|Глубокая рана! из !5215|Крадущийся зверь!. На больших паках заменяйте часть !1822|Глубоких ран! на !106785|Размах!. Если КП остались с прошлого пула, можно открыться сразу через !285381|Первобытный гнев!. [Алгет'арскую шкатулку с секретом](https://www.wowhead.com/ru/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) используйте перед кулдаунами.
 
-**AoE priority list (2+ targets):**
+**AoE-приоритет, 2+ цели:**
 
 <details open>
-<summary>Highest Priority: Cooldowns</summary>
+<summary>Высший приоритет: кулдауны</summary>
 
 > [!TIP]
-> Use your single target spells on higher healthed/priority mobs
+> Способности в одну цель отдавайте в приоритетных или самых жирных мобов.
 
-1. [*~Frantic Frenzy AOE] !5217|Tiger's Fury! on cooldown. Delay a few seconds as needed for !102543|Incarnation!/!Berserk!.
-1. [*Frantic Frenzy AOE] !5217|Tiger's Fury! on cooldown. Delay a few seconds if it means you can squeeze !1243807|Frantic Frenzy! into the end of !Tiger's Fury! or to line it up with !102543|Incarnation!/!Berserk!.
-2. [*Apex Predator's Craving AOE] !Ferocious Bite! with !Apex Predator's Craving! procs.
-3. [*Incarnation AOE] !102543|Incarnation!. This should always be paired with !5217|Tiger's Fury!.
-4. [*~Incarnation AOE] !Berserk!. This should always be paired with !5217|Tiger's Fury!.
-5. [*Feral Frenzy AOE&&Incarnation AOE] !Feral Frenzy! with 2 or fewer combo points outside !102543|Incarn!, or 4 or fewer inside !102543|Incarn!.
-6. [*Feral Frenzy AOE&&~Incarnation AOE] !Feral Frenzy! with 2 or fewer combo points outside !Berserk!, or 4 or fewer inside !Berserk!.
-6. [*Frantic Frenzy AOE] !1243807|Frantic Frenzy! as soon as possible during !5217|Tiger's Fury!.
-7. [*Convoke the Spirits AOE] !391528|Convoke! when:
-    - Your !Rip!'s will not fall off during !391528|Convoke's! channel. AND
-    - !5217|Tiger's Fury! is up. AND
-    - You have 2 or fewer combo points outside of !Berserk!, or 4 or fewer combo points during !Berserk!.
-    - *note: You generally want to pair this with !Berserk! if possible without losing casts.
+1. [*~Frantic Frenzy AOE] !5217|Тигриное неистовство! по КД. Можно задержать на пару секунд под !102543|Воплощение! / !106951|Берсерк!.
+1. [*Frantic Frenzy AOE] !5217|Тигриное неистовство! по КД. Холдите, если можно вписать !1243807|Бурное бешенство! в конец бафа или попасть в бурсты !102543|Воплощение! / !106951|Берсерк!.
+2. [*Apex Predator's Craving AOE] !22568|Свирепый укус! по проку !391881|Жажды сверххищника!.
+3. [*Incarnation AOE] !102543|Воплощение! всегда вместе с !5217|Тигриным неистовством!.
+4. [*~Incarnation AOE] !106951|Берсерк! всегда вместе с !5217|Тигриным неистовством!.
+5. [*Feral Frenzy AOE&&Incarnation AOE] !274838|Дикое бешенство! при 2 или менее КП вне !102543|Воплощения! или 4 или менее КП внутри.
+6. [*Feral Frenzy AOE&&~Incarnation AOE] !274838|Дикое бешенство! при 2 или менее КП вне !106951|Берсерка! или 4 или менее КП внутри.
+6. [*Frantic Frenzy AOE] !1243807|Бурное бешенство! как можно раньше во время !5217|Тигриного неистовства!.
+7. [*Convoke the Spirits AOE] !391528|Созыв духов!, когда ваши !1079|Разорвать! не спадут во время каста, !5217|Тигриное неистовство! активно, а КП не выше 2 вне !106951|Берсерка! или не выше 4 внутри.
 
 </details>
 
 <details open>
-<summary>Second Priority: Finishers</summary>
+<summary>Второй приоритет: финишеры</summary>
 
-1. [*Primal Wrath AOE&&~Incarnation AOE] !Primal Wrath! at 5 combo points if !Rip!s have fewer than 6.5s remaining. During !Berserk!, wait until pandemic instead.
-1. [*Primal Wrath AOE&&Incarnation AOE] !Primal Wrath! at 5 combo points if !Rip!s have fewer than 6.5s remaining. During !102543|Incarn!, wait until pandemic instead.
-2. [*~Primal Wrath AOE&&~Rampant Ferocity AOE&&Druid of the Claw AOE] !441591|Ravage! at 5 combo points and 50+ energy against 5 or more targets.
-2. [*~Primal Wrath AOE&&Rampant Ferocity AOE&&Druid of the Claw AOE] !441591|Ravage! at 5 combo points and 50+ energy
-3. [*~Primal Wrath AOE] Apply !Rip! to targets at 5 combo points. Also, maybe talent into !Primal Wrath!?
-4. [*~Primal Wrath AOE] !Ferocious Bite! at 5 combo points and 50+ energy
-4. [*Primal Wrath AOE&&Rampant Ferocity AOE] !Ferocious Bite! at 5 combo points and 50+ energy
-5. [*Primal Wrath AOE&&~Rampant Ferocity AOE&&Druid of the Claw AOE] !441591|Ravage! at 5 combo points and 50+ energy if there are 7 or fewer targets
-6. [*Primal Wrath AOE&&~Rampant Ferocity AOE&&Wildstalker AOE] !Ferocious Bite! at 5 combo points and 50+ energy if there are 4 or fewer targets
-7. [*Primal Wrath AOE&&~Rampant Ferocity AOE] Clip !Primal Wrath! at 5 combo points if you've made it this far.
+1. [*Primal Wrath AOE&&~Incarnation AOE] !285381|Первобытный гнев! при 5 КП, если на !1079|Разорвать! осталось меньше 6,5 секунды. Во время !106951|Берсерка! ждите пандемик-окна.
+1. [*Primal Wrath AOE&&Incarnation AOE] !285381|Первобытный гнев! при 5 КП, если на !1079|Разорвать! осталось меньше 6,5 секунды. Во время !102543|Воплощения! ждите пандемик-окна.
+2. [*~Primal Wrath AOE&&~Rampant Ferocity AOE&&Druid of the Claw AOE] !441591|Терзание! при 5 КП и 50+ энергии против 5+ целей.
+2. [*~Primal Wrath AOE&&Rampant Ferocity AOE&&Druid of the Claw AOE] !441591|Терзание! при 5 КП и 50+ энергии.
+3. [*~Primal Wrath AOE] Накладывайте !1079|Разорвать! на цели при 5 КП. И, возможно, всё-таки возьмите !285381|Первобытный гнев!.
+4. [*~Primal Wrath AOE] !22568|Свирепый укус! при 5 КП и 50+ энергии.
+4. [*Primal Wrath AOE&&Rampant Ferocity AOE] !22568|Свирепый укус! при 5 КП и 50+ энергии.
+5. [*Primal Wrath AOE&&~Rampant Ferocity AOE&&Druid of the Claw AOE] !441591|Терзание! при 5 КП и 50+ энергии, если целей 7 или меньше.
+6. [*Primal Wrath AOE&&~Rampant Ferocity AOE&&Wildstalker AOE] !22568|Свирепый укус! при 5 КП и 50+ энергии, если целей 4 или меньше.
+7. [*Primal Wrath AOE&&~Rampant Ferocity AOE] Если дошли до этого пункта, клипайте !285381|Первобытный гнев! при 5 КП.
 
 </details>
 
 <details open>
-<summary>Last Priority: Generators</summary>
+<summary>Третий приоритет: генераторы</summary>
 
-1. [*Double Clawed Rake AOE&&Panthers Guile AOE&&~Lunar Inspiration AOE] Apply !Rake! to targets without it.
-1. [*Double Clawed Rake AOE&&~Panthers Guile AOE&&Lunar Inspiration AOE] Apply !Rake! to targets without it.
-1. [*Double Clawed Rake AOE&&~Panthers Guile AOE&&~Lunar Inspiration AOE] Apply !Rake! to targets without it.
-1. [*Double Clawed Rake AOE&&Panthers Guile AOE&&Lunar Inspiration AOE] Prioritize applying !Rake! until you have at least 6 !Rake!s.
-2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&Panthers Guile AOE&&~Lunar Inspiration AOE] Prioritize applying !Rake! until you have at least 2 !Rake!s.
-2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&Panthers Guile AOE&&Lunar Inspiration AOE] Prioritize applying !Rake! until you have at least 3 !Rake!s.
-2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&~Panthers Guile AOE&&~Lunar Inspiration AOE] Prioritize applying !Rake! until you have at least 3 !Rake!s.
-2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&~Panthers Guile AOE&&Lunar Inspiration AOE] Prioritize applying !Rake! until you have at least 4 !Rake!s.
-3. [*Lunar Inspiration AOE] Apply !155580|Moonfire! to targets without it.
-4. [*Druid of the Claw AOE] Spam !Swipe! during !102543|Incarn!/!Berserk! for !441835|Claw Rampage! procs.
-5. [*Druid of the Claw AOE] Above 2 targets, cast !Swipe! with clearcasting procs.
-5. [*Wildstalker AOE] Above 2 targets but below 7 targets, cast !Swipe! with clearcasting procs. We stop swiping at 7+ targets to free up more gcds to upkeep !Rake!s.
-6. [*Sudden Ambush AOE&&Druid of the Claw AOE] Cast !Swipe! with !Sudden Ambush! if there are 5 or more targets.
-6. [*Sudden Ambush AOE&&Wildstalker AOE] Cast !Swipe! with !Sudden Ambush! if there are 7 or more targets.
-7. [*Wildstalker AOE&&~Double Clawed Rake AOE] Refresh !Rake!'s that are missing or in pandemic.
-7. [*Infected Wounds AOE&&~Wild Slashes AOE&&Druid of the Claw AOE] Refresh !Rake!'s that are missing or in pandemic when facing up to 8 targets.
-7. [*Infected Wounds AOE&&Wild Slashes AOE&&Druid of the Claw AOE] Refresh !Rake!'s that are missing or in pandemic when facing up to 5 targets.
-7. [*~Infected Wounds AOE&&~Wild Slashes AOE&&Druid of the Claw AOE] Refresh !Rake!'s that are missing or in pandemic when facing up to 5 targets.
-7. [*~Infected Wounds AOE&&Wild Slashes AOE&&Druid of the Claw AOE] Refresh !Rake!'s that are missing or in pandemic when facing up to 3 targets.
-8. [*Panthers Guile AOE] If you only have 2 targets, cast !Shred! at 0 or 1 combo points.
-9. !Swipe!.
-
-
-<div className="pb-6">
-</div>
+1. [*Double Clawed Rake AOE&&Panthers Guile AOE&&~Lunar Inspiration AOE] Развешивайте !1822|Глубокую рану! по целям без неё.
+1. [*Double Clawed Rake AOE&&~Panthers Guile AOE&&Lunar Inspiration AOE] Развешивайте !1822|Глубокую рану! по целям без неё.
+1. [*Double Clawed Rake AOE&&~Panthers Guile AOE&&~Lunar Inspiration AOE] Развешивайте !1822|Глубокую рану! по целям без неё.
+1. [*Double Clawed Rake AOE&&Panthers Guile AOE&&Lunar Inspiration AOE] Сначала доведите количество активных !1822|Глубоких ран! минимум до 6.
+2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&Panthers Guile AOE&&~Lunar Inspiration AOE] Поддерживайте минимум 2 !1822|Глубокие раны!.
+2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&Panthers Guile AOE&&Lunar Inspiration AOE] Поддерживайте минимум 3 !1822|Глубокие раны!.
+2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&~Panthers Guile AOE&&~Lunar Inspiration AOE] Поддерживайте минимум 3 !1822|Глубокие раны!.
+2. [*~Double Clawed Rake AOE&&Wildstalker AOE&&~Panthers Guile AOE&&Lunar Inspiration AOE] Поддерживайте минимум 4 !1822|Глубокие раны!.
+3. [*Lunar Inspiration AOE] Развешивайте !155580|Лунный огонь! по целям без него.
+4. [*Druid of the Claw AOE] Во время !102543|Воплощения! / !106951|Берсерка! спамьте !106785|Размах! ради проков !441835|Буйство когтей!.
+5. [*Druid of the Claw AOE] На 2+ целях жмите !106785|Размах! по прокам !16870|Ясность мысли!.
+5. [*Wildstalker AOE] На 2-6 целях жмите !106785|Размах! по прокам !16870|Ясность мысли!. На 7+ целях переставайте: ГКД важнее тратить на поддержку !1822|Глубоких ран!.
+6. [*Sudden Ambush AOE&&Druid of the Claw AOE] !106785|Размах! с !384667|Внезапное нападение! на 5+ целях.
+6. [*Sudden Ambush AOE&&Wildstalker AOE] !106785|Размах! с !384667|Внезапное нападение! на 7+ целях.
+7. [*Wildstalker AOE&&~Double Clawed Rake AOE] Обновляйте отсутствующие или пандемик-!1822|Глубокие раны!.
+7. [*Infected Wounds AOE&&~Wild Slashes AOE&&Druid of the Claw AOE] Обновляйте !1822|Глубокую рану! до 8 целей.
+7. [*Infected Wounds AOE&&Wild Slashes AOE&&Druid of the Claw AOE] Обновляйте !1822|Глубокую рану! до 5 целей.
+7. [*~Infected Wounds AOE&&~Wild Slashes AOE&&Druid of the Claw AOE] Обновляйте !1822|Глубокую рану! до 5 целей.
+7. [*~Infected Wounds AOE&&Wild Slashes AOE&&Druid of the Claw AOE] Обновляйте !1822|Глубокую рану! до 3 целей.
+8. [*Panthers Guile AOE] На двух целях жмите !5221|Полоснуть! при 0-1 КП.
+9. !106785|Размах! как филлер.
 
 > [!TIP]
-> In dungeons, with !Killing Strikes! and !102543|Incarn! talented, spread out the !58984|Shadowmeld! and !Prowl! casts such that you get more !Killing Strikes! resets. Even if it means you don't take advantage of !Pouncing Strikes!.
+> В подземельях с !441824|Убивающие удары! и !102543|Воплощение! распределяйте !58984|Слиться с тенью! и !5215|Крадущийся зверь! так, чтобы получить больше ресетов !441824|Убивающие удары!, даже если ради этого не получится использовать !390772|Внезапные удары!.
 
 </details>
 
-# Talents
+# Таланты
 
-### Class Talent Explanations
+![Таланты](/static/images/guide-sections/talents.png)
+
+### Объяснение классовых талантов
 
 <Talents
   open
-  hideCopy 
+  hideCopy
   forceTree="class"
-  name="Class Tree Choices"
-  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtl5BWGbzYGzMDAAAALBzGMmZUzYWYmZGjZmZAAAAAAAGAAAABAz2MLNbzssBmZAWMDGAAzMAYA" 
-  colors={[
-    { color: "red", nodes: ["Rejuvenation", "Wild Growth", "Starsurge", "Sunfire", "Starlight Conduit", "Ironfur", "Lingering Healing", "Symbiotic Relationship"] },
-    { color: "white", nodes: ["Starfire", "Moonkin Form", "Astral Influence", "Maim", "Hibernate", "Gale Winds", "Ursine Vigor"] },
-    { color: "yellow", nodes: ["Remove Corruption", "Nurturing Instinct", "Matted Fur", "Typhoon", "Ursol's Vortex", "Lore of the Grove", "Perfectly-Honed Instincs", "Incapacitating Roar", "Fluid Form", "Improved Stampeding Roar", "Lycaras Inspiration", "Forestwalk", "Innervate", "Heart of the Wild"]},
-    { color: "green", nodes: ["Rake", "Frenzied Regeneration", "Ursocs Spirit", "Swipe", "Feline Swiftness", "Grievous Wounds", "Rip", "Verdant Heart", "Improved Barkskin", "Killer Instinct", "Primal Fury", "Thick Hide", "Skull Bash", "Natural Recovery", "Aessina's Renewal", "Soothe", "Wild Charge", "Well-Honed Instincts", "Stampeding Roar", "Gift of the Wild", "Lycara's Teachings", "Instincts of the Claw", "Oakskin", "Circle of the Wild"]}
-  ]}
->
-<div className="flex justify-center">
-  <div className="flex space-x-4 items-center">
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-      <span className="text-sm">Never Take</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-white rounded-sm"></div>
-      <span className="text-sm">Niche</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
-      <span className="text-sm">Optional</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-      <span className="text-sm">Take</span>
-    </div>
-  </div>
-</div>
-</Talents>
+  name="Классовое дерево"
+  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtl5BWGbzYGzMDAAAALBzGMmZUzYWYmZGjZmZAAAAAAAGAAAABAz2MLNbzssBmZAWMDGAAzMAYA"
+/>
+
+Красные/слабые узлы из оригинального дерева обычно не берутся, потому что дают мало урона, требуют выхода из формы или закрывают слишком нишевые задачи. Жёлтые узлы — утилити под конкретный бой: диспел, !132469|Тайфун!, !102793|Вихрь Урсола!, !99|Парализующий рык!, ускоренный !106898|Тревожный рев!, !29166|Озарение! и !319454|Зов старейшего друида!. Зелёная база — стандартная защита, мобильность и основные кошачьи узлы.
 
 <details>
-<summary>Top Gate Explained</summary>
+<summary>Верхняя часть дерева</summary>
 
-!Rejuvenation!: Does too little healing and takes you out form
-
-!Wild Growth!: Better healing, but not enough to justify leaving form. It is not usable for defensive purposes as its a smart heal that does not care about your target.
-
-!Ironfur!: Most damage we take as dps role is magical or pierces armor. In the times its not, !Frenzied Regeneration! and !Bear Form! are already enough.
-
-!Sunfire!: Doesn't do much damage and can't use in !Cat Form!
-
-!Starfire!: into Moonkin Form: Incredibly niche for times where you need access to moonkin !Wild Charge! or more rarely, !Flap!. In theory also provides a slight amount of damage if you are stuck out of melee with no other recourse.
-
-!Hibernate!: Rarely, and almost always in dungeons, you can use this to remove a mob from a pack temporarily. Occasionally this can cause packs that path around to stop moving as it doesn't put you in combat.
-
-!Maim!: An expensive stun in a world where AoE stuns are prevalent.
-
-!Remove Corruption!: You will pretty much always talent this, but if you don't need to dispel anything it is droppable for the niche choices.
-
-!Nurturing Instinct!: This increases the damage of Lunar Inspiration !155580|Moonfire! by a small amount if you have that talented. This isn't a particularly good talent otherwise but you can run out of things to choose that does something.
+!774|Омоложение! и !48438|Буйный рост! слишком дороги для DPS-роли: вы выходите из формы, а ценность исцеления недостаточна. !192081|Железный мех! редко решает реальные угрозы для DPS, потому что большая часть опасного урона магическая или пробивает броню. !194153|Звездный огонь! / !24858|Облик лунного совуха! — крайне нишевый выбор ради мувмента или действий вне мили.
 
 </details>
 
 <details>
-<summary>Middle Gate Explained</summary>
+<summary>Средняя часть дерева</summary>
 
-!Starlight Conduit!: Technically buffs convoke !Wrath! but its such a small amount of damage that you should consider it zero value.
-
-!Lingering Healing!: This benefit is far too minor. In theory it synergizes with Forestwalk; in practice, if you need more healing when Regrowth is about to fall off, you just cast it again.
-
-!Astral Influence!: Primarily used to increase the range of Lunar Inspiration !155580|Moonfire!. Other uses are hyper-niche.
-
-!Matted Fur!: This effect got doubled and is thus a much more intriguing take. Essentially if you run out of other stuff, this is where you dump your points.
-
-!Typhoon!: Displacement often finds a use in Raid. In keys its typically used as a soft-kick.
-
-!Ursol's Vortex!: Often paired with !Typhoon! as a poor-man's sigil of chains. Excellent for kiting mobs or helping your tank do so. Particularly effective against mobs who fixate targets.
-
-!Mass Entanglement!: AoE root. For whenever you need more roots than you can already cast via !Entangling Roots!.
+!16914|Ураган!-ветка и похожие утилити-узлы берутся только под задачу. !132469|Тайфун! часто полезен как софт-кик, а !102793|Вихрь Урсола! помогает стягивать и кайтить мобов. !339|Гнев деревьев! / !102359|Массовое оплетение! нужны, если группе реально требуются корни.
 
 </details>
 
 <details>
-<summary>Bottom Gate Explained</summary>
+<summary>Нижняя часть дерева</summary>
 
-!Symbiotic Relationship!: This is severely undertuned. Never talent into it.
-
-!Ursine Vigor!: Essentially limited to only m+. Its only use is to let you survive one-shots you otherwise wouldn't have. Typically only relevant in the highest key levels.
-
-!Gale Winds!: Rare, and essentially only in raid, for when you need to make Typhoon more reliably knock all of its intended targets.
-
-!Incessant Tempest!: Rare, and almost always in Raid, for when you need to knock twice in less than 30 seconds. 
-
-!Lore of the Grove!: If you talent !Lunar Inspiration!, you should probably talent this as well.
-
-!Perfectly-Honed Instincts!: Nets you more Well-Honed Instincts procs, which often come at a good time.
-
-!Incapacitating Roar!: In keys this is required. AoE soft-kick, doesn't move mobs around or anything, it just works. Use !Fluid Form! to return back to !Cat Form!.
-
-!Fluid Form!: This is great quality of life and saves you GCDs whenever you find yourself shifting out of !Cat Form!. Particularly nice in keys to go along with !Incapacitating Roar! and !Bear Form!.
-
-!Improved Stampeding Roar!: If you need nothing else, or if your raid leader tells you to talent into this.
-
-!Lycara's Inspiration!: An alternate defensive option for the 4% stamina. I consider this weaker than !Forestwalk! but sometimes you have the free points, and other times you may just feel the increased health is more valuable than the healing taken increase.
-
-!Heart of the Wild!: An extra defensive (bear) most of the time. That being said, the Wild Growth (caster) version is a solid amount of healing too, about 1.5 times your health pool split across 5 injured players in your group. Its healing is frontloaded too, so it has life-saving potential.
-
-!Innervate!: If your healer demands it of you.
+!99|Парализующий рык! обязателен в ключах: это массовый софт-кик без разбрасывания мобов. !449193|Изменчивый облик! экономит ГКД при смене форм. !319454|Зов старейшего друида! чаще используется как дополнительная защитная кнопка через медведя, но кастер-версия тоже может дать заметное экстренное исцеление.
 
 </details>
 
-## Raid Talents
+## Рейдовые таланты
 
-<Talents comment="These bosses are effectively single target. Crown: Dropling adds have very little hp, not enough to warrant pad." name={"Vorasius / Heroic Salhadaar / Bel'oren / Crown of the Cosmos (single target)"} talents={"CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtl5BWGbzYGzMDAAAALBzmhxMjaGzyYmZmlxMMAAAAAAGYAAAAAAmtZWa2mZZDMzDAsYGMAAmZAwA"} />
+<Talents comment="Боссы фактически играются как одна цель. На Короне Космоса адды живут слишком мало, чтобы строить билд вокруг паддинга." name="Ворасий / гер. Салхадаар / Бело'рен / Корона Космоса (одна цель)" talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtl5BWGbzYGzMDAAAALBzmhxMjaGzyYmZmlxMMAAAAAAGYAAAAAAmtZWa2mZZDMzDAsYGMAAmZAwA" />
 
-<Talents comment="On Salhadaar you can maybe play Twin Sprouts instead. If you want more AoE, remove Panther's Guile for Rampant Ferocity. For L'ura you're not doing much more than just Primal Wrath on the crystals. Your main role is boss damage. On Chimaerus you can try Rampant Ferocity if youre able to pad a bit, but logs have shown that to not be the case." name={"Chimaerus / Mythic Salhadaar / Midnight Falls"} talents={"CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtlx2MbzYm5BmZAAAAYJY2YMmZUzYWYmZGjZmBAAAAAAwAAAAIAYWmZpZbmlNwMDwiZwAAYmBAD"} />
+<Talents comment="На Салхадааре можно попробовать Двойной росток. Если нужно больше массового урона, снимите Хитрость пантеры ради Свирепого буйства." name="Химерий / эпох. Салхадаар / Торжество Полуночи" talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtlx2MbzYm5BmZAAAAYJY2gxMjaGzCzMzYMzMDAAAAAAwAAAAIAYWmZpZbmlNwMDwiZwAAYmBAD" />
 
-<Talents comment="You can use Hunger for Battle instead of CI/LI if you want, as long as youre getting the 4:30 set of cooldowns. Make sure to hold your 4min set of cds for the 4:30 set of adds if you do. You can remove Rampant Ferocity for Panther's Guile if you aren't able to sufficiently pad. For more AoE you can grab Frantic Frenzy. Remove Tireless Energy for double-clawed rake if you're severely able to pad." name={"Averzian"} talents={"CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMjxstMPwyYbmZm5BmZAAAAYJY2gxMjaGzCzMzYMzMDAAAAAgBGAAAAAgZbmlmlZW2AzMALMYAAMzAgB"} />
+<Talents comment="Можно взять Голод битвы вместо CI/LI, если вы стабильно попадаете в 4:30 окно кулдаунов." name="Аверзиан" talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMjxstMPwyYbmZm5BmZAAAAYJY2gxMjaGzCzMzYMzMDAAAAAgBGAAAAAgZbmlmlZW2AzMALMYAAMzAgB" />
 
-<Talents comment="Your first Frantic Frenzy should be in your 2nd tigers fury, during the first orb set. You can play Focused Frenzy instead for more dragon/intermission damage and significantly lower orb damage. Jumping and casting Primal Wrath mid-air extends its AoE so keep that in mind for orbs." name={"Vaelgor & Ezzorak"} talents={"CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMzmZmZmxY2M2GbzMzMmZAAAAYLYYYMzomxsMmZmxYmHYGAAAAAAgBAAAAAY2mZpZZmlNwMDwiZwAAYmBAD"} />
+<Talents comment="Первое Бурное бешенство должно попасть во второе Тигриное неистовство во время первого набора сфер." name="Вейлгор и Эззорак" talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMzmZmZmxY2M2GbzMzMmZAAAAYLYYYMzomxsMmZmxYmHYGAAAAAAgBAAAAAY2mZpZZmlNwMDwiZwAAYmBAD" />
 
-<Talents comment="If you need 1 minute roar, remove a point from Forestwalk or Innervate." name={"Lightblinded Vanguard LI"} talents={"CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMzGjZmxY2WGbjtZmZmHYmBAAAglgZjxYmRNjZhZmZMmZGAAAAAAADAAAgAgZZmlmlZ22AzMALmBDAgZGAMA"} />
+<Talents comment="Если нужен минутный Тревожный рев, снимите очко из Пути через лес или Озарения." name="Ослепленный Светом авангард LI" talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMzGjZmxY2WGbjtZmZmHYmBAAAglgZjxYmRNjZhZmZMmZGAAAAAAADAAAgAgZZmlmlZ22AzMALmBDAgZGAMA" />
 
-<Talents comment="If you need 1 minute roar, remove a point from Forestwalk or Innervate." name={"Lightblinded Vanguard DOTC"} talents={"CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMDmZmZMzsZsNz2MzMjZGAAAAWCmNGjZG1MmFmZmxYmZAAAAAAAMAAAAamlZZmZGQgFwMDwiZwAAAYmNMA"} />
+<Talents comment="Если нужен минутный Тревожный рев, снимите очко из Пути через лес или Озарения." name="Ослепленный Светом авангард ДОТС" talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMDmZmZMzsZsNz2MzMjZGAAAAWCmNGjZG1MmFmZmxYmZAAAAAAAMAAAAamlZZmZGQgFwMDwiZwAAAYmNMA" />
 
-<div className="pb-6">
-</div>
+## Таланты для подземелий
 
-## Dungeon Talents
-
-Our official recommendation will continue to be Druid of the Claw for mythic+. That being said, Wildstalker is more competitive than its ever been, and is extremely playable. Especially if you feel you need more single target. The main downside of Wildstalker is your ramp-up time is a bit longer (and its arguably more punishing as Rake uptime is more relevant). Due to this, I'd highly recommend Druid of the Claw in lower keys especially. If you want to test Wildstalker, Skyreach is probably the best dungeon for it.
+Текущая рекомендация для Mythic+ — Друид-хищник. Следопыт стал намного конкурентнее и полностью играбелен, особенно если нужен больший урон в одну цель. Минус Следопыта — он дольше разгоняется и сильнее наказывает за ошибки с аптаймом !1822|Глубокой раны!, поэтому в низких ключах ДОТС проще и стабильнее.
 
 <Talents
   defaultTree="Spec"
-  name="DOTC m+ (Rake)"
-  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMDzMzMjxsZsNz2MzMjZGAAAAWCmNDPgZG1MmFzMzMLjZGDAAAAAAwAAAAoZWmtZmZABWAzMALMYAAAMzGG" 
-  colors={[
-    { color: "red", nodes: ["Coiled to Spring", "Panther's Guile", "Lunar Inspiration", "Saber Jaws", "Starfire", "Moonkin Form", "Astral Influence", "Rejuvenation", "Wild Growth", "Starsurge", "Sunfire", "Starlight Conduit", "Ironfur", "Lingering Healing", "Symbiotic Relationship"] },
-    { color: "white", nodes: ["Blood Spattered", "Maim", "Hibernate", "Gale Winds", "Ursine Vigor"] },
-    { color: "yellow", nodes: ["Double-Clawed Rake", "Tireless Energy", "Wild Slashes", "Infected Wounds", "Carnivorous Instinct", "Rip and Tear", "Hunger for Battle", "Ashamane's Guidance", "Remove Corruption", "Nurturing Instinct", "Matted Fur", "Typhoon", "Ursol's Vortex", "Lore of the Grove", "Perfectly-Honed Instincs", "Fluid Form", "Improved Stampeding Roar", "Lycaras Inspiration", "Forestwalk", "Innervate", "Heart of the Wild"]},
-    { color: "green", nodes: ["Incapacitating Roar", "Rake", "Frenzied Regeneration", "Ursocs Spirit", "Swipe", "Feline Swiftness", "Grievous Wounds", "Rip", "Verdant Heart", "Improved Barkskin", "Killer Instinct", "Primal Fury", "Thick Hide", "Skull Bash", "Natural Recovery", "Aessina's Renewal", "Soothe", "Wild Charge", "Well-Honed Instincts", "Stampeding Roar", "Gift of the Wild", "Lycara's Teachings", "Instincts of the Claw", "Oakskin", "Circle of the Wild"]}
-  ]} 
-> 
+  name="Друид-хищник M+ (Глубокая рана)"
+  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMDzMzMjxsZsNz2MzMjZGAAAAWCmNDPgZG1MmFzMzMLjZGDAAAAAAwAAAAoZWmtZmZABWAzMALMYAAAMzGG"
+/>
 
-  With these selected talents, in AoE, you will be spamming !Rake! on targets without it to generate combo points; !106785|Swiping! with !Sudden Ambush! procs. 
-  
-  <br />
-
-  If you're not getting good uptime on !Hunger for Battle! stacks/need more boss damage and aren't pulling mobs onto the boss; then you can remove it for something else. !Rip and Tear! is the pure AoE choice, whereas !Carnivorous Instinct! and !Ashamane's Guidance! do both things fairly well.
-
-  <br />
-
-<div className="flex justify-center">
-  <div className="flex space-x-4 items-center">
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-      <span className="text-sm">Never Take</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-white rounded-sm"></div>
-      <span className="text-sm">Niche</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
-      <span className="text-sm">Optional</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-      <span className="text-sm">Take</span>
-    </div>
-  </div>
-</div>
-</Talents>
+В этом варианте вы активно развешиваете !1822|Глубокую рану! по целям без неё для генерации КП и нажимаете !106785|Размах! по прокам !384667|Внезапное нападение!. Если !1244547|Голод битвы! плохо держится или нужен больший ст-урон, замените его. !391347|Рвать и кромсать! — более чистый AoE-выбор, а !390902|Инстинкт хищника! и !391548|Наставление Пеплошкурой! неплохо закрывают оба сценария.
 
 <Talents
   defaultTree="Spec"
-  name="DOTC m+ (Swipe) -- If you're unsure pick me"
-  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDzMzMjZmNjtZ2mZmZegZGAAAAWCmNDPgZG1MmFzMzMLjZGDAAAAAAwAAAAoZWmtZmZABWAzMALMYAAAMzGG" 
-  colors={[
-    { color: "red", nodes: ["Coiled to Spring", "Panther's Guile", "Lunar Inspiration", "Saber Jaws", "Starfire", "Moonkin Form", "Astral Influence", "Rejuvenation", "Wild Growth", "Starsurge", "Sunfire", "Starlight Conduit", "Ironfur", "Lingering Healing", "Symbiotic Relationship"] },
-    { color: "white", nodes: ["Blood Spattered", "Maim", "Hibernate", "Gale Winds", "Ursine Vigor"] },
-    { color: "yellow", nodes: ["Double-Clawed Rake", "Tireless Energy", "Wild Slashes", "Infected Wounds", "Carnivorous Instinct", "Rip and Tear", "Hunger for Battle", "Ashamane's Guidance", "Remove Corruption", "Nurturing Instinct", "Matted Fur", "Typhoon", "Ursol's Vortex", "Lore of the Grove", "Perfectly-Honed Instincs", "Fluid Form", "Improved Stampeding Roar", "Lycaras Inspiration", "Forestwalk", "Innervate", "Heart of the Wild"]},
-    { color: "green", nodes: ["Incapacitating Roar", "Rake", "Frenzied Regeneration", "Ursocs Spirit", "Swipe", "Feline Swiftness", "Grievous Wounds", "Rip", "Verdant Heart", "Improved Barkskin", "Killer Instinct", "Primal Fury", "Thick Hide", "Skull Bash", "Natural Recovery", "Aessina's Renewal", "Soothe", "Wild Charge", "Well-Honed Instincts", "Stampeding Roar", "Gift of the Wild", "Lycara's Teachings", "Instincts of the Claw", "Oakskin", "Circle of the Wild"]}
-  ]} 
-> 
+  name="Друид-хищник M+ (Размах, проще для старта)"
+  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDzMzMjZmNjtZ2mZmZegZGAAAAWCmNDPgZG1MmFzMzMLjZGDAAAAAAwAAAAoZWmtZmZABWAzMALMYAAAMzGG"
+/>
 
-  With these selected talents, you begin swiping at 4 targets. Less thinking, more playing. 
-  
-  <br />
-
-  If you're not getting good uptime on !Hunger for Battle! stacks/need more boss damage and aren't pulling mobs onto the boss; then you can remove it for something else. !Rip and Tear! is the pure AoE choice, whereas !Carnivorous Instinct! and !Ashamane's Guidance! are fairly good at both.
-
-<br />
-
-<div className="flex justify-center">
-  <div className="flex space-x-4 items-center">
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-      <span className="text-sm">Never Take</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-white rounded-sm"></div>
-      <span className="text-sm">Niche</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
-      <span className="text-sm">Optional</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-      <span className="text-sm">Take</span>
-    </div>
-  </div>
-</div>
-</Talents>
+Этот билд начинает активно жать !106785|Размах! с 4 целей. Меньше контроля отдельных целей, проще играть в живых пулах.
 
 <Talents
   defaultTree="Spec"
-  name="Wildstalker m+"
-  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMDzMzMjxsZsNz2MzMjZGAAAAWCmNDPgZG1MmFzMzMLjZGDAAAAAAwAAAAIAY2mZrZZmlNwMDwCDGAAzMAYA" 
-  colors={[
-    { color: "red", nodes: ["Coiled to Spring", "Panther's Guile", "Blood Spattered", "Saber Jaws", "Starfire", "Moonkin Form", "Astral Influence", "Rejuvenation", "Wild Growth", "Starsurge", "Sunfire", "Starlight Conduit", "Ironfur", "Lingering Healing", "Symbiotic Relationship"] },
-    { color: "white", nodes: ["Lunar Inspiration", "Wild Slashes", "Tireless Energy", "Maim", "Hibernate", "Gale Winds", "Ursine Vigor"] },
-    { color: "yellow", nodes: ["Sudden Ambush", "Merciless Claws", "Carnivorous Instinct", "Rip and Tear", "Hunger for Battle", "Ashamane's Guidance", "Remove Corruption", "Nurturing Instinct", "Matted Fur", "Typhoon", "Ursol's Vortex", "Lore of the Grove", "Perfectly-Honed Instincs", "Fluid Form", "Improved Stampeding Roar", "Lycaras Inspiration", "Forestwalk", "Innervate", "Heart of the Wild"]},
-    { color: "green", nodes: ["Infected Wounds", "Double-Clawed Rake", "Incapacitating Roar", "Rake", "Frenzied Regeneration", "Ursocs Spirit", "Swipe", "Feline Swiftness", "Grievous Wounds", "Rip", "Verdant Heart", "Improved Barkskin", "Killer Instinct", "Primal Fury", "Thick Hide", "Skull Bash", "Natural Recovery", "Aessina's Renewal", "Soothe", "Wild Charge", "Well-Honed Instincts", "Stampeding Roar", "Gift of the Wild", "Lycara's Teachings", "Instincts of the Claw", "Oakskin", "Circle of the Wild"]}
-  ]} 
-> 
+  name="Следопыт M+"
+  talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAgZMDzMzMjxsZsNz2MzMjZGAAAAWCmNDPgZG1MmFzMzMLjZGDAAAAAAwAAAAIAY2mZrZZmlNwMDwCDGAAzMAYA"
+/>
 
-  As Wildstalker you will be raking. A lot. !Tireless Energy! is generally not recommended, as !Merciless Claws! is much better in single target, whereas !Tireless Energy! is pretty low-power everywhere-- even if it is better in AoE than !Merciless Claws!. Due to the focus on !Rake! in this build, !Double-Clawed Rake! should be considered mandatory. It is far and away your best AoE node in the top tree, so much so that it providing 0 single target isn't a compelling enough reason to drop it. 
-  
-  <br />
-  
-  In the bottom, If you're not getting good uptime on !Hunger for Battle! stacks/need more boss damage and aren't pulling mobs onto the boss; then you can remove it for something else. !Rip and Tear! is the pure AoE option, whereas !Carnivorous Instinct! and !Ashamane's Guidance! are fairly good at both. !Lunar Inspiration! is a niche pick if target counts are low, but realistically its unlikely to be worth choosing, unless you want to just for the dot-centric gameplay.
+Следопыт играет через большое количество !1822|Глубоких ран!. !391700|Раздвоенные когти! здесь практически обязателен: это главный AoE-узел верхней части дерева. !155580|Лунное вдохновение! остаётся нишевым вариантом при малом числе целей или если вам нравится геймплей через ДоТы.
 
-  <br />
+# Химия
 
-  For the hero talents you should always play !Twin Sprouts!. !Root Network! can be selected over !Resilient Flourishing! for AoE, though it costs quite a bit of single target damage so its generally not recommended you do so.
+![Химия](/static/images/guide-sections/consumables.png)
 
-  <br />
+| Тип | Расходник |
+| --- | --- |
+| **ДПС-пот** | [Потенциал Света](https://www.wowhead.com/ru/item=241308/lights-potential?crafting-quality=5) |
+| **ХП-пот** | [Луносветское лечебное зелье](https://www.wowhead.com/ru/beta/item=241304/silvermoon-health-potion) |
+| **Хавчик** | Любой пир на основной стат, например [Празднество Харандара](https://www.wowhead.com/ru/item=255846/harandar-celebration). |
+| **Фласка** | Лучший по симу вариант из [Настой магистров](https://www.wowhead.com/ru/item=241322/flask-of-the-magisters), [Настой рыцарей крови](https://www.wowhead.com/ru/item=241324/flask-of-the-blood-knights?crafting-quality=5), [Настой талассийского сопротивления](https://www.wowhead.com/ru/item=241320/flask-of-thalassian-resistance?crafting-quality=5), [Настой Расколотого Солнца](https://www.wowhead.com/ru/item=241326/flask-of-the-shattered-sun). По умолчанию — [Настой магистров](https://www.wowhead.com/ru/item=241322/flask-of-the-magisters). |
+| **Масло / Камень** | [Талассийское масло феникса](https://www.wowhead.com/ru/item=243733/thalassian-phoenix-oil) |
+| **Руна** | [Меченная Бездной руна усиления](https://www.wowhead.com/ru/item=259085/void-touched-augment-rune) |
 
-  <div className="flex justify-center">
-  <div className="flex space-x-4 items-center">
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-red-500 rounded-sm"></div>
-      <span className="text-sm">Never Take</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-white rounded-sm"></div>
-      <span className="text-sm">Niche</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-yellow-400 rounded-sm"></div>
-      <span className="text-sm">Optional</span>
-    </div>
-    <div className="flex items-center space-x-1">
-      <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-      <span className="text-sm">Take</span>
-    </div>
-  </div>
-</div>
-</Talents>
+# Характеристики
 
-
-
-# Consumables
-
-| Type | Consumable |
-|------|---------|
-| **DPS Potion** | [Light's Potential](https://www.wowhead.com/item=241308/lights-potential?crafting-quality=5) |
-| **Healing Potion** | [Silvermoon Health Potion](https://www.wowhead.com/beta/item=241304/silvermoon-health-potion) |
-| **Food** | Any main-stat feast. For example: [Harandar Celebration](https://www.wowhead.com/item=255846/harandar-celebration) |
-| **Flask** | Highest simming of [Flask of the Magisters](https://www.wowhead.com/item=241322/flask-of-the-magisters) (default) /[Flask of the Blood Knights](https://www.wowhead.com/item=241324/flask-of-the-blood-knights?crafting-quality=5)/[Flask of Thalassian Resistance](https://www.wowhead.com/item=241320/flask-of-thalassian-resistance?crafting-quality=5)/[Flask of the Shattered Sun](https://www.wowhead.com/item=241326/flask-of-the-shattered-sun?crafting-quality=5) |
-| **Oil/Stone** | [Thalassian Phoenix Oil](https://www.wowhead.com/item=243733/thalassian-phoenix-oil) |
-| **Augment Rune** | [Void-Touched Augment Rune](https://www.wowhead.com/item=259085/void-touched-augment-rune) |
-
-# Gearing
-
-## Stat Priority
+![Характеристики](/static/images/guide-sections/stats.png)
 
 > [!WARNING]
-> Don't follow any Stat Priority you find. You should always sim your character to decide what gear to equip.
+> Не следуйте слепо никакому стат-приоритету. Как одеваться всегда решает правило <span className="simyourself">SIMYOURSELF</span>.
 
-## Gems and Enchants
+Практический ориентир: проверяйте каждый апгрейд через Raidbots Top Gear. Вторичные характеристики иногда обгоняют ловкость по весу, но илвл всегда выигрывает.
+
+# Чары
+
+![Чары](/static/images/guide-sections/enchants.png)
 
 > [!TIP]
-> Listed are the Leech enchants. You can optionally use the Speed or Avoidance variations if you prefer.
+> Ниже указаны чары на самоисцеление. Если вам важнее скорость передвижения или избегание, можно брать скорость / избегание-версии.
 
-| Slot | Gem/Enchant |
-|------|---------|
-| **Gems** |  1x [Indecipherable Eversong Diamond](https://www.wowhead.com/item=240983/indecipherable-eversong-diamond) This meta gem gives more main stat than the crit effect one this expansion. Fill the rest of your gems with whatever sims highest in Top Gear |
-| **Weapon** | [Acuity of the Ren'dorei](https://www.wowhead.com/item=244029/enchant-weapon-acuity-of-the-rendorei) |
-| **Helmet** | [Empowered Hex of Leeching](https://www.wowhead.com/item=243951/enchant-helm-empowered-hex-of-leeching?crafting-quality=5) |
-| **Shoulder** | [Silvermoon's Mending](https://www.wowhead.com/item=244021/enchant-shoulders-silvermoons-mending?crafting-quality=5) |
-| **Chest** | [Mark of the Worldsoul](https://www.wowhead.com/item=243977/enchant-chest-mark-of-the-worldsoul?crafting-quality=5) |
-| **Legs** | [Forest Hunter's Armor Kit](https://www.wowhead.com/item=244641/forest-hunters-armor-kit?crafting-quality=5) |
-| **Boots** | [Shaladrassil's Roots](https://www.wowhead.com/item=243983/enchant-boots-shaladrassils-roots?crafting-quality=5) |
-| **Ring** | [Eyes of the Eagle](https://www.wowhead.com/item=243957/enchant-ring-eyes-of-the-eagle?crafting-quality=5) |
+| Слот | Камень / чара |
+| --- | --- |
+| **Камни** | 1 шт. [Непостижимый алмаз Вечной Песни](https://www.wowhead.com/ru/item=240983/indecipherable-eversong-diamond). Остальные слоты — то, что лучше симится в Top Gear. |
+| **Пуха** | [Чары для оружия – проницательность рен'дорай](https://www.wowhead.com/ru/item=244029/enchant-weapon-acuity-of-the-rendorei) |
+| **Шлем** | [Чары для шлема – усиленный сглаз самоисцеления](https://www.wowhead.com/ru/item=243951/enchant-helm-empowered-hex-of-leeching?crafting-quality=5) |
+| **Плечи** | [Чары для наплечников – луносветское исцеление](https://www.wowhead.com/ru/item=244021/enchant-shoulders-silvermoons-mending?crafting-quality=5) |
+| **Нагрудник** | [Чары для нагрудника – метка души мира](https://www.wowhead.com/ru/item=243977/enchant-chest-mark-of-the-worldsoul?crafting-quality=5) |
+| **Штаны** | [Накладки для доспехов лесного охотника](https://www.wowhead.com/ru/item=244641/forest-hunters-armor-kit?crafting-quality=5) |
+| **Сапоги** | [Чары для обуви – корни Шаладрассила](https://www.wowhead.com/ru/item=243983/enchant-boots-shaladrassils-roots?crafting-quality=5) |
+| **Кольца** | [Чары для кольца – глаза орла](https://www.wowhead.com/ru/item=243957/enchant-ring-eyes-of-the-eagle?crafting-quality=5) |
 
-## Crafting
+# Крафт, тринкеты, гиринг
 
-**Crafting Order:**
+![Крафт, тринкеты, гиринг](/static/images/guide-sections/gear.png)
 
-With your sparks:
-- Sim the best slots for your gear using [Arcanoweave Lining](https://www.wowhead.com/item=240166/arcanoweave-lining)
-- An alternative, if the best slot for your gear is to craft a ring, is [Loa Worshiper's Band](https://www.wowhead.com/item=251513/loa-worshipers-band?bonus=8960:12214:12066:9627&hero=22&ilvl=285&spec=103), especially if L'ura ring is in reach. You can use the JC duplicate embellish if you go this route. This ring is virtually identical damage wise to [Arcanoweave Lining](https://www.wowhead.com/item=240166/arcanoweave-lining) which, notably, cannot be crafted on rings.
+## Крафт
 
-We no longer recommend crafting weapon first, as you should be getting a myth-track weapon easily from Algethar Academy (where you spend your voidcores).
+**Если есть искры:**
 
-Endgame ideal is on Wrists + Cloak/Loa Worshipers Band, but you should try to get your item level as high as you can in all slots.
+- Симьте лучшие слоты под [Подкладка из тайной ткани](https://www.wowhead.com/ru/item=240166/arcanoweave-lining).
+- Если лучший слот — кольцо, хорошая альтернатива: [Кольцо почитателя лоа](https://www.wowhead.com/ru/item=251513/loa-worshipers-band?bonus=8960:12214:12066:9627&hero=22&ilvl=285&spec=103). По урону оно практически идентично подкладке из тайной ткани, которую нельзя скрафтить на кольцо.
 
-## Trinkets
+Оружие больше не рекомендуется крафтить первым: вариант из мификов логично получать через Академию Алгет'ар, куда вы и так тратите сердечники. Эндгейм-идеал — украшения на наручах + плаще или кольцо почитателя лоа, но илвл всегда выигрывает.
 
-These trinket lists are in rough estimated order of strength, assuming the highest item level version of the items. This will likely change with tuning. Delve trinkets are currently missing.
+## Тринкеты
 
-**For use in Raid:**
-| Tier | Trinket | Notes |
-| :-: | :- | :- |
-| **S Tier** | [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) | 2 min on-use trinket. Cast right before you use Berserk/Tiger's Fury
-| **A Tier** | [Radiant/Umbral Plume](https://www.wowhead.com/item=249806/radiant-plume?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Usually want to see this to Radiant 
-| | [Gaze of the Alnseer](https://www.wowhead.com/item=249343/gaze-of-the-alnseer?hero=22&ilvl=289&spec=103) |
-| **B Tier** | [Ranger-Captain's Iridescent Insignia](https://www.wowhead.com/item=249345/ranger-captains-iridescent-insignia?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Best-in-Slot in pure 2t and 2t only.
-| | [Emberwing Feather](https://www.wowhead.com/item=250144/emberwing-feather?bonus=4795&class=11&hero=22&ilvl=289&spec=103&spellModifier=1250508:137011) | This is much worse if you already have another on use like [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103)
-| | [Light Company Guidon](https://www.wowhead.com/item=249344/light-company-guidon?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Pair with Berserk. This is much worse if you already have another on use like [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103)
-| **C Tier** | [Heart of Wind](https://www.wowhead.com/item=250256/heart-of-wind?ilvl=289) |
-| | [Solarflare Prism](https://www.wowhead.com/item=252420/solarflare-prism?ilvl=289) |
-| | [Undreamt God's Oozing Vestige](https://www.wowhead.com/item=249805/undreamt-gods-oozing-vestige?bonus=4795&class=11&hero=22&ilvl=289&spec=103) |
-| | [Kroluk's Warbanner](https://www.wowhead.com/item=250227/kroluks-warbanner?bonus=4795&class=11&hero=22&ilvl=289&spec=103) |
+Списки идут в примерном порядке силы на максимальном илвле. Порядок может меняться с тюнингом. Тринкеты из делвов (вылазок) толком не изучены.
+
+**Рейд:**
+
+| Тир | Тринкет | Заметки |
+| :-: | --- | --- |
+| **S** | [Алгет'арская шкатулка с секретом](https://www.wowhead.com/ru/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) | 2-минутная прожимка. Используйте прямо перед Берсом / Тигриным неистовством. |
+| **A** | [Сияющее перо](https://www.wowhead.com/ru/item=249806/radiant-plume?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Обычно нужен сияющий вариант; можно свитчнуть в [Темное перо](https://www.wowhead.com/ru/spell=1265805/темное-перо). |
+| **A** | [Взор ясновидца Альн](https://www.wowhead.com/ru/item=249343/gaze-of-the-alnseer?hero=22&ilvl=289&spec=103) | Сильный пассивный вариант. |
+| **B** | [Радужный знак капитана следопытов](https://www.wowhead.com/ru/item=249345/ranger-captains-iridescent-insignia?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Лучший только в чистом 2T-сценарии. |
+| **B** | [Перо Алозар](https://www.wowhead.com/ru/item=250144/emberwing-feather?bonus=4795&class=11&hero=22&ilvl=289&spec=103&spellModifier=1250508:137011) | Сильно хуже, если уже есть другая прожимка вроде шкатулки. |
+| **B** | [Стяг отряда Света](https://www.wowhead.com/ru/item=249344/light-company-guidon?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Играется под Берс, но плохо сочетается со второй прожимкой. |
+| **C** | [Сердце ветра](https://www.wowhead.com/ru/item=250256/heart-of-wind?ilvl=289) | |
+| **C** | [Призма солнечной вспышки](https://www.wowhead.com/ru/item=252420/solarflare-prism?ilvl=289) | |
+| **C** | [Сочащийся рудимент Неприснившегося Бога](https://www.wowhead.com/ru/item=249805/undreamt-gods-oozing-vestige?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | |
+| **C** | [Боевое знамя Кролука](https://www.wowhead.com/ru/item=250227/kroluks-warbanner?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | |
 
 > [!CAUTION]
-> [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) is likely undersimming in dungeons for now. Fix is imminent. 
+> Шкатулка плохо посимлена для M+, скоро пофиксят.
 
-**For use in M+:**
-| Tier | Trinket | Notes |
-| :-: | :- | :- |
-| **S Tier** | [Algethar's Puzzle Box](https://www.wowhead.com/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) | Cast time is a bit annoying, but use before berserk
-| | [Radiant/Umbral Plume](https://www.wowhead.com/item=249806/radiant-plume?bonus=4795&class=11&hero=22&ilvl=289&spec=103) |
-| | [Gaze of the Alnseer](https://www.wowhead.com/item=249343/gaze-of-the-alnseer?hero=22&ilvl=289&spec=103) |
-| **B Tier** | [Solarflare Prism](https://www.wowhead.com/item=252420/solarflare-prism?ilvl=289) | Best alternative passive trinket.
-| | [Heart of Wind](https://www.wowhead.com/item=250256/heart-of-wind?ilvl=289) | A decent stat stick
-| | [Ranger-Captain's Iridescent Insignia](https://www.wowhead.com/item=249345/ranger-captains-iridescent-insignia?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Excellent for low-target/single target in dungeons. Bad with increased targets.
-| | [Undreamt God's Oozing Vestige](https://www.wowhead.com/item=249805/undreamt-gods-oozing-vestige?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Fine in mid target counts, but its value is delayed towards the end of pulls, which isnt ideal.
+**Mythic+:**
 
-### Trinket FAQ
+| Тир | Тринкет | Заметки |
+| :-: | --- | --- |
+| **S** | [Алгет'арская шкатулка с секретом](https://www.wowhead.com/ru/item=193701/algethar-puzzle-box?class=11&hero=22&ilvl=289&spec=103) | Время применения неудобное, но используйте перед Берсом. |
+| **S** | [Сияющее перо](https://www.wowhead.com/ru/item=249806/radiant-plume?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Можно свитчнуть в [Темное перо](https://www.wowhead.com/ru/spell=1265805/темное-перо). |
+| **S** | [Взор ясновидца Альн](https://www.wowhead.com/ru/item=249343/gaze-of-the-alnseer?hero=22&ilvl=289&spec=103) | |
+| **B** | [Призма солнечной вспышки](https://www.wowhead.com/ru/item=252420/solarflare-prism?ilvl=289) | Лучшая пассивная альтернатива. |
+| **B** | [Сердце ветра](https://www.wowhead.com/ru/item=250256/heart-of-wind?ilvl=289) | Нормальный пассивный тринкет на характеристики. |
+| **B** | [Радужный знак капитана следопытов](https://www.wowhead.com/ru/item=249345/ranger-captains-iridescent-insignia?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Хорош на 1-2 целях, хуже с ростом количества целей. |
+| **B** | [Сочащийся рудимент Неприснившегося Бога](https://www.wowhead.com/ru/item=249805/undreamt-gods-oozing-vestige?bonus=4795&class=11&hero=22&ilvl=289&spec=103) | Нормален на среднем числе целей, но урон приходит ближе к концу пула. |
 
-Q: Should we be playing double on-use trinkets?
+### Вопросы по тринкетам
 
-A: No, Feral will typically play just one on-use. [Ranger-Captain's Iridescent Insignia](https://www.wowhead.com/item=249345/ranger-captains-iridescent-insignia?bonus=4795&class=11&hero=22&ilvl=289&spec=103) is fine if you don't have better alternatives.
+**Можно ли играть с двумя прожимками?**
 
-Q: Why are Radiant Plume and Umbral Plume listed together?
+Обычно нет. Ферал чаще играет с одной прожимкой; второй слот лучше отдать пассивному тринкету.
 
-A: Because you can switch between them by activating its on-use effect and cannot wear both at the same time.
+**Почему Сияющее перо и [Темное перо](https://www.wowhead.com/ru/spell=1265805/темное-перо) указаны вместе?**
 
-Q: Are any of the delve trinkets good?
+Они переключаются через прожимку, но одновременно носить оба нельзя.
 
-A: Not really. [Drum of Renewed Bonds](https://www.wowhead.com/item=248583/drum-of-renewed-bonds?ilvl=276) is fine for its item level. You can treat it as a slightly better [Heart of Wind](https://www.wowhead.com/item=250256/heart-of-wind?ilvl=289), except its item level doesn't go up to Myth track. (hence why it is not in the trinket list)
+**Почему дамажащие предметы сильнее у Следопыта?**
 
-Q: Why do damaging items deal more damage as Wildstalker?
+Героический талант !440119|Упорные корни! усиливает урон от не-друидских эффектов, включая тринкеты.
 
-A: The Wildstalker Hero Talent !440119|Vigorous Creepers! also buffs the damage of non-druid effects.
+# Дополнительно
 
+![Дополнительно](/static/images/guide-sections/misc.png)
 
-# Miscellaneous
+## Что такое снапшотинг?
 
-## What is snapshotting?
+Снапшотинг — механика, при которой эффект периодического урона фиксирует часть бафов на момент наложения, вместо того чтобы полностью пересчитываться динамически. Иными словами, ДоТ делает "снимок" состояния персонажа на момент применения.
 
-Snapshotting is when a damage-over-time (DOT) effect benefits from certain buffs based on how things were when it was applied, rather than dynamically adjusting to the current state. It takes a "snapshot" of those buffs whenever you apply the dot.
+Не каждый снапшот нужно обязательно апгрейдить: иногда раннее обновление стоит дороже, чем выгода от усиления.
 
-Note: You will not necessarily upgrade every snapshot.
-
-__Which bleeds snapshot which buffs?__
-
-| DoT | !Tiger's Fury! | !Pouncing Strikes! |
-| :-: | :-: | :-: |
-| !Rake! | 	✅ | ✅ |
-| !Rip! | ✅ | ❌ |
-| !Primal Wrath! | ✅ | ❌ |
-| !Lunar Inspiration! | ✅ | ❌ |
-| !Dreadful Wound! | Only Upgrades | ❌ |
-| !Feral Frenzy! | Each direct hit separately | ❌ |
+<table className="snapshot-table">
+  <thead>
+    <tr>
+      <th>ДоТ</th>
+      <th><Wowhead id="5217" name="Тигриное неистовство" type="spell" /></th>
+      <th><Wowhead id="390772" name="Внезапные удары" type="spell" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><Wowhead id="1822" name="Глубокая рана" type="spell" /></td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td><Wowhead id="1079" name="Разорвать" type="spell" /></td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><Wowhead id="285381" name="Первобытный гнев" type="spell" /></td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><Wowhead id="155580" name="Лунный огонь" type="spell" /></td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><Wowhead id="441809" name="Чудовищная рана" type="spell" /></td>
+      <td>Только апгрейд</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td><Wowhead id="274838" name="Дикое бешенство" type="spell" /></td>
+      <td>Каждый прямой хит отдельно</td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
 
 > [!TIP]
-> !Pouncing Strikes! can be applied via !58984|Shadowmeld! or !Prowl!
+> !390772|Внезапные удары! можно активировать через !58984|Слиться с тенью! или !5215|Крадущийся зверь!.
 
-A dot will ideally be applied only when 30% or less of the prior dot remains. This triggers a mechanic known as “pandemic,” which is common to most damage over time spells.
+## Что такое "пандемик-окно"?
 
-## What is “pandemic range?”
-This term refers to a DoT mechanic in WoW. The baseline duration of a DoT can be extended by up to 30% if a target is already affected by that DoT. Due to the 30% cap on extension, DoTs generally shouldn't be refreshed too early, as potential ticks will be lost. The ideal window of time to refresh a DoT is known as its “pandemic range.”
+Пандемик-окно — это последние 30% базовой длительности ДоТа. Если обновить ДоТ в этом окне, остаток старой длительности добавится к новой, но не больше 30% от базовой длительности.
 
-Let’s use an example. Consider a 10 second DoT:
-* Refresh with 1s remaining: the new DoT will be 11s long (10s baseline duration + 1s from prior DoT)
-* Refresh with 3s remaining: the new DoT will be 13s long (10s baseline duration + 3s from prior DoT)
-* Refresh with 8s remaining: the new DoT will still be 13s long (10s baseline + up to 30% from prior DoT)
+Пример для 10-секундного ДоТа:
 
-It is therefore most efficient to wait until 70% or more of your bleed has ticked to refresh its DoT.
+- Обновление за 1 секунду до конца даст 11 секунд новой длительности.
+- Обновление за 3 секунды до конца даст 13 секунд.
+- Обновление за 8 секунд до конца всё равно даст 13 секунд, потому что лимит — 30%.
 
-Fun trivia: the name “pandemic” derives from an old warlock passive that was eventually integrated as a baseline feature of damage over time spells.
+Поэтому в обычной ситуации ДоТы обновляют, когда уже прошло 70% или больше их длительности.
 
-__What is “clipping?”__
+**Клипинг** — это обновление ДоТа до его пандемик-окна. Обычно так делают только ради более сильного снапшота.
 
-Clipping refers to refreshing a dot prior to its pandemic window.
+## Радиус способностей
 
-## Macros
+![Радиус способностей](/static/images/feral/range.png)
 
-Here, we provide a list of helpful macros. These macros are not required, but may be of use to you. Customize them as you see fit.
+У ферала часть способностей проверяет расстояние по-разному, поэтому позиционирование важно не только для обычного мили-рейнджа.
 
-**Cast Ursol's Vortex at your cursor location (@cursor macro):**
+> [!WARNING]
+> На схеме !441591|Терзание! неактуален. Остальная информация по рейнджу способностей корректна.
 
+- **5 ярдов** — базовый мили-рейндж.
+- **8 ярдов** — !106785|Размах!, !106830|Взбучка! и !391710|Свирепое буйство!.
+- **10 ярдов** — !285381|Первобытный гнев!.
+- !391700|Раздвоенные когти! проверяет радиус от вашей цели.
+
+## Макросы
+
+Необязательные, но полезные макросы. Настраивайте под себя. Для каждого макроса есть два окна: русский клиент и английский клиент.
+
+**Вихрь Урсола по курсору:**
+
+Русский клиент:
+
+```macro
+#showtooltip
+/cast [@cursor] Вихрь Урсола
 ```
+
+English client:
+
+```macro
 #showtooltip
 /cast [@cursor] Ursol's Vortex
 ```
 
-**Use your trinket(s) and/or weapon at the same time as an ability:**
+**Тринкет(ы) и/или оружие вместе с !106951|Берсерком!:**
 
-Some trinkets and weapons should be used with a major cooldown. A lot of players will bind these items with Berserk.
-* 13 is the top trinket slot
-* 14 is the bottom trinket slot
-* 16 is your weapon slot
+- 13 — верхний слот тринкета.
+- 14 — нижний слот тринкета.
+- 16 — слот оружия.
 
-If you would like to use all three items with Berserk, use this macro:
+Все три слота + !106951|Берсерк!:
 
+Русский клиент:
+
+```macro
+#showtooltip
+/use 13
+/use 14
+/use 16
+/cast Берсерк
 ```
+
+English client:
+
+```macro
 #showtooltip
 /use 13
 /use 14
 /use 16
 /cast Berserk
 ```
-This macro may be modified. For example, the macro below only uses the 2nd trinket with Berserk:
 
+Только второй тринкет + !106951|Берсерк!:
+
+Русский клиент:
+
+```macro
+#showtooltip
+/use 14
+/cast Берсерк
 ```
+
+English client:
+
+```macro
 #showtooltip
 /use 14
 /cast Berserk
 ```
 
-**Shadowmeld into Rake** 
+**Гнев деревьев по маусоверу:**
 
-Need to press twice for it to work. If you press it once, it will only Shadowmeld (which you will want to do sometimes)
+Русский клиент:
 
-```
+```macro
 #showtooltip
-/castsequence [nostealth] reset=5 Shadowmeld, Rake
+/cast [@mouseover, harm, nodead] [] Гнев деревьев
 ```
 
-**Cast Entangling Roots on your mouseover target:**
+English client:
 
-This macro casts Entangling Roots on your mouseover target. If your mouse is not hovering over a target, the macro instead casts Entangling Roots on your current target.
-```
+```macro
 #showtooltip
 /cast [@mouseover, harm, nodead] [] Entangling Roots
 ```
 
-**Dispel/Soothe on the same bind:**
+**Диспел / Умиротворение в одной кнопке:**
 
-This is the classic help/harm macro, but using mouseovers as well.
+Русский клиент:
 
+```macro
+#showtooltip
+/cast [@mouseover, harm, nodead] Умиротворение; [@mouseover, help, nodead] Снятие порчи; [harm, nodead] Умиротворение; Снятие порчи
 ```
+
+English client:
+
+```macro
 #showtooltip
 /cast [@mouseover, harm, nodead] Soothe; [@mouseover, help, nodead] Remove Corruption; [harm, nodead] Soothe; Remove Corruption
 ```
 
-**Skull Bash your Focus target:**
+**Лобовая атака по фокусу:**
 
-This macro casts Skull Bash on your focus target. If you have not set a focus target, the macro instead casts Skull Bash on your current target.
+Русский клиент:
 
-We recommend creating a keybind that will assign a target as your focus with one click. This option can be found in the game's keybind settings.
-```
+```macro
 #showtooltip
-/cast [@focus, harm, nodead] [] skull bash
+/cast [@focus, harm, nodead] [] Лобовая атака
 ```
 
-**Rebirth/Motw in one button:**
+English client:
 
-This macro casts Rebirth on your current friendly but dead mouseover target. If your ally is alive, the macro instead casts Mark of the Wild.
+```macro
+#showtooltip
+/cast [@focus, harm, nodead] [] Skull Bash
 ```
+
+**Возрождение / !1126|Знак дикой природы! в одной кнопке:**
+
+Русский клиент:
+
+```macro
+#showtooltip
+/cast [@mouseover, help, dead] Возрождение; Знак дикой природы
+```
+
+English client:
+
+```macro
 #showtooltip
 /cast [@mouseover, help, dead] Rebirth; Mark of the Wild
 ```
 
-**Why does my mouseover macro not work?**
-
-You probably have it bound to a mouse button, which doesn't allow mouseover macros by default. To fix this, you can use an addon like Clicked, or just map the mouse-button to a different key. Backtick (`)/Tilde (~) can also have this issue. If you don't have it bound to a mouse-button and it still doesn't work, then there is likely an issue with the macro itself. In this case, it's almost always the ommission of help, harm or exists in the brackets containing mouseover.
-
-## Useful WeakAura(s) and Addons
-
-See [here](https://questionablyepic.com/user-interface/prepatch-addons/) for a list of Addons that work/will work for Midnight. This section will get updated once options become more stable.
+> [!TIP]
+> **Маусовер-макрос не работает?** Скорее всего, он привязан к кнопке мыши: по умолчанию такие бинды часто не поддерживают маусовер. Используйте аддон Clicked или переназначьте макрос на клавишу клавиатуры. Тильда (~) тоже может вызывать проблему.
 
 
-# Feral Druid Abbreviations
+## WeakAuras и аддоны
 
-| Shortcut | Name | Shortcut | Name |
-| :-: | :- | :-: | :- |
-| tf | !Tiger's Fury! | omen/cc | !Omen of Clarity! |
-| coiled | !Coiled to Spring! | pw | !Primal Wrath! |
-| mc | !Merciless Claws! | tc | !Thrashing Claws! (can also be theorycraft) |
-| pred | !Predator! | DCR | !Double-Clawed Rake! |
-| TE | !Tireless Energy! | SA | !Sudden Ambush! |
-| SI | !Survival Instincts! | RF | Usually !Rampant Ferocity! (sometimes its !Raging Fury!) |
-| IW | !Infected Wounds! | LI | !Lunar Inspiration! |
-| PS | !Predatory Swiftness! | zerk | !Berserk!, sometimes !Incarnation: Avatar of Ashamane! |
-| incarn | !Incarnation: Avatar of Ashamane!, sometimes !Berserk! | TFB | !Taste for Blood! |
-| TT | !Tiger's Tenacity! | Lion | !Berserk: Heart of the Lion! |
-| MOC | !Moment of Clarity! | Frenzy(band) | !Berserk: Frenzy! |
-| BRS | !Brutal Slash! | CI | !Carnivorous Instinct! |
-| FM | !Frantic Momentum! | SJ | !Saber Jaws! |
-| Convoke | !Convoke the Spirits! | HOTW | !Heart of the Wild! |
-| SOTF | !Soul of the Forest! | R&T/Tear | !Rip and Tear! |
-| VR | !Veinripper! | FF | !Feral Frenzy! ~~Surrender~~ |
-| AG incarn | !Ashamane's Guidance! for !Incarnation: Avatar of Ashamane! | AG | Usually refers to AG incarn |
-| 1min voke | !Ashamane's Guidance! for !Convoke the Spirits! | Circle | !Circle of Life and Death! |
-| Apex | !Apex Predator's Craving! | DOTC | Druid of the Claw Hero Talent |
-| WS | Wildstalker Hero Talent, rarely !Wild Slashes! | RA | !Ruthless Aggression! |
-| KS | !Killing Strikes! | FR | !Frenzied Regeneration! |
-| rejuv | !Rejuvenation! | owl | !Moonkin Form! |
-| dispel/decurse | !Remove Corruption! | IF | !Ironfur! |
-| WC | !Wild Charge! | Clone | !Cyclone! |
-| Vortex | !Ursol's Vortex! | Mass Root | !Mass Entanglement! |
-| Roar | !Stampeding Roar! | WHI | !Well-Honed Instincts! |
-| vate | !Innervate! | incap | !Incapacitating Roar! |
-| bash | !Mighty Bash!, sometimes !Skull Bash! | vigor | !Ursine Vigor! |
-| 1min roar | !Improved Stampeding Roar! | inspiration | !Lycara's Inspiration! |
-| Roots | !Entangling Roots! | brez/cr/br | !Rebirth! |
-| Bark | !Barkskin! | cp | combo points |
+Список аддонов, которые работают или будут работать в Midnight, ведёт [QuestionablyEpic](https://questionablyepic.com/user-interface/prepatch-addons/). Раздел стоит обновить, когда опции станут стабильнее.
+
+# Полезные ссылки
+
+![Полезные ссылки](/static/images/guide-sections/links.png)
+
+- **[Логи](https://www.warcraftlogs.com/)** — просмотр любых логов: своих, чужих, рейдовых и ключевых.
+- **[Аналайзер](https://wowanalyzer.com/)** — разбор логов и подсветка ошибок в ротации, аптаймах и использовании кулдаунов.
+- **[Lorrgs](https://lorrgs.io/spec_ranking/druid-feral/vexie-and-the-geargrinders)** — примеры кулдаунов на боссах: как и когда игроки нажимают основные кнопки.
+- **[Raidbots](https://www.raidbots.com/)** — симы персонажа, Top Gear и сравнение экипировки. Для импорта персонажа установите аддон SimulationCraft.
+- **[Bloodmallet](https://bloodmallet.com/chart/druid/feral/trinkets/castingpatchwerk)** — рейтинг тринкетов по разным симам. Для ферала чаще всего смотрите Casting Patchwerk на 1, 3 или 5 целей под конкретную задачу.
+- **[Murlok.io](https://murlok.io/druid/feral/mm+)** — срезы по талантам, экипировке, статам и популярным решениям у игроков.
+- **[Archon](https://www.archon.gg/wow/builds/feral/druid/mythic-plus/overview/10/all-dungeons/this-week)** — статистика по билдам, талантам, предметам, подземельям и актуальным логам.
+
+# Словарик ферала
+
+![Словарик](/static/images/guide-sections/glossary.png)
+
+## Основные способности
+
+- **Шред** — !5221|Полоснуть!.
+- **Рейк** — !1822|Глубокая рана!.
+- **Свайп** — !106785|Размах!.
+- **Треш** — !106830|Взбучка!.
+- **Рип** — !1079|Разорвать!.
+- **ФБ / Байт / Кусь** — !22568|Свирепый укус!.
+- **ТФ / TF** — !5217|Тигриное неистовство!.
+- **ОоС / клиркаст** — !16864|Знамение ясности!, прок на бесплатную способность.
+- **Берс** — !106951|Берсерк!.
+- **Стелс** — состояние невидимости; у ферала это !5215|Крадущийся зверь!.
+
+## Сокращения талантов
+
+- **Инкарна / Инкарнация** — !102543|Перевоплощение: король джунглей!, заменяет !106951|Берсерк!.
+- **Бруталы / БРС** — !202028|Жестокий удар когтями!, заменяет !106785|Размах!.
+- **ПВ / PW** — !285381|Первобытный гнев!.
+- **Раны / ToW** — !391785|Рваные открытые раны!.
+- **МоК / MoC** — !236068|Момент ясности!.
+- **БТ** — !319439|Кровавые когти!.
+- **ФФ / ферал френзи** — !274838|Дикое бешенство!.
+- **Кусь / Апекс** — !391881|Жажда сверххищника!.
+- **Конвок** — !391528|Созыв духов!.
+- **Круг** — !391969|Круг жизни и смерти!.
+- **Иннер** — !29166|Озарение!.
+- **Лапа** — !1126|Знак дикой природы!.
+- **WS / ВС** — !439528|Следопыт!, героическая ветка талантов.
+- **ДОТС** — !441583|Друид-хищник!, героическая ветка талантов.

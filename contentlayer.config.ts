@@ -1,5 +1,6 @@
 import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
 import { writeFileSync, statSync } from 'fs'
+import { execSync } from 'child_process'
 import readingTime from 'reading-time'
 import { slug } from 'github-slugger'
 import path from 'path'
@@ -28,6 +29,34 @@ import remarkGroupCheckboxes from './plugins/remarkGroupCheckboxes.js'
 
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
+
+function normalizeGitRemote(remote: string) {
+  return remote
+    .trim()
+    .replace(/^git@github\.com:/, 'https://github.com/')
+    .replace(/\.git$/, '')
+}
+
+function getRepositoryUrl() {
+  try {
+    const remote = execSync('git config --get remote.origin.url', { encoding: 'utf8' })
+    const normalized = normalizeGitRemote(remote)
+    if (normalized && !normalized.includes('github.com/dreamgrove/dreamgrove')) {
+      return normalized
+    }
+  } catch {}
+
+  return siteMetadata.siteRepo || siteMetadata.github
+}
+
+function getRepositoryBranch() {
+  try {
+    const branch = execSync('git branch --show-current', { encoding: 'utf8' }).trim()
+    if (branch) return branch
+  } catch {}
+
+  return siteMetadata.repositoryBranch || 'master'
+}
 
 /**
  * Custom plugin to preserve spaces after closing tags
@@ -105,32 +134,17 @@ const computedFields: ComputedFields = {
     resolve: (doc) => {
       const stats = statSync(`data/${doc._raw.sourceFilePath}`)
       const date = new Date(stats.mtime)
-
-      const getOrdinalSuffix = (n) => {
-        const j = n % 10,
-          k = n % 100
-        if (j === 1 && k !== 11) {
-          return n + 'st'
-        }
-        if (j === 2 && k !== 12) {
-          return n + 'nd'
-        }
-        if (j === 3 && k !== 13) {
-          return n + 'rd'
-        }
-        return n + 'th'
-      }
-
-      const dayWithSuffix = getOrdinalSuffix(date.getDate())
-      const monthName = date.toLocaleString('default', { month: 'long' })
-      const year = date.getFullYear()
-
-      return `${dayWithSuffix} of ${monthName}, ${year}`
+      return date.toLocaleDateString('ru-RU', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
     },
   },
   changelogUrl: {
     type: 'string',
-    resolve: (doc) => `${siteMetadata.github}/commits/master/data/${doc._raw.sourceFilePath}`,
+    resolve: (doc) =>
+      `${getRepositoryUrl()}/commits/${getRepositoryBranch()}/data/${doc._raw.sourceFilePath}`,
   },
 }
 
