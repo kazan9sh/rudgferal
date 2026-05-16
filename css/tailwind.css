@@ -771,9 +771,7 @@ header {
 }
 
 .toc-item:hover + .toc-item:not(.toc-item--active) a,
-.toc-item--active + .toc-item:not(.toc-item--active) a,
-.toc-item:has(+ .toc-item:hover):not(.toc-item--active) a,
-.toc-item:has(+ .toc-item--active):not(.toc-item--active) a {
+.toc-item:has(+ .toc-item:hover):not(.toc-item--active) a {
   color: #c8bcb7;
   opacity: 0.92;
   transform: translateX(4px) scale(1.04);

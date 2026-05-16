@@ -32,19 +32,30 @@ export default function TableOfContents({
     let frame = 0
 
     const updateActiveHeading = () => {
-      const offset = window.innerWidth >= 1024 ? 174 : 122
-      const scrollLine = window.scrollY + offset
+      const viewportHeight = window.innerHeight || 800
+      const focusLine =
+        window.innerWidth >= 1024
+          ? Math.min(360, viewportHeight * 0.42)
+          : Math.min(260, viewportHeight * 0.36)
+      const bottomLimit = viewportHeight * 0.78
       let currentId = headingIds[0]
+      let bestDistance = Number.POSITIVE_INFINITY
 
       for (const id of headingIds) {
         const element = document.getElementById(id)
         if (!element) continue
 
-        const top = element.getBoundingClientRect().top + window.scrollY
-        if (top <= scrollLine) {
+        const top = element.getBoundingClientRect().top
+        if (top <= focusLine) {
           currentId = id
-        } else {
-          break
+        }
+
+        if (top > bottomLimit) continue
+
+        const distance = Math.abs(top - focusLine)
+        if (distance < bestDistance) {
+          bestDistance = distance
+          currentId = id
         }
       }
 
