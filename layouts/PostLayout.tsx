@@ -3,12 +3,11 @@ import { CoreContent } from '@/lib/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
-import Tag from '@/components/Tag'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import TableOfContents from '@/components/custom/TableOfContents/TableOfContents'
 import { FaHistory } from 'react-icons/fa'
 import CheckboxProvider from '@/components/custom/CheckboxProvider'
-import AprilFoolsAds, { AprilFoolsBanner } from '@/components/AprilFools/AprilFoolsAds'
+import siteMetadata from '@/data/siteMetadata'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -20,16 +19,12 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, children, toc }: LayoutProps) {
-  const { patch, slug, title, tags, lastModified, changelogUrl, authors } = content
+  const { patch, title, lastModified, changelogUrl, authors } = content
   const displayAuthors = authors?.join(', ') || 'Казаняш'
-
-  // Check if this is a compendium page
-  const isCompendium = slug?.endsWith('/compendium')
 
   return (
     <SectionContainer>
       <ScrollTopAndComment />
-      {isCompendium && <AprilFoolsBanner />}
       <article>
         <div>
           <header className="h-auto pt-4 pb-12 lg:h-28 lg:py-0">
@@ -46,7 +41,12 @@ export default function PostLayout({ content, children, toc }: LayoutProps) {
                   </div>
                   <div>
                     Обновлено: <span className="text-main">{lastModified}</span>{' '}
-                    <span className="text-main">{displayAuthors}</span>
+                    <a
+                      href={siteMetadata.authorUrl}
+                      className="text-main underline decoration-2 underline-offset-4"
+                    >
+                      {displayAuthors}
+                    </a>
                   </div>
                   <div className="hidden lg:inline">
                     <a
@@ -84,28 +84,9 @@ export default function PostLayout({ content, children, toc }: LayoutProps) {
                 <CheckboxProvider>{children}</CheckboxProvider>
               </div>
             </div>
-
-            <footer className="xl:col-span-12">
-              <div className="divide-gray-200 text-sm leading-5 font-medium xl:divide-y dark:divide-gray-700">
-                {tags && tags.length > 0 && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                      Теги
-                    </h2>
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </footer>
           </div>
         </div>
       </article>
-      {isCompendium && <AprilFoolsBanner />}
-      {isCompendium && <AprilFoolsAds bannerCount={0} />}
     </SectionContainer>
   )
 }

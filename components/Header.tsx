@@ -3,11 +3,8 @@ import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
 import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
-import HeaderAprilFools from '../app/components/HeaderAprilFools'
 import styles from './Header.module.css'
 import { memo } from 'react'
-import { useTheme } from 'next-themes'
 
 interface Chapter {
   value: string
@@ -63,7 +60,6 @@ const BaseHeader = memo(function BaseHeader(props: HeaderProps) {
                 ))}
             </div>
             <div className="ml-2 flex h-[31px] items-center sm:ml-6 sm:hidden">
-              {false && <ThemeSwitch />}
               <MobileNav toc={toc} />
             </div>
           </div>
@@ -73,17 +69,7 @@ const BaseHeader = memo(function BaseHeader(props: HeaderProps) {
   )
 })
 
-// April Fools component is also memoized
-const MemoizedAprilFools = memo(HeaderAprilFools)
-
-// Main Header component
 function Header(props: HeaderProps) {
-  const { theme } = useTheme()
-
-  if (theme === 'april-fools') {
-    return <MemoizedAprilFools {...props} />
-  }
-
   return <BaseHeader {...props} />
 }
 

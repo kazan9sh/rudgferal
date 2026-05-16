@@ -1,5 +1,4 @@
 import 'css/tailwind.css'
-import 'css/april-fools.css'
 import 'remark-github-blockquote-alert/alert.css'
 
 import { Space_Grotesk, Source_Sans_3, IBM_Plex_Sans, DM_Sans } from 'next/font/google'

@@ -5,11 +5,12 @@ const repositoryBranch = process.env.NEXT_PUBLIC_SITE_BRANCH || 'master'
 const siteMetadata = {
   title: 'СИЛА ЗВЕРЯ',
   author: 'Казаняш',
+  authorUrl: 'https://github.com/kazan9sh',
   headerTitle: 'СИЛА ЗВЕРЯ',
   description:
     'Русский компедиум по друиду специализации Сила Зверя: ротация, таланты, экипировка и полезные ресурсы.',
   language: 'ru',
-  theme: 'dark', // system, dark or light
+  theme: 'dark',
   siteUrl: 'https://rotation.local',
   siteRepo: repositoryUrl,
   repositoryBranch,

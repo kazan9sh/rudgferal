@@ -6,24 +6,9 @@ import resto from 'public/static/images/cards/resto-card.png'
 import guardian from 'public/static/images/cards/guardian-card.png'
 import dungeons from 'public/static/images/cards/dungeons-card.png'
 import raids from 'public/static/images/cards/raids-card.png'
-import { useTheme } from 'next-themes'
-import { useSyncExternalStore } from 'react'
 import Image from 'next/image'
-import MainAprilFools from './MainAprilFools'
-import AprilFoolsAds, { AprilFoolsBanner } from '@/components/AprilFools/AprilFoolsAds'
 
 export default function Home() {
-  const { theme } = useTheme()
-  const mounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false
-  )
-
-  if (theme === 'april-fools' && mounted) {
-    return <MainAprilFools />
-  }
-
   const content = [
     { src: dungeons, href: '/dungeons', alt: 'Dungeon Guides' },
     { src: raids, href: '/raids', alt: 'Raid Guides', active: false },
@@ -67,7 +52,6 @@ export default function Home() {
           </Link>
         ))}
       </div>
-      <AprilFoolsBanner className="pt-2" />
       {
         <div className="grid grid-cols-1 gap-4 pt-4 md:pt-4">
           {content.map((image, index) => (
@@ -99,8 +83,6 @@ export default function Home() {
           ))}
         </div>
       }
-      <AprilFoolsBanner className="pt-2" />
-      <AprilFoolsAds bannerCount={0} />
     </div>
   )
 }
