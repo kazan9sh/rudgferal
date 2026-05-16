@@ -3,7 +3,7 @@ const headerNavLinks = [
   ...(process.env.NEXT_PUBLIC_GITHUB_PAGES === 'true'
     ? []
     : [{ href: '/planner', title: 'Planner' }]),
-  { href: 'https://discord.gg/FJPK3JftP4', title: 'Discord' },
+  { href: 'https://discord.gg/KzUqYFtXmf', title: 'Приходите в чат фералов' },
 ]
 
 export default headerNavLinks
