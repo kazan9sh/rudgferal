@@ -2,6 +2,7 @@
 import NextImage, { ImageProps } from 'next/image'
 import { useState } from 'react'
 import styles from './image.module.css'
+import { withBasePath } from '@/lib/utils/basePath'
 
 const Image = ({ ...rest }: ImageProps) => {
   const [isFullScreen, setIsFullScreen] = useState(false)
@@ -12,7 +13,7 @@ const Image = ({ ...rest }: ImageProps) => {
 
   return (
     <div className={isFullScreen ? styles.fullScreen : ''} onClick={toggleFullScreen}>
-      <NextImage {...rest} />
+      <NextImage {...rest} src={withBasePath(rest.src)} />
     </div>
   )
 }

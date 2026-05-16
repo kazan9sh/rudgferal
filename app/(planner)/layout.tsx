@@ -9,6 +9,7 @@ import { Providers } from '../(root)/providers'
 import ThemeProviders from '../(root)/theme-providers'
 import ScreenWidthWarning from '@/components/ScreenWidthWarning'
 import TimelineHeader from '@/components/TimelinePlanner/TimelineHeader'
+import { withBasePath } from '@/lib/utils/basePath'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -70,15 +71,33 @@ export default function RootLayout({ children }: LayoutProps) {
       style={{ paddingLeft: 0, paddingRight: 0, scrollbarGutter: 'auto' }}
       suppressHydrationWarning
     >
-      <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-      <link rel="manifest" href="/static/favicons/site.webmanifest" />
-      <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+      <link
+        rel="apple-touch-icon"
+        sizes="76x76"
+        href={withBasePath('/static/favicons/apple-touch-icon.png')}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={withBasePath('/static/favicons/favicon-32x32.png')}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href={withBasePath('/static/favicons/favicon-16x16.png')}
+      />
+      <link rel="manifest" href={withBasePath('/static/favicons/site.webmanifest')} />
+      <link
+        rel="mask-icon"
+        href={withBasePath('/static/favicons/safari-pinned-tab.svg')}
+        color="#5bbad5"
+      />
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+      <link rel="alternate" type="application/rss+xml" href={withBasePath('/feed.xml')} />
       <body
         className="bg-[#F2F3F4] text-black antialiased dark:bg-[#2a2a2a] dark:text-white"
         suppressHydrationWarning
@@ -95,7 +114,7 @@ export default function RootLayout({ children }: LayoutProps) {
             </ThemeProviders>
           </Providers>
         </div>
-        <Script src="/static/scripts/tooltip.js" strategy="beforeInteractive" />
+        <Script src={withBasePath('/static/scripts/tooltip.js')} strategy="beforeInteractive" />
         <Script src={scriptSrc} strategy="afterInteractive" />
       </body>
     </html>

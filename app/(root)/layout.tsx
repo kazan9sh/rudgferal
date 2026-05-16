@@ -10,6 +10,7 @@ import { Metadata } from 'next'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react'
 import { Providers } from './providers'
+import { withBasePath } from '@/lib/utils/basePath'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -89,15 +90,33 @@ export default function RootLayout({ children }: LayoutProps) {
       className={`${space_grotesk.variable} ${source_sans.variable} ${ibm_plex.variable} ${dm_sans.variable}`}
       suppressHydrationWarning
     >
-      <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png" />
-      <link rel="manifest" href="/static/favicons/site.webmanifest" />
-      <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
+      <link
+        rel="apple-touch-icon"
+        sizes="76x76"
+        href={withBasePath('/static/favicons/apple-touch-icon.png')}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={withBasePath('/static/favicons/favicon-32x32.png')}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href={withBasePath('/static/favicons/favicon-16x16.png')}
+      />
+      <link rel="manifest" href={withBasePath('/static/favicons/site.webmanifest')} />
+      <link
+        rel="mask-icon"
+        href={withBasePath('/static/favicons/safari-pinned-tab.svg')}
+        color="#5bbad5"
+      />
       <meta name="msapplication-TileColor" content="#000000" />
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+      <link rel="alternate" type="application/rss+xml" href={withBasePath('/feed.xml')} />
       <body
         className="flex h-full bg-[#100f0f] text-[#f2ece9] antialiased dark:bg-[#100f0f] dark:text-[#f2ece9]"
         suppressHydrationWarning
@@ -114,7 +133,7 @@ export default function RootLayout({ children }: LayoutProps) {
           </Providers>
         </div>
         <Script src={scriptSrc} strategy="beforeInteractive" />
-        <Script src="/static/scripts/tooltip.js" strategy="afterInteractive" />
+        <Script src={withBasePath('/static/scripts/tooltip.js')} strategy="afterInteractive" />
       </body>
     </html>
   )
