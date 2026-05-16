@@ -7,7 +7,6 @@ import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import TableOfContents from '@/components/custom/TableOfContents/TableOfContents'
 import { FaHistory } from 'react-icons/fa'
 import CheckboxProvider from '@/components/custom/CheckboxProvider'
-import siteMetadata from '@/data/siteMetadata'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -19,8 +18,7 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, children, toc }: LayoutProps) {
-  const { patch, title, lastModified, changelogUrl, authors } = content
-  const displayAuthors = authors?.join(', ') || 'Казаняш'
+  const { patch, title, lastModified, changelogUrl } = content
 
   return (
     <SectionContainer>
@@ -40,13 +38,7 @@ export default function PostLayout({ content, children, toc }: LayoutProps) {
                     Патч: <span className="text-main">{patch}</span>
                   </div>
                   <div>
-                    Обновлено: <span className="text-main">{lastModified}</span>{' '}
-                    <a
-                      href={siteMetadata.authorUrl}
-                      className="text-main underline decoration-2 underline-offset-4"
-                    >
-                      {displayAuthors}
-                    </a>
+                    Обновлено: <span className="text-main">{lastModified}</span>
                   </div>
                   <div className="hidden lg:inline">
                     <a
