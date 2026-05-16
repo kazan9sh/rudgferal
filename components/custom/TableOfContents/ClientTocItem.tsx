@@ -1,7 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
 interface Chapter {
   value: string
   depth: number
@@ -12,15 +10,16 @@ type ClientTocItemProps = {
   item: Chapter
   inSidebar?: boolean
   toggleNav?: () => void
-  initialActive?: boolean
+  activeId?: string
+  onActivate?: (id: string) => void
 }
 
-function getIdFromUrl(url: string): string {
-  return url.replace(/-\d+$/, '') // Remove '#' and the trailing '-{number}'
+export function getIdFromUrl(url: string): string {
+  return url.replace(/^#/, '').replace(/-\d+$/, '')
 }
 
-function scrollToTarget(targetUrl: string, onBeforeScroll?: () => void, delay = 0) {
-  const element = document.querySelector(targetUrl)
+function scrollToTarget(targetId: string, onBeforeScroll?: () => void, delay = 0) {
+  const element = document.getElementById(targetId)
   if (!element) return
 
   onBeforeScroll?.()
@@ -40,44 +39,19 @@ export default function ClientTocItem({
   item,
   inSidebar = false,
   toggleNav = () => {},
-  initialActive = false,
+  activeId = '',
+  onActivate = () => {},
 }: ClientTocItemProps) {
-  const [isActive, setIsActive] = useState(initialActive)
-  const targetUrl = getIdFromUrl(item.url)
-
-  useEffect(() => {
-    if (inSidebar) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsActive(true)
-          } else {
-            setIsActive(false)
-          }
-        })
-      },
-      {
-        rootMargin: '-9% 0px -89% 0px',
-      }
-    )
-
-    const elementId = `container-${getIdFromUrl(item.url.slice(1))}`
-    const element = document.getElementById(elementId)
-    if (element) {
-      observer.observe(element)
-    }
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [item.url, inSidebar])
+  const targetId = getIdFromUrl(item.url)
+  const targetUrl = `#${targetId}`
+  const isActive = activeId === targetId
 
   if (inSidebar && toggleNav) {
     return (
       <li
-        className={`text-md my-2 font-bold text-gray-800 dark:text-gray-400`}
+        className={`toc-item text-md my-2 font-bold text-gray-800 dark:text-gray-400 ${
+          isActive ? 'toc-item--active' : ''
+        }`}
         style={{
           marginLeft: `${(item.depth - 1) * 25}px`,
           marginTop: item.depth === 1 ? '0' : '5px',
@@ -86,7 +60,8 @@ export default function ClientTocItem({
         <a
           onClick={(e) => {
             e.preventDefault()
-            scrollToTarget(targetUrl, toggleNav, 300)
+            onActivate(targetId)
+            scrollToTarget(targetId, toggleNav, 300)
           }}
           href={targetUrl}
         >
@@ -107,7 +82,8 @@ export default function ClientTocItem({
       <a
         onClick={(e) => {
           e.preventDefault()
-          scrollToTarget(targetUrl)
+          onActivate(targetId)
+          scrollToTarget(targetId)
         }}
         href={targetUrl}
       >
