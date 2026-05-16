@@ -220,9 +220,24 @@ tags: ['feral', 'druid', 'ru']
   forceTree="class"
   name="Классовое дерево"
   talents="CcGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjZwMzMzMmtl5BWGbzYGzMDAAAALBzGMmZUzYWYmZGjZmZAAAAAAAGAAAABAz2MLNbzssBmZAWMDGAAzMAYA"
-/>
+  colors={[
+    { color: "#00c853", nodes: ["Rake", "Frenzied Regeneration", "Ursoc's Spirit", "Swipe", "Feline Swiftness", "Grievous Wounds", "Rip", "Verdant Heart", "Improved Barkskin", "Killer Instinct", "Primal Fury", "Thick Hide", "Skull Bash", "Natural Recovery", "Aessina's Renewal", "Well-Honed Instincts", "Stampeding Roar", "Gift of the Wild", "Lycara's Teachings", "Instincts of the Claw", "Oakskin", "Circle of the Wild"] },
+    { color: "#ffd400", nodes: ["Remove Corruption", "Nurturing Instinct", "Matted Fur", "Incapacitating Roar", "Fluid Form", "Improved Stampeding Roar", "Perfectly-Honed Instincts", "Soothe", "Wild Charge"] },
+    { color: "#a855f7", nodes: ["Typhoon", "Mass Entanglement", "Ursol's Vortex", "Lore of the Grove", "Lycara's Inspiration", "Forestwalk", "Innervate", "Heart of the Wild"] },
+    { color: "#f5f5f5", nodes: ["Starfire", "Moonkin Form", "Astral Influence", "Maim", "Hibernate", "Gale Winds", "Incessant Tempest", "Ursine Vigor"] },
+    { color: "#ff3045", nodes: ["Rejuvenation", "Wild Growth", "Starsurge", "Sunfire", "Starlight Conduit", "Ironfur", "Lingering Healing", "Symbiotic Relationship"] },
+  ]}
+>
+<div className="not-prose flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-[#d8d1ce]">
+  <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[#00c853]"></span>Зелёный - всегда</span>
+  <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[#ffd400]"></span>Золотой - почти всегда</span>
+  <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[#a855f7]"></span>Фиолетовый - по ситуации</span>
+  <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[#f5f5f5]"></span>Белое - не желательно</span>
+  <span className="inline-flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-[#ff3045]"></span>Красное - никогда</span>
+</div>
+</Talents>
 
-Красные/слабые узлы из оригинального дерева обычно не берутся, потому что дают мало урона, требуют выхода из формы или закрывают слишком нишевые задачи. Жёлтые узлы — утилити под конкретный бой: диспел, !132469|Тайфун!, !102793|Вихрь Урсола!, !99|Парализующий рык!, ускоренный !106898|Тревожный рев!, !29166|Озарение! и !319454|Зов старейшего друида!. Зелёная база — стандартная защита, мобильность и основные кошачьи узлы.
+Цвета в дереве показывают ценность узлов для ферала. Это не жёсткий запрет на любые отклонения, но хороший ориентир: зелёную базу почти не трогаем, золотые узлы обычно оставляем, фиолетовые меняем под бой или группу.
 
 <details>
 <summary>Верхняя часть дерева</summary>
@@ -307,7 +322,17 @@ tags: ['feral', 'druid', 'ru']
 > [!WARNING]
 > Не следуйте слепо никакому стат-приоритету. Как одеваться всегда решает правило <span className="simyourself">SIMYOURSELF</span>.
 
-Практический ориентир: проверяйте каждый апгрейд через Raidbots Top Gear. Вторичные характеристики иногда обгоняют ловкость по весу, но илвл всегда выигрывает.
+🔸 В первую очередь нам необходимо собрать максимально возможный ilvl вещей из-за высокого веса основной характеристики - ловкости.
+
+🔸 Ловкость увеличивает урон от всех способностей.
+
+🔸 Универсальность увеличивает наносимый урон, усиливает эффективность исцеления и уменьшает входящий дамаг.
+
+🔸 Скорость увеличивает скорость накопления энергии, ускоряет частоту тика дот, а также снижает ГКД способностей.
+
+🔸 Критический удар повышает вероятность нанесения критического урона. Также из-за механики класса мы получаем больше КП с критом.
+
+🔸 Искусность увеличивает урон от всех наших дот и завершающих приёмов серии.
 
 # Чары
 
