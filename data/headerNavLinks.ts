@@ -1,6 +1,8 @@
 const headerNavLinks = [
   { href: '/', title: 'Главная' },
-  { href: '/planner', title: 'Planner' },
+  ...(process.env.NEXT_PUBLIC_GITHUB_PAGES === 'true'
+    ? []
+    : [{ href: '/planner', title: 'Planner' }]),
   { href: 'https://discord.gg/FJPK3JftP4', title: 'Discord' },
 ]
 

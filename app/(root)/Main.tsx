@@ -1,5 +1,5 @@
 'use client'
-import Link from '@/components/Link'
+import Link from 'next/link'
 import balance from 'public/static/images/cards/balance-card.png'
 import feral from 'public/static/images/cards/feral-card.png'
 import resto from 'public/static/images/cards/resto-card.png'

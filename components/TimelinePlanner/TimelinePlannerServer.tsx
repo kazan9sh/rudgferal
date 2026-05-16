@@ -1,40 +1,8 @@
 import spellsData from '../../other/timelineSpells.json'
 import TimelinePlanner from './TimelinePlanner'
 import Wowhead from '../custom/Wowhead'
-import { GET } from '../../app/api/warcraft-logs/druid-casts/route'
-import { NextRequest } from 'next/server'
 import { bindings } from '@/lib/talent_handlers/bindings'
 import WowheadIcon from '../custom/WowheadIcon'
-
-async function fetchDruidCasts() {
-  const raidId = 42
-  const vexieEncounterId = 3009 // Vexie and the Geargrinders
-  const mythicDifficulty = 5
-  const maxReportsToProcess = 3
-
-  try {
-    // Create a mock request to pass to the API handler
-    const url = new URL('https://localhost/api/warcraft-logs/druid-casts')
-    url.searchParams.set('raidId', raidId.toString())
-    url.searchParams.set('encounterId', vexieEncounterId.toString())
-    url.searchParams.set('difficulty', mythicDifficulty.toString())
-    url.searchParams.set('maxReports', maxReportsToProcess.toString())
-
-    const mockRequest = new NextRequest(url)
-
-    // Call the API route handler directly
-    const response = await GET(mockRequest)
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch data')
-    }
-
-    return await response.json()
-  } catch (error) {
-    console.error('Error fetching druid casts:', error)
-    return null
-  }
-}
 
 // Function to calculate average timestamps for each position across fights
 function calculateAverageTimestamps(spellCastsData: any) {

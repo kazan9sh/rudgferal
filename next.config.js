@@ -59,11 +59,22 @@ const securityHeaders = [
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
 module.exports = () => {
+  const isGithubPages = process.env.GITHUB_PAGES === 'true'
+  const githubPagesBasePath = process.env.NEXT_PUBLIC_BASE_PATH || '/rudgferal'
   const plugins = [withContentlayer, withBundleAnalyzer]
-  return plugins.reduce((acc, next) => next(acc), {
+  const nextConfig = {
     reactStrictMode: true,
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+    ...(isGithubPages
+      ? {
+          output: 'export',
+          trailingSlash: true,
+          basePath: githubPagesBasePath,
+          assetPrefix: `${githubPagesBasePath}/`,
+        }
+      : {}),
     images: {
+      ...(isGithubPages ? { unoptimized: true } : {}),
       remotePatterns: [
         {
           protocol: 'https',
@@ -91,57 +102,63 @@ module.exports = () => {
       GITHUB_REPO_NAME: process.env.GITHUB_REPO_NAME || 'dreamgrove',
       GITHUB_BRANCH: process.env.GITHUB_BRANCH || 'master',
     },
-    async redirects() {
-      return [
-        {
-          source: '/balance/compendium',
-          destination: '/blog/balance/compendium',
-          permanent: true, // use `true` for a 301 redirect, `false` for a 302 redirect
-        },
-        {
-          source: '/balance',
-          destination: '/blog/balance/compendium',
-          permanent: true,
-        },
-        {
-          source: '/feral/compendium',
-          destination: '/blog/feral/compendium',
-          permanent: true,
-        },
-        {
-          source: '/feral',
-          destination: '/blog/feral/compendium',
-          permanent: true,
-        },
-        {
-          source: '/resto/compendium',
-          destination: '/blog/resto/compendium',
-          permanent: true,
-        },
-        {
-          source: '/resto',
-          destination: '/blog/resto/compendium',
-          permanent: true,
-        },
-        {
-          source: '/guardian',
-          destination: '/blog/guardian/compendium',
-          permanent: true,
-        },
-        {
-          source: '/guardian/diminishing-returns',
-          destination: '/blog/guardian/diminishing-returns',
-          permanent: true,
-        },
-      ]
-    },
-    async headers() {
-      return [
-        {
-          source: '/(.*)',
-          headers: securityHeaders,
-        },
-      ]
-    },
-  })
+    ...(isGithubPages
+      ? {}
+      : {
+          async redirects() {
+            return [
+              {
+                source: '/balance/compendium',
+                destination: '/blog/balance/compendium',
+                permanent: true, // use `true` for a 301 redirect, `false` for a 302 redirect
+              },
+              {
+                source: '/balance',
+                destination: '/blog/balance/compendium',
+                permanent: true,
+              },
+              {
+                source: '/feral/compendium',
+                destination: '/blog/feral/compendium',
+                permanent: true,
+              },
+              {
+                source: '/feral',
+                destination: '/blog/feral/compendium',
+                permanent: true,
+              },
+              {
+                source: '/resto/compendium',
+                destination: '/blog/resto/compendium',
+                permanent: true,
+              },
+              {
+                source: '/resto',
+                destination: '/blog/resto/compendium',
+                permanent: true,
+              },
+              {
+                source: '/guardian',
+                destination: '/blog/guardian/compendium',
+                permanent: true,
+              },
+              {
+                source: '/guardian/diminishing-returns',
+                destination: '/blog/guardian/diminishing-returns',
+                permanent: true,
+              },
+            ]
+          },
+          async headers() {
+            return [
+              {
+                source: '/(.*)',
+                headers: securityHeaders,
+              },
+            ]
+          },
+        }),
+  }
+
+  return plugins.reduce((acc, next) => next(acc), nextConfig)
 }

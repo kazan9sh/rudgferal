@@ -11,7 +11,7 @@ const siteMetadata = {
     'Русский компедиум по друиду специализации Сила Зверя: ротация, таланты, экипировка и полезные ресурсы.',
   language: 'ru',
   theme: 'dark',
-  siteUrl: 'https://rotation.local',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://kazan9sh.github.io/rudgferal',
   siteRepo: repositoryUrl,
   repositoryBranch,
   siteLogo: '/static/images/rotation-logo.png',

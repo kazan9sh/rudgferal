@@ -1,7 +1,7 @@
 'use client'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Link from './Link'
+import Link from 'next/link'
 import MobileNav from './MobileNav'
 import styles from './Header.module.css'
 import { memo } from 'react'
@@ -53,9 +53,9 @@ const BaseHeader = memo(function BaseHeader(props: HeaderProps) {
                 .filter((link) => link.href !== '/')
                 .map((link) => (
                   <div className="title-effect sm:text-xl lg:text-lg" key={link.title}>
-                    <Link href={link.href} className="font-semibold">
+                    <a href={link.href} className="font-semibold">
                       <span className="title-effect-front">{link.title}</span>
-                    </Link>
+                    </a>
                   </div>
                 ))}
             </div>

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { CoreContent } from '@/lib/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
-import Link from '@/components/Link'
+import Link from 'next/link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 
