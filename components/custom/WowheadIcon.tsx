@@ -46,9 +46,6 @@ export default async function WowheadIcon({
   if (process.env.NODE_ENV === 'test') {
     imageUrl = 'https://wow.zamimg.com/images/wow/icons/large/ability_druid_starfall.jpg'
     hasImage = true
-  } else if (type === 'spell') {
-    imageUrl = `https://cdn.simcode.dev/${id}.jpg`
-    hasImage = await iconExists(imageUrl)
   } else {
     if (!iconId) {
       try {
@@ -76,7 +73,7 @@ export default async function WowheadIcon({
   const image = (
     <Image
       src={imageUrl}
-      alt={`${name} icon`}
+      alt=""
       width={fill ? undefined : iconSize}
       height={fill ? undefined : iconSize}
       fill={fill}

@@ -92,7 +92,7 @@ function WowheadClientIcon({
     ) : iconFilename ? (
       <Image
         src={`https://wow.zamimg.com/images/wow/icons/large/${iconFilename}.jpg`}
-        alt={`${name} icon`}
+        alt=""
         fill={true}
       />
     ) : (
@@ -106,7 +106,7 @@ function WowheadClientIcon({
   const image = iconFilename ? (
     <Image
       src={`https://wow.zamimg.com/images/wow/icons/large/${iconFilename}.jpg`}
-      alt={`${name} icon`}
+      alt=""
       height={size}
       width={size}
       className="my-0 inline-block"
