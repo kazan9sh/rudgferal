@@ -8,7 +8,7 @@ const siteMetadata = {
   authorUrl: 'https://github.com/kazan9sh',
   headerTitle: 'СИЛА ЗВЕРЯ',
   description:
-    'Русский компедиум по друиду специализации Сила Зверя: ротация, таланты, экипировка и полезные ресурсы.',
+    'Русский компендиум по друиду специализации Сила Зверя: ротация, таланты, экипировка и полезные ресурсы.',
   language: 'ru',
   theme: 'dark',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://kazan9sh.github.io/rudgferal',

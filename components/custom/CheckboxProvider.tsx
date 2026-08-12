@@ -9,12 +9,16 @@ interface CheckboxItem {
 interface CheckboxContextType {
   checkboxMap: Record<string, CheckboxItem>
   updateCheckbox: (id: string, checked: boolean, radioGroup: string | null) => void
+  updateCheckboxes: (
+    updates: Array<{ id: string; checked: boolean; radioGroup: string | null }>
+  ) => void
 }
 
 // Create context with default value
 const CheckboxContext = createContext<CheckboxContextType>({
   checkboxMap: {},
   updateCheckbox: () => {},
+  updateCheckboxes: () => {},
 })
 
 export { CheckboxContext }
@@ -70,9 +74,42 @@ export default function CheckboxProvider({ children }) {
     [setCheckboxMap]
   )
 
+  const updateCheckboxes = useCallback(
+    (updates: Array<{ id: string; checked: boolean; radioGroup: string | null }>) => {
+      setCheckboxMap((prevMap) => {
+        const newMap = { ...prevMap }
+
+        updates.forEach(({ id, checked, radioGroup }) => {
+          newMap[id] = {
+            ...(newMap[id] || {}),
+            checked,
+            radioGroup,
+          }
+        })
+
+        updates.forEach(({ id, checked, radioGroup }) => {
+          if (!radioGroup || !checked) return
+
+          Object.keys(newMap).forEach((key) => {
+            if (key !== id && newMap[key].radioGroup === radioGroup && newMap[key].checked) {
+              newMap[key] = {
+                ...newMap[key],
+                checked: false,
+              }
+            }
+          })
+        })
+
+        return newMap
+      })
+    },
+    [setCheckboxMap]
+  )
+
   const contextValue = {
     checkboxMap,
     updateCheckbox,
+    updateCheckboxes,
   }
 
   return (

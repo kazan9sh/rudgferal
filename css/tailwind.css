@@ -875,6 +875,28 @@ header {
   text-decoration-color: rgba(255, 207, 74, 0.7);
 }
 
+/* Сленговый термин из словарика — подсвечивается, в title подсказка с полным названием */
+.prose a.glossary-term,
+a.glossary-term {
+  color: #ffcf4a;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 207, 74, 0.55);
+  padding-bottom: 1px;
+  cursor: help;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.prose a.glossary-term:hover,
+a.glossary-term:hover {
+  color: #ffe28a;
+  border-bottom-color: #ffcf4a;
+  background: rgba(255, 207, 74, 0.08);
+}
+
 .simyourself {
   display: inline-block;
   border: 1px solid rgba(255, 207, 74, 0.6);

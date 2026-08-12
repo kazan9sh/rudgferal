@@ -24,6 +24,7 @@ import siteMetadata from './data/siteMetadata'
 import { allCoreContent, sortPosts } from './lib/utils/contentlayer'
 import remarkSpell from './plugins/remarkSpell.js'
 import remarkColor from './plugins/remarkColor.js'
+import remarkGlossary from './plugins/remarkGlossary.js'
 import rehypeGroupHeaders from './plugins/rehypeGroupHeaders.js'
 import remarkGroupCheckboxes from './plugins/remarkGroupCheckboxes.js'
 
@@ -337,6 +338,7 @@ export default makeSource({
       remarkImgToJsx,
       remarkSpell,
       remarkColor,
+      remarkGlossary,
     ],
     rehypePlugins: [
       rehypeSlug,

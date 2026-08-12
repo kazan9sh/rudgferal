@@ -7,6 +7,7 @@ import TableWrapper from './TableWrapper'
 import Wowhead from './custom/Wowhead'
 import Talents from './custom/Talents/Talents'
 import Checkbox from './custom/Checkbox'
+import RotationPresetPicker from './custom/RotationPresetPicker'
 import HeroTalentsHeader from './custom/HeroTalents/HeroTalentsHeader'
 import BossCard from './custom/Dungeons/BossCard'
 import Npc from './custom/Npc'
@@ -17,6 +18,7 @@ import YouTube from './custom/YouTube'
 import ConditionalElement from './custom/ConditionalElement'
 import CheckboxProvider from './custom/CheckboxProvider'
 import Color from './custom/Color'
+import Term from './custom/Term'
 import React from 'react'
 export const components: MDXComponents = {
   Image: ({ src, alt, ...props }) => {
@@ -133,6 +135,7 @@ export const components: MDXComponents = {
   Wowhead,
   Talents,
   Checkbox,
+  RotationPresetPicker,
   HeroTalentsHeader,
   BossCard,
   Npc,
@@ -140,6 +143,7 @@ export const components: MDXComponents = {
   Timeline,
   YouTube,
   Color,
+  Term,
   p: ({ children, ...props }) => {
     let id = ''
     const regex = /^\[\*(.*?)\]/ //Matches [*text]

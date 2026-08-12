@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 text-center">
       <h1 className="mb-4 text-3xl font-bold text-[#ffcf4a]">СИЛА ЗВЕРЯ</h1>
-      <p className="mb-6 text-[#e8ddd9]">Русский компедиум по друиду специализации Сила Зверя.</p>
+      <p className="mb-6 text-[#e8ddd9]">Русский компендиум по друиду специализации Сила Зверя.</p>
       <Link
         href="/blog/feral/compendium"
         className="text-main underline decoration-2 underline-offset-4"
