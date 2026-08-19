@@ -4511,5 +4511,53 @@
     "display": "Зелье безрассудства",
     "timestamp": 1786537899287,
     "icon": "inv_12_profession_alchemy_voidpotion_red"
+  },
+  "item-265657": {
+    "display": "Волокно живой агонии",
+    "timestamp": 1787124681897,
+    "icon": "ability_rogue_sanguinaryvein",
+    "quality": 4
+  },
+  "item-270165": {
+    "display": "Раскаленное ядро хранителя",
+    "timestamp": 1787124681904,
+    "icon": "inv_121_trinket_raid_ulatek_golemhearts_green",
+    "quality": 4
+  },
+  "item-270168": {
+    "display": "Источник ядовитой ярости",
+    "timestamp": 1787124681913,
+    "icon": "inv_10_dungeonjewelry_dragon_trinket_3djardintrophy_green",
+    "quality": 4
+  },
+  "item-270164": {
+    "display": "Бездонная сумка Геббо",
+    "timestamp": 1787124682231,
+    "icon": "inv_10_tailoring_bag1_color2",
+    "quality": 4
+  },
+  "item-245876": {
+    "display": "Символ Новолуния «Охота»",
+    "timestamp": 1787124682241,
+    "icon": "inv_12_profession_inscriptions_darkmoonsigil_bloom",
+    "quality": 3
+  },
+  "item-250259": {
+    "display": "Росток рассветного корня",
+    "timestamp": 1787124682253,
+    "icon": "inv_misc_herb_nightmarevine",
+    "quality": 4
+  },
+  "item-270166": {
+    "display": "Кровавая злоба Вашника",
+    "timestamp": 1787124682266,
+    "icon": "inv_11_0_raid_gruesomesyringe_blue",
+    "quality": 4
+  },
+  "item-250214": {
+    "display": "Ядро шпиля Света",
+    "timestamp": 1787124682269,
+    "icon": "inv_enchant_essenceastrallarge",
+    "quality": 4
   }
 }

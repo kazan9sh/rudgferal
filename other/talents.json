@@ -1791,7 +1791,7 @@
       },
       {
         "id": 88216,
-        "name": "Astral Communion",
+        "name": "Sculpt the Stars",
         "type": "single",
         "posX": 12300,
         "posY": 5100,
@@ -1805,9 +1805,9 @@
             "definitionId": 114855,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Astral Communion",
-            "spellId": 450598,
-            "icon": "talentspec_druid_balance",
+            "name": "Sculpt the Stars",
+            "spellId": 1240188,
+            "icon": "ability_druid_eclipseorange",
             "index": 0
           }
         ]
@@ -1860,7 +1860,7 @@
       },
       {
         "id": 88220,
-        "name": "Sculpt the Stars",
+        "name": "Astral Communion",
         "type": "single",
         "posX": 10500,
         "posY": 5700,
@@ -1874,9 +1874,9 @@
             "definitionId": 122112,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Sculpt the Stars",
-            "spellId": 1240188,
-            "icon": "ability_druid_eclipseorange",
+            "name": "Astral Communion",
+            "spellId": 450598,
+            "icon": "talentspec_druid_balance",
             "index": 0
           }
         ]
@@ -2206,6 +2206,20 @@
         "posY": 7650,
         "reqPoints": 20,
         "maxRanks": 4,
+        "rankLevels": [
+          {
+            "level": 81,
+            "maxRanks": 1
+          },
+          {
+            "level": 84,
+            "maxRanks": 3
+          },
+          {
+            "level": 90,
+            "maxRanks": 4
+          }
+        ],
         "entryNode": true,
         "next": [],
         "prev": [],
@@ -2268,7 +2282,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94598,
@@ -2626,7 +2641,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94599,
@@ -3032,7 +3048,7 @@
       104078, 104079, 104080, 104081, 104082, 104083, 104084, 104085, 104125, 108032, 108033,
       109275, 109302, 109375, 109376, 109377, 109378, 109379, 109712, 109713, 109714, 109715,
       109716, 109717, 109718, 109719, 109720, 109721, 109722, 109723, 110279, 110421, 110424,
-      110426, 110431
+      110426, 110431, 110694
     ]
   },
   {
@@ -4401,7 +4417,7 @@
       },
       {
         "id": 82098,
-        "name": "Merciless Claws",
+        "name": "Rampant Ferocity",
         "type": "single",
         "posX": 11100,
         "posY": 2700,
@@ -4414,9 +4430,9 @@
             "definitionId": 108164,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Merciless Claws",
-            "spellId": 231063,
-            "icon": "inv_misc_monsterclaw_03",
+            "name": "Rampant Ferocity",
+            "spellId": 391709,
+            "icon": "ability_druid_primaltenacity",
             "index": 100
           }
         ]
@@ -4695,7 +4711,7 @@
       },
       {
         "id": 82103,
-        "name": "Panther's Guile",
+        "name": "Merciless Claws",
         "type": "single",
         "posX": 12900,
         "posY": 4500,
@@ -4709,16 +4725,16 @@
             "definitionId": 108169,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Panther's Guile",
-            "spellId": 1280316,
-            "icon": "ability_mount_blackpanther",
+            "name": "Merciless Claws",
+            "spellId": 231063,
+            "icon": "inv_misc_monsterclaw_03",
             "index": 100
           }
         ]
       },
       {
         "id": 82117,
-        "name": "Rampant Ferocity",
+        "name": "Panther's Guile",
         "type": "single",
         "posX": 13500,
         "posY": 4500,
@@ -4732,9 +4748,9 @@
             "definitionId": 108186,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Rampant Ferocity",
-            "spellId": 391709,
-            "icon": "ability_druid_primaltenacity",
+            "name": "Panther's Guile",
+            "spellId": 1280316,
+            "icon": "ability_mount_blackpanther",
             "index": 100
           }
         ]
@@ -5234,6 +5250,20 @@
         "posY": 7650,
         "reqPoints": 20,
         "maxRanks": 4,
+        "rankLevels": [
+          {
+            "level": 81,
+            "maxRanks": 1
+          },
+          {
+            "level": 84,
+            "maxRanks": 3
+          },
+          {
+            "level": 90,
+            "maxRanks": 4
+          }
+        ],
         "entryNode": true,
         "next": [],
         "prev": [],
@@ -5295,7 +5325,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94629,
@@ -5659,7 +5690,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94618,
@@ -6053,7 +6085,7 @@
       104078, 104079, 104080, 104081, 104082, 104083, 104084, 104085, 104125, 108032, 108033,
       109275, 109302, 109375, 109376, 109377, 109378, 109379, 109712, 109713, 109714, 109715,
       109716, 109717, 109718, 109719, 109720, 109721, 109722, 109723, 110279, 110421, 110424,
-      110426, 110431
+      110426, 110431, 110694
     ]
   },
   {
@@ -8307,6 +8339,20 @@
         "posY": 7650,
         "reqPoints": 20,
         "maxRanks": 4,
+        "rankLevels": [
+          {
+            "level": 81,
+            "maxRanks": 1
+          },
+          {
+            "level": 84,
+            "maxRanks": 3
+          },
+          {
+            "level": 90,
+            "maxRanks": 4
+          }
+        ],
         "entryNode": true,
         "next": [],
         "prev": [],
@@ -8369,7 +8415,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94598,
@@ -8726,7 +8773,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94618,
@@ -9120,7 +9168,7 @@
       104078, 104079, 104080, 104081, 104082, 104083, 104084, 104085, 104125, 108032, 108033,
       109275, 109302, 109375, 109376, 109377, 109378, 109379, 109712, 109713, 109714, 109715,
       109716, 109717, 109718, 109719, 109720, 109721, 109722, 109723, 110279, 110421, 110424,
-      110426, 110431
+      110426, 110431, 110694
     ]
   },
   {
@@ -10475,30 +10523,30 @@
         "prev": [82047],
         "entries": [
           {
-            "id": 103137,
-            "definitionId": 108142,
+            "id": 137508,
+            "definitionId": 142268,
             "maxRanks": 1,
             "type": "passive",
             "name": "Verdant Infusion",
             "spellId": 392410,
             "icon": "inv_relics_totemoflife",
-            "index": 100
+            "index": 300
           },
           {
-            "id": 103136,
-            "definitionId": 108141,
+            "id": 137507,
+            "definitionId": 142267,
             "maxRanks": 1,
             "type": "passive",
             "name": "Prosperity",
             "spellId": 200383,
             "icon": "ability_druid_giftoftheearthmother",
-            "index": 200
+            "index": 400
           }
         ]
       },
       {
         "id": 82051,
-        "name": "Nature's Splendor / Passing Seasons",
+        "name": "Overgrowth / Passing Seasons",
         "type": "choice",
         "posX": 12300,
         "posY": 2700,
@@ -10511,9 +10559,9 @@
             "definitionId": 108108,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Nature's Splendor",
-            "spellId": 392288,
-            "icon": "spell_nature_spiritarmor",
+            "name": "Overgrowth",
+            "spellId": 203651,
+            "icon": "ability_druid_overgrowth",
             "index": 100
           },
           {
@@ -10665,7 +10713,7 @@
       },
       {
         "id": 82059,
-        "name": "Verdancy",
+        "name": "Germination",
         "type": "single",
         "posX": 10500,
         "posY": 4500,
@@ -10679,9 +10727,9 @@
             "definitionId": 108118,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Verdancy",
-            "spellId": 392325,
-            "icon": "inv_10_herb_seed_magiccolor5",
+            "name": "Germination",
+            "spellId": 155675,
+            "icon": "spell_druid_germination",
             "index": 100
           }
         ]
@@ -10734,8 +10782,8 @@
       },
       {
         "id": 82053,
-        "name": "Inner Peace / Flourish",
-        "type": "choice",
+        "name": "Flourish",
+        "type": "single",
         "posX": 12300,
         "posY": 4500,
         "reqPoints": 8,
@@ -10743,16 +10791,6 @@
         "next": [82065],
         "prev": [82054],
         "entries": [
-          {
-            "id": 103107,
-            "definitionId": 108112,
-            "maxRanks": 1,
-            "type": "passive",
-            "name": "Inner Peace",
-            "spellId": 197073,
-            "icon": "ability_druid_dreamstate",
-            "index": 200
-          },
           {
             "id": 103106,
             "definitionId": 108111,
@@ -10767,13 +10805,13 @@
       },
       {
         "id": 82056,
-        "name": "Cultivation",
+        "name": "Flash of Clarity",
         "type": "single",
         "posX": 12900,
         "posY": 4500,
         "reqPoints": 8,
         "maxRanks": 1,
-        "next": [82065, 82080],
+        "next": [82065, 110694, 82080],
         "prev": [82082],
         "entries": [
           {
@@ -10781,9 +10819,9 @@
             "definitionId": 108115,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Cultivation",
-            "spellId": 200390,
-            "icon": "spell_nature_healingtouch",
+            "name": "Flash of Clarity",
+            "spellId": 392220,
+            "icon": "spell_nature_crystalball",
             "index": 100
           }
         ]
@@ -10960,6 +10998,29 @@
         ]
       },
       {
+        "id": 110694,
+        "name": "Cultivation",
+        "type": "single",
+        "posX": 12900,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 2,
+        "next": [82067],
+        "prev": [82056],
+        "entries": [
+          {
+            "id": 137510,
+            "definitionId": 142270,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Cultivation",
+            "spellId": 200390,
+            "icon": "spell_nature_healingtouch",
+            "index": 100
+          }
+        ]
+      },
+      {
         "id": 82080,
         "name": "Unstoppable Growth",
         "type": "single",
@@ -11093,7 +11154,7 @@
         "reqPoints": 20,
         "maxRanks": 1,
         "next": [82068, 82066, 82072],
-        "prev": [82080, 82065],
+        "prev": [82080, 82065, 110694],
         "entries": [
           {
             "id": 103123,
@@ -11418,7 +11479,7 @@
       },
       {
         "id": 82071,
-        "name": "Germination",
+        "name": "Verdancy",
         "type": "single",
         "posX": 14100,
         "posY": 6900,
@@ -11432,9 +11493,9 @@
             "definitionId": 108132,
             "maxRanks": 1,
             "type": "passive",
-            "name": "Germination",
-            "spellId": 155675,
-            "icon": "spell_druid_germination",
+            "name": "Verdancy",
+            "spellId": 392325,
+            "icon": "inv_10_herb_seed_magiccolor5",
             "index": 100
           }
         ]
@@ -11447,6 +11508,20 @@
         "posY": 7650,
         "reqPoints": 20,
         "maxRanks": 4,
+        "rankLevels": [
+          {
+            "level": 81,
+            "maxRanks": 1
+          },
+          {
+            "level": 84,
+            "maxRanks": 3
+          },
+          {
+            "level": 90,
+            "maxRanks": 4
+          }
+        ],
         "entryNode": true,
         "next": [],
         "prev": [],
@@ -11508,7 +11583,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94629,
@@ -11873,7 +11949,8 @@
             "index": 100
           }
         ],
-        "freeNode": true
+        "freeNode": true,
+        "freeLevel": 71
       },
       {
         "id": 94599,
@@ -12279,7 +12356,7 @@
       104078, 104079, 104080, 104081, 104082, 104083, 104084, 104085, 104125, 108032, 108033,
       109275, 109302, 109375, 109376, 109377, 109378, 109379, 109712, 109713, 109714, 109715,
       109716, 109717, 109718, 109719, 109720, 109721, 109722, 109723, 110279, 110421, 110424,
-      110426, 110431
+      110426, 110431, 110694
     ]
   }
 ]

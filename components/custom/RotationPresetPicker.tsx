@@ -64,9 +64,9 @@ const aoePresets: Preset[] = [
     values: [
       { id: 'Druid of the Claw AOE', checked: true, radio: 'hero talents AOE' },
       { id: 'Wildstalker AOE', checked: false, radio: 'hero talents AOE' },
-      { id: 'Double Clawed Rake AOE', checked: false },
-      { id: 'Wild Slashes AOE', checked: true },
-      { id: 'Infected Wounds AOE', checked: false },
+      { id: 'Double Clawed Rake AOE', checked: true },
+      { id: 'Wild Slashes AOE', checked: false },
+      { id: 'Infected Wounds AOE', checked: true },
       { id: 'Feral Frenzy AOE', checked: true },
       { id: 'Focused Frenzy AOE', checked: false, radio: 'frenzy choice AOE' },
       { id: 'Frantic Frenzy AOE', checked: true, radio: 'frenzy choice AOE' },
@@ -77,7 +77,7 @@ const aoePresets: Preset[] = [
       { id: 'Rampant Ferocity AOE', checked: true },
       { id: 'Shadowmeld AOE', checked: false },
       { id: 'Primal Wrath AOE', checked: true },
-      { id: 'Sudden Ambush AOE', checked: false },
+      { id: 'Sudden Ambush AOE', checked: true },
     ],
   },
   {
@@ -86,7 +86,7 @@ const aoePresets: Preset[] = [
     values: [
       { id: 'Druid of the Claw AOE', checked: false, radio: 'hero talents AOE' },
       { id: 'Wildstalker AOE', checked: true, radio: 'hero talents AOE' },
-      { id: 'Double Clawed Rake AOE', checked: false },
+      { id: 'Double Clawed Rake AOE', checked: true },
       { id: 'Wild Slashes AOE', checked: false },
       { id: 'Infected Wounds AOE', checked: true },
       { id: 'Feral Frenzy AOE', checked: true },
