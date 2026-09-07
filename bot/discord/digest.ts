@@ -167,9 +167,38 @@ export function chunk(text: string, limit = MESSAGE_LIMIT): string[] {
   return messages
 }
 
+/**
+ * Сообщение дайджеста: либо текст, либо картинка-баннер раздела.
+ * В прошлых гайдах баннер шёл отдельным сообщением перед текстом — повторяем.
+ */
+export type DigestMessage =
+  | { kind: 'text'; content: string }
+  | { kind: 'image'; path: string; alt: string }
+
 export type DigestSection = {
   title: string
-  messages: string[]
+  messages: DigestMessage[]
+}
+
+const IMAGE_IN_MDX = /!\[([^\]]*)\]\((\/[^)\s]+\.(?:png|jpe?g|gif|webp))\)/g
+
+/** Режет тело раздела на куски текста и картинки, сохраняя их порядок. */
+function splitByImages(body: string): { text?: string; image?: { path: string; alt: string } }[] {
+  const parts: { text?: string; image?: { path: string; alt: string } }[] = []
+  let last = 0
+
+  for (const match of body.matchAll(IMAGE_IN_MDX)) {
+    const before = body.slice(last, match.index)
+    if (before.trim()) parts.push({ text: before })
+
+    parts.push({ image: { alt: match[1], path: match[2] } })
+    last = (match.index ?? 0) + match[0].length
+  }
+
+  const tail = body.slice(last)
+  if (tail.trim()) parts.push({ text: tail })
+
+  return parts
 }
 
 /**
@@ -189,13 +218,26 @@ export async function buildDigest(sectionFilter?: string[]): Promise<DigestSecti
     sectionFilter.some((f) => s.title.toLowerCase().includes(f.toLowerCase()))
 
   return guide.sections.filter(wanted).map((section) => {
-    const body = toDiscord(section.body, cache)
-    const header = `## 🔸 ${section.title}`
+    const messages: DigestMessage[] = []
+    let headerUsed = false
 
-    return {
-      title: section.title,
-      messages: chunk(`${header}\n\n${body}`),
+    for (const part of splitByImages(section.body)) {
+      if (part.image) {
+        messages.push({ kind: 'image', path: part.image.path, alt: part.image.alt })
+        continue
+      }
+
+      const body = toDiscord(part.text ?? '', cache)
+      if (!body) continue
+
+      // Заголовок раздела ставим к первому текстовому куску, после баннера.
+      const withHeader = headerUsed ? body : `## 🔸 ${section.title}\n\n${body}`
+      headerUsed = true
+
+      for (const content of chunk(withHeader)) messages.push({ kind: 'text', content })
     }
+
+    return { title: section.title, messages }
   })
 }
 

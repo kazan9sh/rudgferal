@@ -1,39 +1,32 @@
 /**
- * Постинг дайджеста в канал.
+ * Постинг и синхронизация дайджеста в канале.
  *
- * Discord ограничивает частоту сообщений в канале, поэтому шлём последовательно
- * с паузой и уважаем retry_after, если всё-таки упёрлись в лимит.
+ * Баннеры разделов уходят вложениями — так они выглядят в прошлых гайдах.
+ * Discord ограничивает частоту сообщений, поэтому шлём последовательно с паузой
+ * и уважаем retry_after.
  */
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { validateDiscordConfig } from './config'
-import { buildDigest, digestHeader, MESSAGE_LIMIT } from './digest'
+import { buildDigest, digestHeader, MESSAGE_LIMIT, type DigestMessage } from './digest'
 
 const API = 'https://discord.com/api/v10'
 const PAUSE_MS = 1200
+const PUBLIC_DIR = path.join(process.cwd(), 'public')
 
-export type PostResult = {
-  index: number
-  section: string
-  status: 'ok' | 'failed'
-  messageId?: string
-  reason?: string
-}
+export type QueueItem = { section: string; message: DigestMessage }
 
 async function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function sendMessage(channelId: string, content: string): Promise<string> {
+/** Общий вызов с обработкой rate limit. */
+async function call(url: string, init: RequestInit): Promise<Response> {
   const { token } = validateDiscordConfig()
 
   for (let attempt = 0; attempt < 3; attempt++) {
-    const res = await fetch(`${API}/channels/${channelId}/messages`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bot ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
-    })
+    const headers = { ...(init.headers as Record<string, string>), Authorization: `Bot ${token}` }
+    const res = await fetch(url, { ...init, headers })
 
     if (res.status === 429) {
       const body = (await res.json()) as { retry_after?: number }
@@ -41,59 +34,85 @@ async function sendMessage(channelId: string, content: string): Promise<string> 
       continue
     }
 
-    if (!res.ok) {
+    if (!res.ok && res.status !== 404) {
       throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`)
     }
 
-    return ((await res.json()) as { id: string }).id
+    return res
   }
 
-  throw new Error('не удалось отправить после трёх попыток из-за rate limit')
+  throw new Error('не удалось выполнить запрос после трёх попыток из-за rate limit')
 }
 
-/** Собирает дайджест и постит его в канал. Ничего не удаляет и не редактирует. */
-export async function postDigest(
-  channelId: string,
-  sectionFilter?: string[]
-): Promise<PostResult[]> {
+async function sendText(channelId: string, content: string): Promise<void> {
+  await call(`${API}/channels/${channelId}/messages`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
+  })
+}
+
+export function imageFileName(imagePath: string): string {
+  return path.basename(imagePath)
+}
+
+async function sendImage(channelId: string, imagePath: string): Promise<void> {
+  const file = path.join(PUBLIC_DIR, imagePath)
+  const bytes = await readFile(file)
+  const name = imageFileName(imagePath)
+
+  const form = new FormData()
+  form.append('payload_json', JSON.stringify({ attachments: [{ id: 0, filename: name }] }))
+  form.append('files[0]', new Blob([new Uint8Array(bytes)]), name)
+
+  await call(`${API}/channels/${channelId}/messages`, { method: 'POST', body: form })
+}
+
+async function send(channelId: string, message: DigestMessage): Promise<void> {
+  if (message.kind === 'image') return sendImage(channelId, message.path)
+  return sendText(channelId, message.content)
+}
+
+/** Полная очередь сообщений: шапка, затем разделы по порядку. */
+export async function buildQueue(sectionFilter?: string[]): Promise<QueueItem[]> {
   const sections = await buildDigest(sectionFilter)
 
-  const queue: { section: string; content: string }[] = [
-    { section: 'Шапка', content: digestHeader() },
-    ...sections.flatMap((s) => s.messages.map((content) => ({ section: s.title, content }))),
+  const queue: QueueItem[] = [
+    { section: 'Шапка', message: { kind: 'text', content: digestHeader() } },
+    ...sections.flatMap((s) => s.messages.map((message) => ({ section: s.title, message }))),
   ]
 
-  const tooLong = queue.filter((m) => m.content.length > MESSAGE_LIMIT)
+  const tooLong = queue.filter(
+    (item) => item.message.kind === 'text' && item.message.content.length > MESSAGE_LIMIT
+  )
   if (tooLong.length) {
     throw new Error(
       `${tooLong.length} сообщений длиннее ${MESSAGE_LIMIT} символов — постинг отменён`
     )
   }
 
-  const results: PostResult[] = []
+  return queue
+}
 
-  for (const [index, message] of queue.entries()) {
-    try {
-      const messageId = await sendMessage(channelId, message.content)
-      results.push({ index: index + 1, section: message.section, status: 'ok', messageId })
-      console.log(`  [${index + 1}/${queue.length}] ${message.section} — отправлено`)
-    } catch (error) {
-      const reason = error instanceof Error ? error.message : String(error)
-      results.push({ index: index + 1, section: message.section, status: 'failed', reason })
-      console.error(`  [${index + 1}/${queue.length}] ${message.section} — ОШИБКА: ${reason}`)
-    }
+/** Первичная заливка. Ничего не удаляет и не редактирует. */
+export async function postDigest(channelId: string, sectionFilter?: string[]): Promise<number> {
+  const queue = await buildQueue(sectionFilter)
 
+  for (const [index, item] of queue.entries()) {
+    await send(channelId, item.message)
+    const what = item.message.kind === 'image' ? 'картинка' : 'текст'
+    console.log(`  [${index + 1}/${queue.length}] ${item.section} — ${what}`)
     await sleep(PAUSE_MS)
   }
 
-  return results
+  return queue.length
 }
 
-type ExistingMessage = { id: string; content: string }
+type ExistingMessage = { id: string; content: string; attachment: string | null }
 
 /** Свои сообщения канала в хронологическом порядке. */
 async function ownMessages(channelId: string): Promise<ExistingMessage[]> {
-  const { token, clientId } = validateDiscordConfig()
+  const { clientId } = validateDiscordConfig()
   const collected: ExistingMessage[] = []
   let before: string | undefined
 
@@ -101,17 +120,23 @@ async function ownMessages(channelId: string): Promise<ExistingMessage[]> {
     const query = new URLSearchParams({ limit: '100' })
     if (before) query.set('before', before)
 
-    const res = await fetch(`${API}/channels/${channelId}/messages?${query}`, {
-      headers: { Authorization: `Bot ${token}` },
-    })
-    if (!res.ok) throw new Error(`Не удалось прочитать канал: HTTP ${res.status}`)
+    const res = await call(`${API}/channels/${channelId}/messages?${query}`, { method: 'GET' })
+    const batch = (await res.json()) as {
+      id: string
+      content: string
+      author: { id: string }
+      attachments: { filename: string }[]
+    }[]
 
-    const batch = (await res.json()) as { id: string; content: string; author: { id: string } }[]
     if (!batch.length) break
 
     for (const message of batch) {
       if (message.author.id === clientId) {
-        collected.push({ id: message.id, content: message.content })
+        collected.push({
+          id: message.id,
+          content: message.content,
+          attachment: message.attachments[0]?.filename ?? null,
+        })
       }
     }
 
@@ -122,29 +147,10 @@ async function ownMessages(channelId: string): Promise<ExistingMessage[]> {
   return collected.reverse()
 }
 
-async function editMessage(channelId: string, messageId: string, content: string): Promise<void> {
-  const { token } = validateDiscordConfig()
-
-  const res = await fetch(`${API}/channels/${channelId}/messages/${messageId}`, {
-    method: 'PATCH',
-    headers: { Authorization: `Bot ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content, allowed_mentions: { parse: [] } }),
-  })
-
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`)
-}
-
-async function deleteMessage(channelId: string, messageId: string): Promise<void> {
-  const { token } = validateDiscordConfig()
-
-  const res = await fetch(`${API}/channels/${channelId}/messages/${messageId}`, {
-    method: 'DELETE',
-    headers: { Authorization: `Bot ${token}` },
-  })
-
-  if (!res.ok && res.status !== 404) {
-    throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`)
-  }
+/** Совпадает ли уже отправленное сообщение с желаемым. */
+function matches(existing: ExistingMessage, wanted: DigestMessage): boolean {
+  if (wanted.kind === 'image') return existing.attachment === imageFileName(wanted.path)
+  return existing.attachment === null && existing.content === wanted.content
 }
 
 export type SyncSummary = {
@@ -155,42 +161,54 @@ export type SyncSummary = {
 }
 
 /**
- * Приводит канал к текущему состоянию гайда: правит свои сообщения на месте,
- * дописывает недостающие и убирает лишние. Так канал переживает обновление
- * гайда без стены дублей.
+ * Приводит канал к текущему состоянию гайда: правит текст на месте, дописывает
+ * недостающее, убирает лишнее. Вложение отредактировать нельзя, поэтому
+ * несовпавшую картинку пересоздаём.
  */
 export async function syncDigest(
   channelId: string,
   sectionFilter?: string[]
 ): Promise<SyncSummary> {
-  const sections = await buildDigest(sectionFilter)
-  const wanted = [digestHeader(), ...sections.flatMap((s) => s.messages)]
-
+  const queue = await buildQueue(sectionFilter)
   const existing = await ownMessages(channelId)
   const summary: SyncSummary = { edited: 0, added: 0, removed: 0, unchanged: 0 }
 
-  for (const [index, content] of wanted.entries()) {
+  for (const [index, item] of queue.entries()) {
     const current = existing[index]
 
+    if (current && matches(current, item.message)) {
+      summary.unchanged++
+      continue
+    }
+
     if (!current) {
-      await sendMessage(channelId, content)
+      await send(channelId, item.message)
       summary.added++
       console.log(`  [${index + 1}] добавлено`)
-    } else if (current.content !== content) {
-      await editMessage(channelId, current.id, content)
+    } else if (item.message.kind === 'text' && current.attachment === null) {
+      await call(`${API}/channels/${channelId}/messages/${current.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: item.message.content, allowed_mentions: { parse: [] } }),
+      })
       summary.edited++
       console.log(`  [${index + 1}] обновлено`)
     } else {
-      summary.unchanged++
+      // Тип сообщения поменялся — старое убираем, шлём заново.
+      await call(`${API}/channels/${channelId}/messages/${current.id}`, { method: 'DELETE' })
+      await sleep(PAUSE_MS)
+      await send(channelId, item.message)
+      summary.edited++
+      console.log(`  [${index + 1}] пересоздано`)
     }
 
     await sleep(PAUSE_MS)
   }
 
-  for (const stale of existing.slice(wanted.length)) {
-    await deleteMessage(channelId, stale.id)
+  for (const stale of existing.slice(queue.length)) {
+    await call(`${API}/channels/${channelId}/messages/${stale.id}`, { method: 'DELETE' })
     summary.removed++
-    console.log(`  лишнее сообщение удалено`)
+    console.log('  лишнее сообщение удалено')
     await sleep(PAUSE_MS)
   }
 

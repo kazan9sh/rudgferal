@@ -62,9 +62,15 @@ async function digest(): Promise<void> {
   for (const section of sections) {
     for (const message of section.messages) {
       n++
-      const flag = message.length > MESSAGE_LIMIT ? ' ПРЕВЫШЕН ЛИМИТ' : ''
-      console.log(`\n>>> сообщение ${n} — ${section.title} (${message.length} симв.)${flag}`)
-      console.log(message)
+      if (message.kind === 'image') {
+        console.log(`\n>>> сообщение ${n} — ${section.title} (картинка ${message.path})`)
+        continue
+      }
+      const flag = message.content.length > MESSAGE_LIMIT ? ' ПРЕВЫШЕН ЛИМИТ' : ''
+      console.log(
+        `\n>>> сообщение ${n} — ${section.title} (${message.content.length} симв.)${flag}`
+      )
+      console.log(message.content)
     }
   }
 
@@ -76,11 +82,8 @@ async function post(): Promise<void> {
   const channelId = process.argv[3]
   if (!channelId) throw new Error('нужен id канала: pnpm bot:post <channelId> [раздел...]')
 
-  const results = await postDigest(channelId, process.argv.slice(4))
-  const failed = results.filter((r) => r.status === 'failed')
-
-  console.log(`\nОтправлено ${results.length - failed.length} из ${results.length}`)
-  if (failed.length) process.exitCode = 1
+  const sent = await postDigest(channelId, process.argv.slice(4))
+  console.log(`\nОтправлено сообщений: ${sent}`)
 }
 
 /** Обновляет кэш эмодзи сервера: pnpm bot:emoji */
