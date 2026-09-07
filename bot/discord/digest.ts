@@ -151,6 +151,20 @@ function strip(text: string): string {
         /<Talents[^>]*>[\s\S]*?<\/Talents>/g,
         `-# Дерево талантов с раскраской — на сайте: <${SITE}/blog/feral/compendium>`
       )
+      // <details> с чекбоксами — это фильтр APL на сайте. В Discord фильтровать
+      // нечем, а подписи блоков остались бы висеть без содержимого.
+      .replace(/<details[^>]*>(?:(?!<\/details>)[\s\S])*?<Checkbox[\s\S]*?<\/details>/g, '')
+      // Призыв «заходите в чат» в теле абзаца: ссылка на чат и так есть
+      // в «Полезных ссылках» в конце канала, второй раз ни к чему.
+      .replace(/^(?![-*|])(.*)$/gm, (line) =>
+        line.includes('discord.gg')
+          ? line
+              .split(/(?<=\.)\s+/)
+              .filter((sentence) => !sentence.includes('discord.gg'))
+              .join(' ')
+              .trim()
+          : line
+      )
       .replace(/<RotationPresetPicker[^>]*\/>/g, '')
       .replace(/<Timeline[^>]*>[\s\S]*?<\/Timeline>/g, '')
       .replace(/<Checkbox[^>]*>([\s\S]*?)<\/Checkbox>/g, '$1')
@@ -181,6 +195,39 @@ function demote(text: string): string {
   return text.replace(/^##(?!#)\s+/gm, '### ')
 }
 
+/** Наивная основа слова — чтобы «Приоритет» и «Приоритеты» считались одним. */
+function stem(word: string): string {
+  return word.toLowerCase().slice(0, 5)
+}
+
+/**
+ * Убирает подпись свёрнутого блока, если она повторяет заголовок над ней:
+ * на сайте это подпись раскрывающегося блока, в Discord — лишняя строка.
+ */
+function dropEchoedLabels(text: string): string {
+  const lines = text.split('\n')
+  let lastHeading: string[] = []
+
+  return lines
+    .filter((line) => {
+      const heading = line.match(/^#{1,3}\s+(.*)$/)
+      if (heading) {
+        lastHeading = heading[1].split(/\s+/).map(stem)
+        return true
+      }
+
+      const label = line.match(/^\*\*([^*]+)\*\*$/)
+      if (label && lastHeading.length) {
+        const words = label[1].split(/\s+/).map(stem)
+        if (words.every((w) => lastHeading.includes(w))) return false
+      }
+
+      if (line.trim()) lastHeading = lastHeading.length && !label ? [] : lastHeading
+      return true
+    })
+    .join('\n')
+}
+
 /** 🔸 в подзаголовках — так размечены прошлые гайды в Discord. */
 function headings(text: string): string {
   return text.replace(/^(#{2,3})\s+(?!🔸)(.+)$/gm, '$1 🔸 $2')
@@ -188,7 +235,9 @@ function headings(text: string): string {
 
 export function toDiscord(markdown: string, cache: EmojiCache = {}): string {
   const withSpells = wowhead(spells(markdown, cache), cache)
-  return headings(demote(strip(talents(tables(htmlTables(links(withSpells))))))).trim()
+  return headings(
+    dropEchoedLabels(demote(strip(talents(tables(htmlTables(links(withSpells)))))))
+  ).trim()
 }
 
 /** Режет текст на сообщения, не разрывая абзацы и кодовые блоки. */
@@ -273,12 +322,13 @@ export async function buildDigest(sectionFilter?: string[]): Promise<DigestSecti
     loadEmojiCache(),
   ])
   const guide = parseGuide(source, 1)
+  const labels = checkboxLabels(source)
 
   const wanted = (s: Section) =>
     !sectionFilter?.length ||
     sectionFilter.some((f) => s.title.toLowerCase().includes(f.toLowerCase()))
 
-  return guide.sections.filter(wanted).map((section) => {
+  return guide.sections.filter(wanted).map((section, sectionIndex) => {
     const messages: DigestMessage[] = []
     let headerUsed = false
 
@@ -288,11 +338,13 @@ export async function buildDigest(sectionFilter?: string[]): Promise<DigestSecti
         continue
       }
 
-      const body = toDiscord(part.text ?? '', cache)
+      const body = toDiscord(splitApl(part.text ?? '', labels), cache)
       if (!body) continue
 
       // Заголовок раздела ставим к первому текстовому куску, после баннера.
-      const withHeader = headerUsed ? body : `## 🔸 ${section.title}\n\n${body}`
+      // Напоминание про сайт ставим в самый первый раздел, сразу под заголовком.
+      const callout = sectionIndex === 0 && !headerUsed ? `${siteCallout()}\n\n` : ''
+      const withHeader = headerUsed ? body : `## 🔸 ${section.title}\n\n${callout}${body}`
       headerUsed = true
 
       for (const content of chunk(withHeader)) messages.push({ kind: 'text', content })
@@ -306,8 +358,93 @@ export function digestHeader(): string {
   return [
     '# СИЛА ЗВЕРЯ — гайд по фералу, патч 12.1',
     '',
-    `Автосборка из компендиума на <${SITE}>. Полная версия со всеми таблицами,`,
-    'калькулятором талантов и таймлайнами опенера — на сайте.',
+    `## 📖 [Гайд на сайте](<${SITE}>) — рекомендуется к изучению`,
+    '',
+    `Полная версия: <${SITE}/blog/feral/compendium>`,
+    '',
+    'Здесь автосборка гайда. На сайте к ней прилагается калькулятор талантов,',
+    'таймлайны опенера и фильтры APL под конкретный билд — в Discord их нет.',
     `-# Обновлено: ${new Date().toLocaleDateString('ru-RU')}`,
   ].join('\n')
+}
+
+/** Строка-напоминание про сайт, которую вставляем в начало первого раздела. */
+export function siteCallout(): string {
+  return `> 📖 **Гайд на сайте:** <${SITE}> — там фильтры APL, калькулятор талантов и таймлайны.`
+}
+
+/** Подписи фильтров APL, взятые из <Checkbox> на сайте: id → человеческое имя. */
+export function checkboxLabels(source: string): Record<string, string> {
+  const labels: Record<string, string> = {}
+
+  for (const match of source.matchAll(/<Checkbox\b([^>]*)>/g)) {
+    const attrs = match[1]
+    const id = attrs.match(/\bid="([^"]*)"/)?.[1]
+    const name = attrs.match(/\bname="([^"]*)"/)?.[1]
+    if (id && name) labels[id] = name
+  }
+
+  return labels
+}
+
+type AplItem = { text: string; conditions: string[] }
+
+function describeConditions(raw: string[], labels: Record<string, string>): string {
+  // Знаками, а не предлогами: русские названия талантов в родительном и
+  // творительном падеже склонять неоткуда, вышло бы «с Жажда сверххищника».
+  const parts = raw.map((token) => {
+    const negated = token.startsWith('~')
+    const key = negated ? token.slice(1) : token
+    const label = labels[key] ?? key.replace(/ AOE$/, '')
+    return `${negated ? '−' : '+'} ${label}`
+  })
+
+  return parts.length ? ` *(${parts.join(', ')})*` : ''
+}
+
+/**
+ * APL на сайте — один список, который фильтруется чекбоксами «одна цель / АоЕ».
+ * В Discord фильтров нет, и без разделения соседние строки выглядят дублями,
+ * поэтому режем список на два и подписываем условия билда явно.
+ */
+export function splitApl(body: string, labels: Record<string, string>): string {
+  const lines = body.split('\n')
+  const single: AplItem[] = []
+  const aoe: AplItem[] = []
+
+  let start = -1
+  let end = -1
+
+  lines.forEach((line, index) => {
+    const match = line.match(/^\s*\d+\.\s*\[\*([^\]]+)\]\s*(.*)$/)
+    if (!match) return
+
+    if (start === -1) start = index
+    end = index
+
+    const tokens = match[1].split('&&').map((t) => t.trim())
+    const rotation = tokens.shift() ?? ''
+    const item: AplItem = { text: match[2].trim(), conditions: tokens }
+
+    if (rotation.startsWith('AOE')) aoe.push(item)
+    else single.push(item)
+  })
+
+  if (start === -1) return body
+
+  const render = (title: string, items: AplItem[]) =>
+    items.length
+      ? [
+          `**${title}**`,
+          '',
+          ...items.map(
+            (item, i) => `${i + 1}. ${item.text}${describeConditions(item.conditions, labels)}`
+          ),
+          '',
+        ]
+      : []
+
+  const replacement = [...render('Одна цель', single), ...render('AoE / M+', aoe)]
+
+  return [...lines.slice(0, start), ...replacement, ...lines.slice(end + 1)].join('\n')
 }
