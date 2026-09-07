@@ -109,9 +109,11 @@ function strip(text: string): string {
       .replace(/<span[^>]*>([\s\S]*?)<\/span>/g, '$1')
       .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
       .replace(/\[\*[^\]]+\]\s*/g, '')
-      .replace(/>\s*\[!TIP\]/g, '> 💡')
-      .replace(/>\s*\[!WARNING\]/g, '> ⚠️')
-      .replace(/>\s*\[!NOTE\]/g, '> ℹ️')
+      // Алерты сайта сливаем с текстом, иначе значок висит отдельной строкой.
+      .replace(/>\s*\[!TIP\]\s*\n>\s*/g, '> 💡 **Совет:** ')
+      .replace(/>\s*\[!WARNING\]\s*\n>\s*/g, '> ⚠️ **Важно:** ')
+      .replace(/>\s*\[!NOTE\]\s*\n>\s*/g, '> ℹ️ ')
+      .replace(/>\s*\[!(TIP|WARNING|NOTE)\]/g, '>')
       // Остатки JSX и html. Ссылки <https://...> и эмодзи <:name:id> не трогаем.
       .replace(/<(?!https?:\/\/|a?:)[^>]*>/g, '')
       .replace(/^\s*[-*]\s*$/gm, '')

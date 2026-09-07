@@ -18,7 +18,8 @@
     "bot:images": "tsx bot/discord/cli.ts images",
     "bot:digest": "tsx bot/discord/cli.ts digest",
     "bot:post": "tsx bot/discord/cli.ts post",
-    "bot:emoji": "tsx bot/discord/cli.ts emoji"
+    "bot:emoji": "tsx bot/discord/cli.ts emoji",
+    "bot:sync": "tsx bot/discord/cli.ts sync"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.3",

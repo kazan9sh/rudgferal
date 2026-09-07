@@ -5,7 +5,7 @@
  */
 import { buildDigest, digestHeader, MESSAGE_LIMIT } from './digest'
 import { refreshEmojiCache } from './emoji'
-import { postDigest } from './post'
+import { postDigest, syncDigest } from './post'
 import { checkGuide, syncImages } from './sync'
 
 async function check(): Promise<void> {
@@ -95,18 +95,27 @@ async function emoji(): Promise<void> {
   console.log(`эмодзи в кэше: ${Object.keys(cache).length}`)
 }
 
-const command = process.argv[2]
+/** Приводит канал к текущему гайду: pnpm bot:sync <channelId> */
+async function sync(): Promise<void> {
+  const channelId = process.argv[3]
+  if (!channelId) throw new Error('нужен id канала: pnpm bot:sync <channelId>')
 
-const run =
-  command === 'emoji'
-    ? emoji
-    : command === 'post'
-      ? post
-      : command === 'images'
-        ? images
-        : command === 'digest'
-          ? digest
-          : check
+  const s = await syncDigest(channelId, process.argv.slice(4))
+  console.log(
+    `\nОбновлено ${s.edited}, добавлено ${s.added}, удалено ${s.removed}, без изменений ${s.unchanged}`
+  )
+}
+
+const commands: Record<string, () => Promise<void>> = {
+  check,
+  images,
+  digest,
+  post,
+  sync,
+  emoji,
+}
+
+const run = commands[process.argv[2]] ?? check
 
 run().catch((error) => {
   console.error(error instanceof Error ? error.message : error)
