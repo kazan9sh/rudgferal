@@ -153,6 +153,51 @@ function matches(existing: ExistingMessage, wanted: DigestMessage): boolean {
   return existing.attachment === null && existing.content === wanted.content
 }
 
+/**
+ * Полная перезаливка: сносим свои сообщения и пишем заново.
+ *
+ * Нужна, когда меняется структура (например, между текстами появились баннеры):
+ * порядок сообщений в Discord задаётся временем отправки, вставить сообщение
+ * в середину нельзя — только переписать всё.
+ */
+export async function resetChannel(channelId: string, sectionFilter?: string[]): Promise<number> {
+  const existing = await ownMessages(channelId)
+
+  // bulk-delete умеет до 100 сообщений и только моложе двух недель.
+  const ids = existing.map((m) => m.id)
+  for (let i = 0; i < ids.length; i += 100) {
+    const batch = ids.slice(i, i + 100)
+
+    if (batch.length > 1) {
+      await call(`${API}/channels/${channelId}/messages/bulk-delete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: batch }),
+      })
+    } else if (batch.length === 1) {
+      await call(`${API}/channels/${channelId}/messages/${batch[0]}`, { method: 'DELETE' })
+    }
+
+    await sleep(PAUSE_MS)
+  }
+
+  console.log(`  удалено старых сообщений: ${ids.length}`)
+  return postDigest(channelId, sectionFilter)
+}
+
+/** Совпадает ли последовательность типов сообщений с тем, что уже в канале. */
+export function structureMatches(
+  existing: { attachment: string | null }[],
+  queue: QueueItem[]
+): boolean {
+  if (existing.length !== queue.length) return false
+
+  return queue.every((item, index) => {
+    const isImage = item.message.kind === 'image'
+    return isImage === (existing[index].attachment !== null)
+  })
+}
+
 export type SyncSummary = {
   edited: number
   added: number
@@ -171,6 +216,14 @@ export async function syncDigest(
 ): Promise<SyncSummary> {
   const queue = await buildQueue(sectionFilter)
   const existing = await ownMessages(channelId)
+
+  if (existing.length && !structureMatches(existing, queue)) {
+    throw new Error(
+      'структура канала разошлась с гайдом (сместились картинки или число сообщений) — ' +
+        'нужна перезаливка: pnpm bot:reset <channelId>'
+    )
+  }
+
   const summary: SyncSummary = { edited: 0, added: 0, removed: 0, unchanged: 0 }
 
   for (const [index, item] of queue.entries()) {

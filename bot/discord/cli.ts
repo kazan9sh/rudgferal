@@ -5,7 +5,7 @@
  */
 import { buildDigest, digestHeader, MESSAGE_LIMIT } from './digest'
 import { refreshEmojiCache } from './emoji'
-import { postDigest, syncDigest } from './post'
+import { postDigest, resetChannel, syncDigest } from './post'
 import { checkGuide, syncImages } from './sync'
 
 async function check(): Promise<void> {
@@ -109,12 +109,22 @@ async function sync(): Promise<void> {
   )
 }
 
+/** Полная перезаливка канала: pnpm bot:reset <channelId> */
+async function reset(): Promise<void> {
+  const channelId = process.argv[3]
+  if (!channelId) throw new Error('нужен id канала: pnpm bot:reset <channelId>')
+
+  const sent = await resetChannel(channelId, process.argv.slice(4))
+  console.log(`\nКанал перезалит, сообщений: ${sent}`)
+}
+
 const commands: Record<string, () => Promise<void>> = {
   check,
   images,
   digest,
   post,
   sync,
+  reset,
   emoji,
 }
 
