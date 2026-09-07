@@ -7,19 +7,25 @@
  */
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { emojiFor, loadEmojiCache, type EmojiCache } from './emoji'
 import { parseGuide, type Section } from './mdx'
 
 export const MESSAGE_LIMIT = 2000
 const GUIDE_PATH = 'data/blog/feral/compendium.mdx'
 const SITE = 'https://feral.rip'
 
-/** !102401|Дикий рывок! → ссылка на Wowhead без превью. */
-function spells(text: string): string {
+/**
+ * !5217|Тигриное неистовство! → эмодзи сервера плюс название ссылкой.
+ * Эмодзи — как в прошлых гайдах; название оставляем, чтобы текст читался,
+ * даже если эмодзи не отрисуется.
+ */
+function spells(text: string, cache: EmojiCache): string {
   return text
-    .replace(
-      /!(\d+)\|([^!]+)!/g,
-      (_, id, name) => `[${name}](<https://www.wowhead.com/ru/spell=${id}>)`
-    )
+    .replace(/!(\d+)\|([^!]+)!/g, (_, id: string, name: string) => {
+      const link = `[${name}](<https://www.wowhead.com/ru/spell=${id}>)`
+      const icon = emojiFor(id, cache)
+      return icon ? `${icon} ${link}` : link
+    })
     .replace(/!([A-Za-zА-Яа-я' ]+)!/g, '**$1**')
 }
 
@@ -106,15 +112,20 @@ function strip(text: string): string {
       .replace(/>\s*\[!TIP\]/g, '> 💡')
       .replace(/>\s*\[!WARNING\]/g, '> ⚠️')
       .replace(/>\s*\[!NOTE\]/g, '> ℹ️')
-      // Остатки JSX и html. Ссылки вида <https://...> не трогаем — это разметка Discord.
-      .replace(/<(?!https?:\/\/)[^>]*>/g, '')
+      // Остатки JSX и html. Ссылки <https://...> и эмодзи <:name:id> не трогаем.
+      .replace(/<(?!https?:\/\/|a?:)[^>]*>/g, '')
       .replace(/^\s*[-*]\s*$/gm, '')
       .replace(/\n{3,}/g, '\n\n')
   )
 }
 
-export function toDiscord(markdown: string): string {
-  return strip(talents(tables(links(spells(markdown))))).trim()
+/** 🔸 в подзаголовках — так размечены прошлые гайды в Discord. */
+function headings(text: string): string {
+  return text.replace(/^(#{2,3})\s+(?!🔸)(.+)$/gm, '$1 🔸 $2')
+}
+
+export function toDiscord(markdown: string, cache: EmojiCache = {}): string {
+  return headings(strip(talents(tables(links(spells(markdown, cache)))))).trim()
 }
 
 /** Режет текст на сообщения, не разрывая абзацы и кодовые блоки. */
@@ -165,7 +176,10 @@ export type DigestSection = {
  * по одному посту на тему и потом редактировать точечно.
  */
 export async function buildDigest(sectionFilter?: string[]): Promise<DigestSection[]> {
-  const source = await readFile(path.join(process.cwd(), GUIDE_PATH), 'utf8')
+  const [source, cache] = await Promise.all([
+    readFile(path.join(process.cwd(), GUIDE_PATH), 'utf8'),
+    loadEmojiCache(),
+  ])
   const guide = parseGuide(source, 1)
 
   const wanted = (s: Section) =>
@@ -173,8 +187,8 @@ export async function buildDigest(sectionFilter?: string[]): Promise<DigestSecti
     sectionFilter.some((f) => s.title.toLowerCase().includes(f.toLowerCase()))
 
   return guide.sections.filter(wanted).map((section) => {
-    const body = toDiscord(section.body)
-    const header = `## ${section.title}`
+    const body = toDiscord(section.body, cache)
+    const header = `## 🔸 ${section.title}`
 
     return {
       title: section.title,

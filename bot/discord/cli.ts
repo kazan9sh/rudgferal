@@ -4,6 +4,8 @@
  *   pnpm bot:images   — скачать картинки
  */
 import { buildDigest, digestHeader, MESSAGE_LIMIT } from './digest'
+import { refreshEmojiCache } from './emoji'
+import { postDigest } from './post'
 import { checkGuide, syncImages } from './sync'
 
 async function check(): Promise<void> {
@@ -69,9 +71,42 @@ async function digest(): Promise<void> {
   console.log(`\n=== всего сообщений: ${n} ===`)
 }
 
+/** Постинг в канал: pnpm bot:post <channelId> [раздел...] */
+async function post(): Promise<void> {
+  const channelId = process.argv[3]
+  if (!channelId) throw new Error('нужен id канала: pnpm bot:post <channelId> [раздел...]')
+
+  const results = await postDigest(channelId, process.argv.slice(4))
+  const failed = results.filter((r) => r.status === 'failed')
+
+  console.log(`\nОтправлено ${results.length - failed.length} из ${results.length}`)
+  if (failed.length) process.exitCode = 1
+}
+
+/** Обновляет кэш эмодзи сервера: pnpm bot:emoji */
+async function emoji(): Promise<void> {
+  const { validateDiscordConfig } = await import('./config')
+  const config = validateDiscordConfig()
+
+  const guildId = config.guildId || process.argv[3]
+  if (!guildId) throw new Error('нужен DISCORD_GUILD_ID или id гильдии аргументом')
+
+  const cache = await refreshEmojiCache(guildId, config.token)
+  console.log(`эмодзи в кэше: ${Object.keys(cache).length}`)
+}
+
 const command = process.argv[2]
 
-const run = command === 'images' ? images : command === 'digest' ? digest : check
+const run =
+  command === 'emoji'
+    ? emoji
+    : command === 'post'
+      ? post
+      : command === 'images'
+        ? images
+        : command === 'digest'
+          ? digest
+          : check
 
 run().catch((error) => {
   console.error(error instanceof Error ? error.message : error)
