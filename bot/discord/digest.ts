@@ -436,7 +436,8 @@ export function splitApl(body: string, labels: Record<string, string>): string {
     items.length
       ? [
           `**${title}**`,
-          '',
+          // Подпись держим в одном абзаце со списком: иначе нарезка на
+          // сообщения может оставить её висеть в конце предыдущего.
           ...items.map(
             (item, i) => `${i + 1}. ${item.text}${describeConditions(item.conditions, labels)}`
           ),
