@@ -15,7 +15,8 @@
     "test:watch": "jest --watch",
     "bot:discord": "tsx bot/discord/client.ts",
     "bot:check": "tsx bot/discord/cli.ts check",
-    "bot:images": "tsx bot/discord/cli.ts images"
+    "bot:images": "tsx bot/discord/cli.ts images",
+    "bot:digest": "tsx bot/discord/cli.ts digest"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.3",

@@ -3,6 +3,7 @@
  *   pnpm bot:check    — что разошлось с upstream
  *   pnpm bot:images   — скачать картинки
  */
+import { buildDigest, digestHeader, MESSAGE_LIMIT } from './digest'
 import { checkGuide, syncImages } from './sync'
 
 async function check(): Promise<void> {
@@ -46,9 +47,31 @@ async function images(): Promise<void> {
   )
 }
 
+/** Печатает готовые сообщения с разделителями — превью перед постингом. */
+async function digest(): Promise<void> {
+  const filter = process.argv.slice(3)
+  const sections = await buildDigest(filter)
+
+  const header = digestHeader()
+  console.log(`>>> сообщение 1 (${header.length} симв.)`)
+  console.log(header)
+
+  let n = 1
+  for (const section of sections) {
+    for (const message of section.messages) {
+      n++
+      const flag = message.length > MESSAGE_LIMIT ? ' ПРЕВЫШЕН ЛИМИТ' : ''
+      console.log(`\n>>> сообщение ${n} — ${section.title} (${message.length} симв.)${flag}`)
+      console.log(message)
+    }
+  }
+
+  console.log(`\n=== всего сообщений: ${n} ===`)
+}
+
 const command = process.argv[2]
 
-const run = command === 'images' ? images : check
+const run = command === 'images' ? images : command === 'digest' ? digest : check
 
 run().catch((error) => {
   console.error(error instanceof Error ? error.message : error)
