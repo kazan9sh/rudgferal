@@ -172,6 +172,15 @@ function strip(text: string): string {
   )
 }
 
+/**
+ * Заголовок раздела мы ставим на второй уровень, поэтому всё, что внутри,
+ * опускаем на ступень: иначе подраздел выглядит ровней своему разделу.
+ * Глубже третьего уровня Discord не рисует, там останавливаемся.
+ */
+function demote(text: string): string {
+  return text.replace(/^##(?!#)\s+/gm, '### ')
+}
+
 /** 🔸 в подзаголовках — так размечены прошлые гайды в Discord. */
 function headings(text: string): string {
   return text.replace(/^(#{2,3})\s+(?!🔸)(.+)$/gm, '$1 🔸 $2')
@@ -179,7 +188,7 @@ function headings(text: string): string {
 
 export function toDiscord(markdown: string, cache: EmojiCache = {}): string {
   const withSpells = wowhead(spells(markdown, cache), cache)
-  return headings(strip(talents(tables(htmlTables(links(withSpells)))))).trim()
+  return headings(demote(strip(talents(tables(htmlTables(links(withSpells))))))).trim()
 }
 
 /** Режет текст на сообщения, не разрывая абзацы и кодовые блоки. */
