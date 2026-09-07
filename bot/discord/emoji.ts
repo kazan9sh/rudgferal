@@ -35,11 +35,13 @@ export const SPELL_EMOJI: Record<string, string> = {
   '285381': 'PW',
   '319439': 'bloodtalons',
   '319454': 'HOTW',
+  '390772': 'pouncing_strikes',
   '391528': 'convoke',
   '391881': 'apex',
   '391969': 'circle',
   '439528': 'wildstalker',
   '441583': 'dotc',
+  '441809': 'dreadful_wound',
   '1243807': 'frenzy',
   '1244258': 'chomp',
 }

@@ -29,6 +29,57 @@ function spells(text: string, cache: EmojiCache): string {
     .replace(/!([A-Za-zА-Яа-я' ]+)!/g, '**$1**')
 }
 
+/** <Wowhead id="5217" name="..." type="spell" /> — то же оформление, что и у !id|name!. */
+function wowhead(text: string, cache: EmojiCache): string {
+  return text.replace(/<Wowhead\s([^>]*?)\/>/g, (_, attrs: string) => {
+    const get = (key: string) => attrs.match(new RegExp(`${key}="([^"]*)"`))?.[1] ?? ''
+
+    const id = get('id')
+    const name = get('name')
+    if (!id || !name) return name
+
+    const kind = get('type') === 'item' ? 'item' : 'spell'
+    const link = `[${name}](<https://www.wowhead.com/ru/${kind}=${id}>)`
+    const icon = kind === 'spell' ? emojiFor(id, cache) : null
+
+    return icon ? `${icon} ${link}` : link
+  })
+}
+
+/**
+ * HTML-таблица → список. Первая ячейка строки становится подписью, остальные
+ * значениями через точку: в Discord это единственный способ не потерять смысл
+ * таблицы, потому что таблиц он не рисует.
+ */
+function htmlTables(text: string): string {
+  return text.replace(/<table[^>]*>([\s\S]*?)<\/table>/g, (_, body: string) => {
+    const rowsOf = (html: string) =>
+      [...html.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map((row) =>
+        [...row[1].matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/g)].map((cell) =>
+          cell[1].replace(/\s+/g, ' ').trim()
+        )
+      )
+
+    const rows = rowsOf(body).filter((cells) => cells.length)
+    if (!rows.length) return ''
+
+    const [head, ...rest] = rows
+    const lines: string[] = []
+
+    if (head.length > 1) {
+      lines.push(`**${head[0]}** — колонки: ${head.slice(1).join(' · ')}`)
+      lines.push('')
+    }
+
+    for (const cells of rest) {
+      const [label, ...values] = cells
+      lines.push(values.length ? `- **${label}** — ${values.join(' · ')}` : `- ${label}`)
+    }
+
+    return lines.join('\n')
+  })
+}
+
 /** Ссылки на сайте оборачиваем в <>, иначе Discord навалит превью на каждую. */
 function links(text: string): string {
   return text.replace(/\]\((https?:\/\/[^)<][^)]*)\)/g, '](<$1>)')
@@ -127,7 +178,8 @@ function headings(text: string): string {
 }
 
 export function toDiscord(markdown: string, cache: EmojiCache = {}): string {
-  return headings(strip(talents(tables(links(spells(markdown, cache)))))).trim()
+  const withSpells = wowhead(spells(markdown, cache), cache)
+  return headings(strip(talents(tables(htmlTables(links(withSpells)))))).trim()
 }
 
 /** Режет текст на сообщения, не разрывая абзацы и кодовые блоки. */
